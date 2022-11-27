@@ -1,14 +1,16 @@
 import styled from 'styled-components';
-import styles from './welcome.module.scss';
+import styles from './welcome.module.scss'
+
 
 const Container = styled.div`
-// background:red;
 `
 
 function Welcome (){
     return(
         <Container>
-        welcome
+            <div className={styles.Welcome}>
+
+            </div>
         </Container>
     )
 }
