@@ -18,13 +18,13 @@ body {
 
 #root{
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 @media only screen and (min-width: 600px) {
   #root{
     max-width: 400px;
-    min-height: 667px !important;
-
+    height: 667px !important;
+    overflow-y:auto; 
   }
 }

@@ -1,8 +1,17 @@
+import { Route, Routes } from "react-router-dom";
+import styled from 'styled-components';
+
+const Container = styled.div`
+
+`
+
 function App() {
   return (
-    <>
-    lorem
-    </>
+    <Container>
+      <Routes>
+        <Route/>
+      </Routes>
+    </Container>
   );
 }
 
