@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
 import Login from "./components/auth/login";
 import Dashboard from "./components/dashboard/dashboard";
@@ -23,6 +25,11 @@ function App() {
           </Routes>
         </Container>
       {/* <Menu/> */}
+      <ToastContainer 
+          position="bottom-right"
+          rtl={true}
+          theme="colored"
+        />
     </Context.Provider>
   );
 }
