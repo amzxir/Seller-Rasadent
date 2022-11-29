@@ -1,0 +1,28 @@
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    box-shadow: rgb(0 0 0 / 8%) 0px 0.125rem 0.25rem;
+    background-color: #fff;
+    border-radius: 25px;
+
+    a{
+        .notActive{
+            background-color: #fff;
+            padding: 5px 15px;
+            color: #909090;
+        }
+
+        .active{
+            background-color: #3A69E6;
+            padding: 5px 15px;
+            color: #fff;
+            border-radius: 15px;
+        }
+
+        svg{
+            font-size: 20px;
+        }
+    }
+}

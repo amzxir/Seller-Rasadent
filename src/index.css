@@ -50,6 +50,7 @@ body {
 }
 
 #root{
+  position: relative !important;
   font-family: 'IranSans';
   background:var(--bg-light);
   width: 100%;
