@@ -7,6 +7,8 @@ import { useForm } from "react-hook-form"
 import { toast } from 'react-toastify'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup"
+import { useContext } from 'react'
+import Context from '../../context/context'
 
 
 
@@ -22,10 +24,14 @@ const schema = yup.object().shape({
 
 function StepTwo (props){
 
+    const {setAuth} = useContext(Context)
+
     const navigate = useNavigate();
+
     const { register, handleSubmit, formState:{ errors } } = useForm({
         resolver: yupResolver(schema),
     });
+
     const onSubmit = (data) => {
         const request = props.data
         const checkCode = request.find(({ code }) => code === data.code);
@@ -37,6 +43,8 @@ function StepTwo (props){
             toast.success("با موفقیت وارد شدید")
             navigate('/dashboard')
         }
+
+        setAuth(true)
     }
 
     return(

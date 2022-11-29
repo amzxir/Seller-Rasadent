@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -6,6 +7,7 @@ import Login from "./components/auth/login";
 import Dashboard from "./components/dashboard/dashboard";
 import Menu from "./components/navbar/menu/menu";
 import Nav from "./components/navbar/nav/nav";
+import PrivateRoutes from "./components/utlis/private-routes";
 import Welcome from "./components/welcome/welcome";
 import Context from "./context/context";
 
@@ -14,17 +16,24 @@ const Container = styled.div`
 `
 
 function App() {
+
+  const [auth , setAuth] = useState(false)
+
   return (
-    <Context.Provider value={{  }}>
+    <Context.Provider value={{ 
+      auth , setAuth
+     }}>
       <Nav/>
         <Container>
           <Routes>
+            <Route element={<PrivateRoutes/>}>
+              <Route path="/dashboard" element={<Dashboard/>}/>
+            </Route>
             <Route path="/" element={<Welcome/>}/>
             <Route path="/login" element={<Login/>}/>
-            <Route path="/dashboard" element={<Dashboard/>}/>
           </Routes>
         </Container>
-      {/* <Menu/> */}
+      <Menu/>
       <ToastContainer 
           position="bottom-right"
           rtl={true}
