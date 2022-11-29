@@ -38,6 +38,8 @@ body {
   font-family: 'IranSans';
   margin: 0;
   height: 100vh;
+  background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+  /* background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%); */
 }
 
 @media only screen and (min-width: 600px) {
