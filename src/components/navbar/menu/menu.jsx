@@ -8,6 +8,10 @@ const Container = styled.div`
 position: sticky;
 bottom: 0%;
 width:100%;
+
+@media (max-width: 600px) {
+    position: fixed;
+} 
 `
 
 function Menu (){
