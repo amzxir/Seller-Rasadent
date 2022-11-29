@@ -43,7 +43,7 @@ $white:#fff;
         }
 
 
-        button{
+        a{
             font-family: 'IranSans';
             background-color: #3ABAF5;
             border-color: #3ABAF5;
@@ -54,6 +54,7 @@ $white:#fff;
             border-radius: 20px;
             font-weight: bold;
             position: relative;
+            text-decoration: none;
 
             svg{
                 font-size: 1rem;

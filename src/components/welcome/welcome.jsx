@@ -4,6 +4,7 @@ import styles from './welcome.module.scss'
 import LoginSvg from '../../images/login.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons'
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -28,7 +29,7 @@ function Welcome (){
                     <div className={styles.imgCenter}>
                         <img src={LoginSvg} alt="" />
                     </div>
-                    <button className='btn'>ورود <FontAwesomeIcon icon={faArrowAltCircleLeft}/></button>
+                    <NavLink className='btn' to='/dashboard'>ورود <FontAwesomeIcon icon={faArrowAltCircleLeft}/></NavLink>
                 </div>
             </div>
         </Container>
