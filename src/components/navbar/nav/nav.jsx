@@ -27,9 +27,22 @@ function Nav (){
         )
     }
 
+    const navWelcome = () => {
+        return(
+            <Container>
+            <div className={styles.nav}>
+                <div className={styles.welcome}>
+                    <p>امیر احمدی عزیز خوش آمدید</p>
+                </div>
+            </div>
+        </Container>
+        )
+    }
+
     return(
         <>
             {pathname === '/login'?navBack():null }
+            {pathname === '/dashboard' || pathname === '/product' || pathname === '/invoice' || pathname === '/messages' ?navWelcome():null }
         </>
     )
 }
