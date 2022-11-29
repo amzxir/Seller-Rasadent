@@ -6,6 +6,8 @@ import styled from "styled-components"
 import styles from './login.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMobileAlt  } from '@fortawesome/free-solid-svg-icons'
+import { useContext } from "react";
+import Context from "../../context/context";
 
 
 const Container = styled.div`
@@ -19,6 +21,8 @@ const schema = yup.object().shape({
 })
 
 function StepOne (props){
+
+    const {t , i18n} = useContext(Context)
 
     const { register, handleSubmit, formState:{ errors } } = useForm({
         resolver: yupResolver(schema),
@@ -43,7 +47,7 @@ function StepOne (props){
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className={styles.formGroup}>
-                    <label className={styles.nameLabel}>شماره موبایل</label>
+                    <label className={styles.nameLabel}>{t('labelMobile')}</label>
                     <span className={styles.error}>{errors.mobile?.message}</span>
                     <FontAwesomeIcon icon={faMobileAlt}/>
                     <input type="text" className='formControl' {...register("mobile")} />

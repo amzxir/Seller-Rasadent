@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
 import Login from "./components/auth/login";
@@ -22,21 +23,24 @@ function App() {
 
   const [auth , setAuth] = useState(false)
 
+  const {t , i18n} = useTranslation()
+
   return (
     <Context.Provider value={{ 
-      auth , setAuth
+      auth , setAuth , 
+      t , i18n
      }}>
       <Nav/>
         <Container>
           <Routes>
+            <Route path="/" exact element={<Welcome/>}/>
+            <Route path="/login" exact element={<Login/>}/>
             <Route element={<PrivateRoutes/>}>
-              <Route path="/dashboard" element={<Dashboard/>}/>
-              <Route path="/product" element={<Product/>}/>
-              <Route path="/invoice" element={<Invoice/>}/>
-              <Route path="/messages" element={<Messages/>}/>
+              <Route path="/dashboard" exact element={<Dashboard/>}/>
+              <Route path="/product" exact element={<Product/>}/>
+              <Route path="/invoice" exact element={<Invoice/>}/>
+              <Route path="/messages" exact element={<Messages/>}/>
             </Route>
-            <Route path="/" element={<Welcome/>}/>
-            <Route path="/login" element={<Login/>}/>
           </Routes>
         </Container>
       <Menu/>

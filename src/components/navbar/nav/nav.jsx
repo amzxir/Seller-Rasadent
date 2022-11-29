@@ -18,7 +18,7 @@ function Nav (){
         return(
             <Container>
             <div className={styles.nav}>
-                <div onClick={()=> navigate(-1)} className={styles.back}>
+                <div onClick={() => navigate(-1)} className={styles.back}>
                     <p>بازگشت</p>
                     <FontAwesomeIcon fontSize={13} icon={faChevronLeft}/>
                 </div>
