@@ -5,11 +5,13 @@
     padding: 1rem;
     box-shadow: rgb(0 0 0 / 8%) 0px 0.125rem 0.25rem;
     background-color: #fff;
-    border-radius: 25px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
 
     a{
         svg{
             font-size: 20px;
+            margin-top: 4px;
         }
     }
 }
