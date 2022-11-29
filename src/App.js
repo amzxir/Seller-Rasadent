@@ -7,6 +7,7 @@ import Login from "./components/auth/login";
 import Dashboard from "./components/dashboard/dashboard";
 import Menu from "./components/navbar/menu/menu";
 import Nav from "./components/navbar/nav/nav";
+import Product from "./components/product/product";
 import PrivateRoutes from "./components/utlis/private-routes";
 import Welcome from "./components/welcome/welcome";
 import Context from "./context/context";
@@ -28,6 +29,7 @@ function App() {
           <Routes>
             <Route element={<PrivateRoutes/>}>
               <Route path="/dashboard" element={<Dashboard/>}/>
+              <Route path="/product" element={<Product/>}/>
             </Route>
             <Route path="/" element={<Welcome/>}/>
             <Route path="/login" element={<Login/>}/>
