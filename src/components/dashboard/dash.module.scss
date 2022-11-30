@@ -8,12 +8,13 @@ $gray:#8B8B8B;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+    margin-bottom: 1rem;
 
     .col6{
         flex: 0 auto;
         width: 48%;
 
-        .card:nth-child(odd){
+        .card{
             background-color: $bgWhite;
             padding: 1rem;
             box-shadow: rgb(0 0 0 / 8%) 0px 0.125rem 0.25rem;
@@ -38,4 +39,10 @@ $gray:#8B8B8B;
 
         }
     }
+}
+
+.chart{
+    background-color: $bgWhite;
+    border-radius: 15px;
+    padding: 1rem;
 }
