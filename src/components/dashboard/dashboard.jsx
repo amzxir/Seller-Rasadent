@@ -41,7 +41,7 @@ function Dashboard () {
                 })}
             </div>
             <div className={styles.chart}>
-                lore
+                
             </div>
         </Container>
     )
