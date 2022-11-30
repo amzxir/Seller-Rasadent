@@ -1,0 +1,41 @@
+$bgWhite:#fff;
+$primary:#3ABAF5;
+$darks:#222222;
+$gray:#8B8B8B;
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+
+    .col6{
+        flex: 0 auto;
+        width: 48%;
+
+        .card:nth-child(odd){
+            background-color: $bgWhite;
+            padding: 1rem;
+            box-shadow: rgb(0 0 0 / 8%) 0px 0.125rem 0.25rem;
+            border-radius: 15px;
+
+            svg{
+                font-size: 35px;
+                color: $primary;
+            }
+
+            p:nth-child(even){
+                margin-block: .3rem;
+                color: $darks;
+                font-weight: bold;
+            }
+
+            p:nth-child(odd){
+                margin-block: 0;
+                color: $gray;
+                font-weight: lighter;
+            }
+
+        }
+    }
+}

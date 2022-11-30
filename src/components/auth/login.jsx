@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import styled from "styled-components"
 import WizardForm from 'react-wizard-form'
 import StepOne from "./step-one"
@@ -10,6 +11,10 @@ padding:25px 15px 0px 15px;
 
 
 function Login (){
+
+    useEffect(()=> {
+        document.title = 'ورود به حساب کاربری'
+    })
 
     const request = [
         {id:1 , mobile:'09199954356' , code:'2341'},

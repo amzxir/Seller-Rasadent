@@ -1,3 +1,6 @@
+import { useEffect } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faBagShopping , faFileInvoice } from '@fortawesome/free-solid-svg-icons'
 import styled from "styled-components"
 import styles from './dash.module.scss'
 
@@ -11,19 +14,31 @@ padding:25px 15px 0px 15px;
 `
 
 function Dashboard () {
+
+    useEffect(()=> {
+        document.title = 'داشبورد'
+    })
+
+    const data = [
+        {id:1 , name:'فاکتور ها' , int:'12' , icon:faFileInvoice},
+        {id:2 , name:'محصولات' , int:'23' , icon:faBagShopping},
+    ]
+
     return(
         <Container>
-            dashboard
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque laboriosam corporis ad repellat, expedita vel repudiandae quae neque maxime, ab optio facilis sapiente, iste quam adipisci delectus voluptatem ex necessitatibus.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque laboriosam corporis ad repellat, expedita vel repudiandae quae neque maxime, ab optio facilis sapiente, iste quam adipisci delectus voluptatem ex necessitatibus.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque laboriosam corporis ad repellat, expedita vel repudiandae quae neque maxime, ab optio facilis sapiente, iste quam adipisci delectus voluptatem ex necessitatibus.
-            Lorem ipsum dolor, sit
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque laboriosam corporis ad repellat, expedita vel repudiandae quae neque maxime, ab optio facilis sapiente, iste quam adipisci delectus voluptatem ex necessitatibus.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque laboriosam corporis ad repellat, expedita vel repudiandae quae neque maxime, ab optio facilis sapiente, iste quam adipisci delectus voluptatem ex necessitatibus.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque laboriosam corporis ad repellat, expedita vel repudiandae quae neque maxime, ab optio facilis sapiente, iste quam adipisci delectus voluptatem ex necessitatibus.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque laboriosam corporis ad repellat, expedita vel repudiandae quae neque maxime, ab optio facilis sapiente, iste quam adipisci delectus voluptatem ex necessitatibus.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque laboriosam corporis ad repellat, expedita vel repudiandae quae neque maxime, ab optio facilis sapiente, iste quam adipisci delectus voluptatem ex necessitatibus.
-             amet consectetur adipisicing elit. Atque laboriosam corporis ad repellat, expedita vel repudiandae quae neque maxime, ab optio facilis sapiente, iste quam adipisci delectus voluptatem ex necessitatibus.
+            <div className={styles.row}>
+                {data.map((i , index)=> {
+                    return(
+                        <div key={index} className={styles.col6}>
+                            <div className={styles.card}>
+                                <FontAwesomeIcon icon={i.icon}/>
+                                <p>{i.name}</p>
+                                <p>{i.int}</p>
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
         </Container>
     )
 }
