@@ -6,7 +6,7 @@ import styled from "styled-components"
 import styles from './login.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMobileAlt  } from '@fortawesome/free-solid-svg-icons'
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Context from "../../context/context";
 
 
@@ -27,14 +27,22 @@ function StepOne (props){
     const { register, handleSubmit, formState:{ errors } } = useForm({
         resolver: yupResolver(schema),
     });
+
     const onSubmit = (data) => {
+
         const request = props.data
+
         const checkMobile = request.find(({ mobile }) => mobile === data.mobile);
+
         if(!checkMobile){
+
             toast.error("شماره موبایل یافت نشد")
             console.log('mobile undefined')
+
         } else {
+
             console.log(data)
+            props.setMobileData(data)
             props.nextStep(data);
         }
     }

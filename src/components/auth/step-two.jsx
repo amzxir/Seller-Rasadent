@@ -32,16 +32,28 @@ function StepTwo (props){
         resolver: yupResolver(schema),
     });
 
+
     const onSubmit = (data) => {
+
+        const mobile = props.mobileData
+
         const request = props.data
+
         const checkCode = request.find(({ code }) => code === data.code);
+
         if (!checkCode){
+            
             toast.error("کد را به درستی وارد کنید")
             console.log('code undefined')
+
         } else {
-            console.log(data)
+
+            const code = data
+            const otp = {code , mobile}
+            console.log(otp)
             toast.success("با موفقیت وارد شدید")
             navigate('/dashboard')
+
         }
 
         setAuth(true)

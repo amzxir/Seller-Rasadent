@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 import WizardForm from 'react-wizard-form'
 import StepOne from "./step-one"
@@ -21,11 +21,13 @@ function Login (){
         {id:2 , mobile:'09127031823' , code:'1234'},
     ]
 
+    const [mobileData , setMobileData] = useState()
+
     return(
         <Container>
             <WizardForm>
-                <StepOne data={request}/>
-                <StepTwo data={request}/>
+                <StepOne data={request} setMobileData={setMobileData}/>
+                <StepTwo data={request} mobileData={mobileData}/>
             </WizardForm>
         </Container>
     )
