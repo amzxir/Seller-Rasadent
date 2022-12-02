@@ -1,10 +1,9 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBagShopping , faFileInvoice } from '@fortawesome/free-solid-svg-icons'
 import styled from "styled-components"
 import styles from './dash.module.scss'
-
-
+import PirChart from "../chart/pirChart"
 
 
 const Container = styled.div`
@@ -27,6 +26,14 @@ function Dashboard () {
         {id:2 , name:'محصولات' , int:'23' , icon:faBagShopping},
     ]
 
+    const [userData , setUserData] = useState({
+        labels: data.map((i)=> i.name) ,
+        datasets:[{
+            label:'رسادنت',
+            data: data.map((i)=> i.int) ,
+        }]
+    })
+
     return(
         <Container>
             <div className={styles.row}>
@@ -43,7 +50,7 @@ function Dashboard () {
                 })}
             </div>
             <div className={styles.chart}>
-                
+                <PirChart chartData={userData}/>
             </div>
         </Container>
     )
