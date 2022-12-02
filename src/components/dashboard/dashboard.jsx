@@ -6,6 +6,7 @@ import styles from './dash.module.scss'
 
 
 
+
 const Container = styled.div`
 min-height:517px;
 padding:25px 15px 0px 15px;
@@ -42,7 +43,7 @@ function Dashboard () {
                 })}
             </div>
             <div className={styles.chart}>
-
+                
             </div>
         </Container>
     )
