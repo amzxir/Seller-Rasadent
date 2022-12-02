@@ -22,10 +22,10 @@ function Menu (){
         return(
             <Container>
                 <nav className={styles.navbar}>
-                    <NavLink to='/dashboard' className={({ isActive }) => (isActive ? 'active' : 'notActive')}><FontAwesomeIcon icon={faHome}/></NavLink>
-                    <NavLink to='/product' className={({ isActive }) => (isActive ? 'active' : 'notActive')}><FontAwesomeIcon icon={faBox}/></NavLink>
-                    <NavLink to='/invoice' className={({ isActive }) => (isActive ? 'active' : 'notActive')}><FontAwesomeIcon icon={faFileInvoice}/></NavLink>
-                    <NavLink to='/messages' className={({ isActive }) => (isActive ? 'active' : 'notActive')}><FontAwesomeIcon icon={faMessage}/></NavLink>
+                    <NavLink to='/dashboard' className={({ isActive }) => (isActive ? 'actives' : 'notActive')}><FontAwesomeIcon icon={faHome}/></NavLink>
+                    <NavLink to='/product' className={({ isActive }) => (isActive ? 'actives' : 'notActive')}><FontAwesomeIcon icon={faBox}/></NavLink>
+                    <NavLink to='/invoice' className={({ isActive }) => (isActive ? 'actives' : 'notActive')}><FontAwesomeIcon icon={faFileInvoice}/></NavLink>
+                    <NavLink to='/messages' className={({ isActive }) => (isActive ? 'actives' : 'notActive')}><FontAwesomeIcon icon={faMessage}/></NavLink>
                 </nav>
             </Container>
         )
