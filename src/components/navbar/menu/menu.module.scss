@@ -9,9 +9,32 @@
     border-top-right-radius: 25px;
 
     a{
+        position: relative;
+
         svg{
             font-size: 20px;
             margin-top: 4px;
+
+        }
+
+        .bage{
+            width: 18px;
+            height: 18px;
+            border: 1px solid red;
+            background-color: red;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            top: -5px;
+            right: 3px;
+
+            small{
+                font-size: 10px;
+                font-weight: bold;
+                color: #fff;
+            }
         }
     }
 }

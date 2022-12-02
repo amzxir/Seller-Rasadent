@@ -15,6 +15,8 @@ import PrivateRoutes from "./components/utlis/private-routes";
 import Welcome from "./components/welcome/welcome";
 import Context from "./context/context";
 import NoInternetConnection from "./components/nointernet/NoInternet";
+import Manage from "./components/product/manage/manage";
+import Create from "./components/product/create/create";
 
 const Container = styled.div`
 
@@ -41,6 +43,8 @@ function App() {
               <Route element={<PrivateRoutes/>}>
                 <Route path="/dashboard" exact element={<Dashboard/>}/>
                 <Route path="/product" exact element={<Product/>}/>
+                <Route path="/manage-product" element={<Manage/>}/>
+                <Route path="/create-product" element={<Create/>}/>
                 <Route path="/invoice" exact element={<Invoice/>}/>
                 <Route path="/messages" exact element={<Messages/>}/>
               </Route>

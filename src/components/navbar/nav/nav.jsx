@@ -41,8 +41,8 @@ function Nav (){
 
     return(
         <>
-            {pathname === '/login'?navBack():null }
-            {pathname === '/dashboard' || pathname === '/product' || pathname === '/invoice' || pathname === '/messages' ?navWelcome():null }
+            {pathname === '/login' || pathname === '/create-product' || pathname === '/manage-product' ? navBack():null }
+            {pathname === '/dashboard' || pathname === '/product' || pathname === '/invoice' || pathname === '/messages' ? navWelcome():null }
         </>
     )
 }

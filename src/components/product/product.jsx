@@ -8,7 +8,7 @@ min-height:517px;
 padding:25px 15px 0px 15px;
 
 @media (max-width: 600px) {
-    padding:25px 15px 90px 15px;
+    padding:25px 15px 72px 15px;
 } 
 `
 
@@ -18,10 +18,19 @@ function Product (){
         document.title = 'محصولات'
     })
 
+    const data =[
+        {name:'ایجاد محصول جدید' , link:'/create-product' , class:styles.createPro},
+        {name:'ایجاد محصول جدید' , link:'/manage-product' , class:styles.managePro},
+    ]
+
     return(
         <Container>
-            <NavLink className={styles.createPro}>ایجاد محصول جدید</NavLink>
-            <NavLink className={styles.managePro}>مدیریت محصولات</NavLink>
+            {data.map((i , index)=> {
+                return(
+
+                    <NavLink key={index} to={i.link} className={i.class}>{i.name}</NavLink>
+                )
+            })}
         </Container>
     )
 }
