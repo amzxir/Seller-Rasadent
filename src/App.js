@@ -14,6 +14,7 @@ import Product from "./components/product/product";
 import PrivateRoutes from "./components/utlis/private-routes";
 import Welcome from "./components/welcome/welcome";
 import Context from "./context/context";
+import NoInternetConnection from "./components/nointernet/NoInternet";
 
 const Container = styled.div`
 
@@ -30,25 +31,28 @@ function App() {
       auth , setAuth , 
       t , i18n
      }}>
-      <Nav/>
-        <Container>
-          <Routes>
-            <Route path="/" exact element={<Welcome/>}/>
-            <Route path="/login" exact element={<Login/>}/>
-            <Route element={<PrivateRoutes/>}>
-              <Route path="/dashboard" exact element={<Dashboard/>}/>
-              <Route path="/product" exact element={<Product/>}/>
-              <Route path="/invoice" exact element={<Invoice/>}/>
-              <Route path="/messages" exact element={<Messages/>}/>
-            </Route>
-          </Routes>
-        </Container>
-      <Menu/>
-      <ToastContainer 
-          position="bottom-right"
-          rtl={true}
-          theme="colored"
-        />
+
+      <NoInternetConnection>
+        <Nav/>
+          <Container>
+            <Routes>
+              <Route path="/" exact element={<Welcome/>}/>
+              <Route path="/login" exact element={<Login/>}/>
+              <Route element={<PrivateRoutes/>}>
+                <Route path="/dashboard" exact element={<Dashboard/>}/>
+                <Route path="/product" exact element={<Product/>}/>
+                <Route path="/invoice" exact element={<Invoice/>}/>
+                <Route path="/messages" exact element={<Messages/>}/>
+              </Route>
+            </Routes>
+          </Container>
+        <Menu/>
+        <ToastContainer 
+            position="bottom-right"
+            rtl={true}
+            theme="colored"
+          />
+      </NoInternetConnection>
     </Context.Provider>
   );
 }
