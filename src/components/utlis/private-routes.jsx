@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { Outlet, Navigate } from 'react-router-dom'
 import Context from '../../context/context'
 
@@ -8,7 +8,7 @@ const PrivateRoutes = () => {
     console.log(auth)
 
     return(
-        !auth ? <Outlet/> : <Navigate to="/login"/>
+        auth ? <Outlet/> : <Navigate to="/login"/>
     )
 }
 export default PrivateRoutes;
