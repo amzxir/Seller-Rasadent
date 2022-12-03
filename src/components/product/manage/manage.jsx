@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNewspaper , faEdit , faTrash } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
+import { useState } from "react";
 
 const Container = styled.div`
 padding:25px 15px 0px 15px;
@@ -19,14 +20,22 @@ function Manage({functionData}) {
     {id:1 , link:'#' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
     {id:2 , link:'#' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
     {id:3 , link:'#' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} 
-
   ]
+
+
+  const [dataProduct , setDataProduct] = useState(data)
+
+  const functionDelete = (item) => {
+    const cefrf = dataProduct.filter(i => i.id !== item.id)
+    setDataProduct(cefrf)
+  };
+
 
   return (
     <Container>
       <div className={styles.row}>
         <div className={styles.col6}>
-          {data.map((i , index)=> {
+          {dataProduct.map((i , index)=> {
             return(
               <div key={index} className={styles.card}>
                 <div className={styles.content}>
@@ -35,7 +44,7 @@ function Manage({functionData}) {
                 </div>
                 <div className={styles.manage}>
                   <NavLink to={`/edit-product/${i.id}`} onClick={()=> functionData(i)}><FontAwesomeIcon icon={faEdit}/></NavLink>
-                  <span><FontAwesomeIcon icon={faTrash}/></span>
+                  <span onClick={()=>functionDelete(i)}><FontAwesomeIcon icon={faTrash}/></span>
                 </div>
               </div>
             )
