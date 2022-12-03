@@ -29,6 +29,14 @@ function App() {
 
   const {t , i18n} = useTranslation()
 
+  const [dataManage , setDataManage] = useState()
+
+  const getDataManage = (i) => {
+    // console.log(i)
+    setDataManage(i)
+  }
+
+
   return (
     <Context.Provider value={{ 
       auth , setAuth , 
@@ -44,9 +52,9 @@ function App() {
               <Route element={<PrivateRoutes/>}>
                 <Route path="/dashboard" exact element={<Dashboard/>}/>
                 <Route path="/product" exact element={<Product/>}/>
-                <Route path="/manage-product" element={<Manage/>}/>
                 <Route path="/create-product" element={<Create/>}/>
-                <Route path="/edit-product" element={<Edit/>}/>
+                <Route path="/manage-product" element={<Manage functionData={getDataManage}/>}/>
+                <Route path="/edit-product/:id" element={<Edit dataManage={dataManage}/>}/>
                 <Route path="/invoice" exact element={<Invoice/>}/>
                 <Route path="/messages" exact element={<Messages/>}/>
               </Route>

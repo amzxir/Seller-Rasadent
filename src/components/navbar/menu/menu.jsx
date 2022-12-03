@@ -33,7 +33,9 @@ function Menu (){
     
     return(
         <>
-        {pathname !== '/' && pathname !== '/login' && pathname !== '/create-product' && pathname !== '/manage-product' ? menu() : null}
+        {pathname !== '/' && pathname !== '/login' && 
+        pathname !== '/create-product' && pathname !== '/manage-product' && 
+        pathname !== '/edit-product' ? menu() : null}
         </>
     )
 }
