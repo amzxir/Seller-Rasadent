@@ -14,7 +14,7 @@ width:100%;
 } 
 `
 
-function Menu (){
+function Menu ({id}){
 
     const {pathname} = useLocation()
 
@@ -35,7 +35,7 @@ function Menu (){
         <>
         {pathname !== '/' && pathname !== '/login' && 
         pathname !== '/create-product' && pathname !== '/manage-product' && 
-        pathname !== '/edit-product' ? menu() : null}
+        pathname !== '/edit-product' && pathname !== `/edit-product/${id}` ? menu() : null}
         </>
     )
 }

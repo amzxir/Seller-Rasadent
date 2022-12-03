@@ -10,7 +10,7 @@ top:0;
 z-index:10000;
 `
 
-function Nav (){
+function Nav ({id}){
 
     const {pathname} = useLocation()
 
@@ -43,7 +43,7 @@ function Nav (){
 
     return(
         <>
-            {pathname === '/login' || pathname === '/create-product' || pathname === '/manage-product' || pathname === '/edit-product' ? navBack():null }
+            {pathname === '/login' || pathname === '/create-product' || pathname === '/manage-product' || pathname === `/edit-product/${id}` ? navBack():null }
             {pathname === '/dashboard' || pathname === '/product' || pathname === '/invoice' || pathname === '/messages' ? navWelcome():null }
         </>
     )
