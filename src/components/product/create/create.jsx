@@ -39,7 +39,6 @@ function Create() {
   });
 
   const onSubmit = (data) => {
-
     console.log(data)
   }
   
