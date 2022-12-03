@@ -11,5 +11,25 @@
     "welcomeMessage":" عزیز به سامانه محتوا ژينو خوش آمدید",
     "back":"بازگشت",
     "contentNumber":"محتوای شماره",
-    "notFound":"صفحه مورد نظر یافت نشد"
+    "notFound":"صفحه مورد نظر یافت نشد",
+    "labelNameFa":"نام فارسی محصول",
+    "labelNameEn":"نام انگلیسی محصول",
+    "labelPrice":"قیمت محصول ( به تومان )",
+    "labelStock":"موجودی محصول",
+    "labelstatusStock":"وضعیت نمایش پس از اتمام موجودی",
+    "labelstatusSee":"وضعیت نمایش در همه جستجو‌ها",
+    "labelBrand":"برند محصول",
+    "labelWarranty":"گارانتی",
+    "labelCountry":"کشور سازنده",
+    "labelGuarantee":"ضمانت",
+    "submitProduct":"ثبت محصول"
+
+
+
+
+
+
+
+
+
 }

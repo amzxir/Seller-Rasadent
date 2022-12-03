@@ -5,7 +5,9 @@ import styled from "styled-components"
 import styles from './nav.module.scss'
 
 const Container = styled.div`
-
+position:sticky;
+top:0;
+z-index:10000;
 `
 
 function Nav (){
@@ -17,25 +19,25 @@ function Nav (){
     const navBack = () => {
         return(
             <Container>
-            <div className={styles.nav}>
-                <div onClick={() => navigate(-1)} className={styles.back}>
-                    <p>بازگشت</p>
-                    <FontAwesomeIcon fontSize={13} icon={faChevronLeft}/>
+                <div className={styles.nav}>
+                    <div onClick={() => navigate(-1)} className={styles.back}>
+                        <p>بازگشت</p>
+                        <FontAwesomeIcon fontSize={13} icon={faChevronLeft}/>
+                    </div>
                 </div>
-            </div>
-        </Container>
+            </Container>
         )
     }
 
     const navWelcome = () => {
         return(
             <Container>
-            <div className={styles.nav}>
-                <div className={styles.welcome}>
-                    <p>امیر احمدی عزیز خوش آمدید</p>
+                <div className={styles.nav}>
+                    <div className={styles.welcome}>
+                        <p>امیر احمدی عزیز خوش آمدید</p>
+                    </div>
                 </div>
-            </div>
-        </Container>
+            </Container>
         )
     }
 
