@@ -17,6 +17,7 @@ import Context from "./context/context";
 import NoInternetConnection from "./components/nointernet/NoInternet";
 import Manage from "./components/product/manage/manage";
 import Create from "./components/product/create/create";
+import Edit from "./components/product/edit/edit";
 
 const Container = styled.div`
 
@@ -45,6 +46,7 @@ function App() {
                 <Route path="/product" exact element={<Product/>}/>
                 <Route path="/manage-product" element={<Manage/>}/>
                 <Route path="/create-product" element={<Create/>}/>
+                <Route path="/edit-product" element={<Edit/>}/>
                 <Route path="/invoice" exact element={<Invoice/>}/>
                 <Route path="/messages" exact element={<Messages/>}/>
               </Route>
