@@ -8,7 +8,7 @@ const PrivateRoutes = () => {
     console.log(auth)
 
     return(
-        auth ? <Outlet/> : <Navigate to="/login"/>
+        !auth ? <Outlet/> : <Navigate to="/login"/>
     )
 }
 export default PrivateRoutes;
