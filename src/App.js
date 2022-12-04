@@ -15,9 +15,11 @@ import PrivateRoutes from "./components/utlis/private-routes";
 import Welcome from "./components/welcome/welcome";
 import Context from "./context/context";
 import NoInternetConnection from "./components/nointernet/NoInternet";
-import Manage from "./components/product/manage/manage";
+import ManageProduct from "./components/product/manage/manage";
 import Create from "./components/product/create/create";
 import Edit from "./components/product/edit/edit";
+import ManageInvoice from "./components/invoice/manage/manage";
+
 
 const Container = styled.div`
 
@@ -60,9 +62,10 @@ function App() {
                 <Route path="/dashboard" exact element={<Dashboard/>}/>
                 <Route path="/product" exact element={<Product/>}/>
                 <Route path="/create-product" element={<Create/>}/>
-                <Route path="/manage-product" element={<Manage functionData={getDataManage}/>}/>
+                <Route path="/manage-product" element={<ManageProduct functionData={getDataManage}/>}/>
                 <Route path="/edit-product/:id" element={<Edit dataManage={dataManage} setId={setId}/>}/>
                 <Route path="/invoice" exact element={<Invoice/>}/>
+                <Route path="/manage-invoice" element={<ManageInvoice/>}/>
                 <Route path="/messages" exact element={<Messages/>}/>
               </Route>
             </Routes>

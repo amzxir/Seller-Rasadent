@@ -55,4 +55,4 @@ function Manage({functionData}) {
   )
 }
 
-export default Manage
+export default Manage;

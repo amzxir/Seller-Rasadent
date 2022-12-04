@@ -20,7 +20,7 @@ function Product (){
 
     const data =[
         {name:'ایجاد محصول جدید' , link:'/create-product' , class:styles.createPro},
-        {name:'ایجاد محصول جدید' , link:'/manage-product' , class:styles.managePro},
+        {name:'مدیریت محصولات' , link:'/manage-product' , class:styles.managePro},
     ]
 
     return(

@@ -35,7 +35,8 @@ function Menu ({id}){
         <>
         {pathname !== '/' && pathname !== '/login' && 
         pathname !== '/create-product' && pathname !== '/manage-product' && 
-        pathname !== '/edit-product' && pathname !== `/edit-product/${id}` ? menu() : null}
+        pathname !== '/edit-product' && pathname !== `/edit-product/${id}` 
+        && pathname !== '/manage-invoice'  ? menu() : null}
         </>
     )
 }
