@@ -19,6 +19,7 @@ import ManageProduct from "./components/product/manage/manage";
 import Create from "./components/product/create/create";
 import Edit from "./components/product/edit/edit";
 import ManageInvoice from "./components/invoice/manage/manage";
+import ViewInvoice from "./components/invoice/view/view";
 
 
 const Container = styled.div`
@@ -65,7 +66,8 @@ function App() {
                 <Route path="/manage-product" element={<ManageProduct functionData={getDataManage}/>}/>
                 <Route path="/edit-product/:id" element={<Edit dataManage={dataManage} setId={setId}/>}/>
                 <Route path="/invoice" exact element={<Invoice/>}/>
-                <Route path="/manage-invoice" element={<ManageInvoice/>}/>
+                <Route path="/manage-invoice" element={<ManageInvoice functionData={getDataManage}/>}/>
+                <Route path="/view-invoice/:id" element={<ViewInvoice dataManage={dataManage} setId={setId}/>}/>
                 <Route path="/messages" exact element={<Messages/>}/>
               </Route>
             </Routes>

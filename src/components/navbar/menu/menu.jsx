@@ -36,7 +36,7 @@ function Menu ({id}){
         {pathname !== '/' && pathname !== '/login' && 
         pathname !== '/create-product' && pathname !== '/manage-product' && 
         pathname !== '/edit-product' && pathname !== `/edit-product/${id}` 
-        && pathname !== '/manage-invoice'  ? menu() : null}
+        && pathname !== '/manage-invoice' && pathname !== `/view-invoice/${id}`   ? menu() : null}
         </>
     )
 }

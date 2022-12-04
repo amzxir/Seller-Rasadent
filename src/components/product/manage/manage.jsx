@@ -26,8 +26,8 @@ function Manage({functionData}) {
   const [dataProduct , setDataProduct] = useState(data)
 
   const functionDelete = (item) => {
-    const cefrf = dataProduct.filter(i => i.id !== item.id)
-    setDataProduct(cefrf)
+    const remove = dataProduct.filter(i => i.id !== item.id)
+    setDataProduct(remove)
   };
 
 
