@@ -1,15 +1,46 @@
-import { useEffect } from 'react'
+import { useEffect , useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import styles from './welcome.module.scss'
 import LoginSvg from '../../images/login.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons'
-import { NavLink } from 'react-router-dom'
+import logo from '../../images/logo.png'
 
 
 
 const Container = styled.div`
 `
+
+const Loading = styled.div({
+    height:'667px',
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    backgroundImage: 'linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)',
+
+    '@media (max-width: 600px)': {
+        height:'100vh',
+
+    },
+
+    '&> div.content':{
+        textAlign:'center',
+
+        '& h1':{
+            fontSize:'20px',
+            fontFamily:'sans-serif',
+            color:'#119FDC',
+        },
+        
+
+        '& img':{
+            maxWidth:'60%',
+            height:'auto',
+            zIndex:'1000'
+        }
+    }
+})
 
 function Welcome (){
 
@@ -17,8 +48,32 @@ function Welcome (){
         document.title = 'خوش آمدید'
     })
 
+    const [isLoding , setIsLoding] = useState(undefined)
+
+    useEffect(() => {
+        const timeLoad = setTimeout(() => {
+            setIsLoding(true);
+        }, 4000);
+    
+        return () => {
+          clearTimeout(timeLoad);
+        };
+    }, []);
+
+    const loadingWelcome = ()=> {
+        return(
+            <Loading>
+                <div className='content'>
+                    <img src={logo} alt="" />
+                    <h1>Seller Rasadent Application</h1>
+                </div>
+            </Loading>
+        )
+    }
+
     return(
         <Container>
+            {!isLoding? loadingWelcome():
             <div className={styles.Welcome}>
                 <div className={styles.content}>
                     <small>خوش آمدید</small>
@@ -32,6 +87,7 @@ function Welcome (){
                     <NavLink className='btn' to='/dashboard'>ورود <FontAwesomeIcon icon={faArrowAltCircleLeft}/></NavLink>
                 </div>
             </div>
+            }
         </Container>
     )
 }

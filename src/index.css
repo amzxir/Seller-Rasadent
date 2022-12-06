@@ -155,7 +155,7 @@ body {
 
 ::-webkit-scrollbar {
   width: 5px;
-  display: none;
+  /* display: none; */
 
 }
 
@@ -174,3 +174,5 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
+
+
