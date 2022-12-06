@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,6 +22,8 @@ import ManageInvoice from "./components/invoice/manage/manage";
 import ViewInvoice from "./components/invoice/view/view";
 import VeiwMessage from "./components/message/view/view";
 import RequestInvoice from "./components/invoice/request/request";
+import { ComponentTransition, AnimationTypes } from "react-component-transition";
+
 
 
 const Container = styled.div`
@@ -48,41 +50,45 @@ function App() {
     setUrlId(id)
   }
 
+  const location = useLocation();
+
+
 
   return (
     <Context.Provider value={{ 
       auth , setAuth , 
       t , i18n
      }}>
-
       <NoInternetConnection>
-        <Nav id={urlId}/>
-          <Container>
-            <Routes>
-              <Route path="/" exact element={<Welcome/>}/>
-              <Route path="/login" exact element={<Login/>}/>
-              <Route element={<PrivateRoutes/>}>
-                <Route path="/dashboard" exact element={<Dashboard/>}/>
-                <Route path="/product" exact element={<Product/>}/>
-                <Route path="/create-product" element={<Create/>}/>
-                <Route path="/manage-product" element={<ManageProduct functionData={getDataManage}/>}/>
-                <Route path="/edit-product/:id" element={<Edit dataManage={dataManage} setId={setId}/>}/>
-                <Route path="/invoice" exact element={<Invoice/>}/>
-                <Route path="/manage-invoice" element={<ManageInvoice functionData={getDataManage}/>}/>
-                <Route path="/request-invoice" element={<RequestInvoice/>}/>
-                <Route path="/view-invoice/:id" element={<ViewInvoice dataManage={dataManage} setId={setId}/>}/>
-                <Route path="/messages" exact element={<Messages functionData={getDataManage}/>}/>
-                <Route path="/messages-view/:id" exact element={<VeiwMessage dataManage={dataManage} setId={setId}/>}/>
-              </Route>
-            </Routes>
-          </Container>
-        <Menu id={urlId}/>
-        <ToastContainer 
-            position="bottom-right"
-            rtl={true}
-            theme="colored"
-          />
+          <Nav id={urlId}/>
+            <Container>
+              <ComponentTransition enterAnimation={AnimationTypes.slideLeft.enter}>
+                <Routes key={location.key} location={location}>
+                  <Route path="/" exact element={<Welcome/>}/>
+                  <Route path="/login" exact element={<Login/>}/>
+                  <Route element={<PrivateRoutes/>}>
+                    <Route path="/dashboard" exact element={<Dashboard/>}/>
+                    <Route path="/product" exact element={<Product/>}/>
+                    <Route path="/create-product" element={<Create/>}/>
+                    <Route path="/manage-product" element={<ManageProduct functionData={getDataManage}/>}/>
+                    <Route path="/edit-product/:id" element={<Edit dataManage={dataManage} setId={setId}/>}/>
+                    <Route path="/invoice" exact element={<Invoice/>}/>
+                    <Route path="/manage-invoice" element={<ManageInvoice functionData={getDataManage}/>}/>
+                    <Route path="/request-invoice" element={<RequestInvoice/>}/>
+                    <Route path="/view-invoice/:id" element={<ViewInvoice dataManage={dataManage} setId={setId}/>}/>
+                    <Route path="/messages" exact element={<Messages functionData={getDataManage}/>}/>
+                    <Route path="/messages-view/:id" exact element={<VeiwMessage dataManage={dataManage} setId={setId}/>}/>
+                  </Route>
+                </Routes>
+              </ComponentTransition>
+            </Container>
+          <Menu id={urlId}/>
       </NoInternetConnection>
+      <ToastContainer 
+        position="bottom-right"
+        rtl={true}
+        theme="colored"
+      />
     </Context.Provider>
   );
 }
