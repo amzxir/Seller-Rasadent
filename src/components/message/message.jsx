@@ -12,7 +12,7 @@ min-height:542px;
 } 
 `
 
-function Messages (){
+function Messages ({functionData}){
 
     useEffect(()=> {
         document.title = 'پیام ها'
@@ -35,7 +35,7 @@ function Messages (){
                         <div key={index} className={styles.col6}>
                             <div className={styles.card}>
                                 <span></span>
-                                <NavLink>{i.message.slice(0 , 40)+ '...'}</NavLink>
+                                <NavLink to={`/messages-view/${i.id}`} onClick={()=> functionData(i)}>{i.message.slice(0 , 40)+ '...'}</NavLink>
                             </div>
                         </div>
                         

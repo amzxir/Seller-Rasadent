@@ -45,7 +45,8 @@ function Nav ({id}){
         <>
             {pathname === '/login' || pathname === '/create-product' ||
             pathname === '/manage-product' || pathname === `/edit-product/${id}`
-            || pathname === '/manage-invoice' || pathname === `/view-invoice/${id}`  ? navBack():null }
+            || pathname === '/manage-invoice' || pathname === `/view-invoice/${id}` 
+            || pathname === `/messages-view/${id}` || pathname === '/request-invoice'  ? navBack():null }
             {pathname === '/dashboard' || pathname === '/product' || pathname === '/invoice' || pathname === '/messages' ? navWelcome():null }
         </>
     )
