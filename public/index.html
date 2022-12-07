@@ -29,6 +29,21 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
+
+    <script type="application/javascript">
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('serviceWorker.js', { scope: '/' }).then(function (registration) {
+            // Registration was successful
+            console.debug('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function (err) {
+            // registration failed :(
+            console.debug('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
