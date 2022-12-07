@@ -88,7 +88,10 @@ function Welcome (){
                     </div>
                     <NavLink className='btn' to='/dashboard'>ورود <FontAwesomeIcon icon={faArrowAltCircleLeft}/></NavLink>
                 </div>
+                <div id="kir" style={{ display:'none' }}>
+
                 <AddToHomeScreen appId='salam'/>
+                </div>
             </div>
             }
         </Container>
