@@ -9,6 +9,7 @@ import logo from '../../images/logo.png'
 
 
 
+
 const Container = styled.div`
 `
 
@@ -73,7 +74,7 @@ function Welcome (){
 
     return(
         <Container>
-            {!isLoding? loadingWelcome():
+            {/* {!isLoding? loadingWelcome():
             <div className={styles.Welcome}>
                 <div className={styles.content}>
                     <small>خوش آمدید</small>
@@ -87,7 +88,7 @@ function Welcome (){
                     <NavLink className='btn' to='/dashboard'>ورود <FontAwesomeIcon icon={faArrowAltCircleLeft}/></NavLink>
                 </div>
             </div>
-            }
+            } */}
         </Container>
     )
 }
