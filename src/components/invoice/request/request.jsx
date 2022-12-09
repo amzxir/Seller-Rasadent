@@ -1,6 +1,6 @@
 import { useEffect , useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEye , faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faFileUpload , faSearch } from '@fortawesome/free-solid-svg-icons'
 import styled from "styled-components"
 import styles from './request.module.scss'
 
@@ -10,9 +10,9 @@ padding:25px 0px 0px 0px;
 
 // data tabel
 const data = [
-  {serial:'0024006547' , date:'1400/2/4' , icon:faEye},
-  {serial:'003400938' , date:'1400/5/4' , icon:faEye},
-  {serial:'001234642' , date:'1400/7/4' , icon:faEye}
+  {serial:'0024006547' , date:'1400/2/4' , icon:faFileUpload},
+  {serial:'003400938' , date:'1400/5/4' , icon:faFileUpload},
+  {serial:'001234642' , date:'1400/7/4' , icon:faFileUpload}
 ]
 
 // if for search table
