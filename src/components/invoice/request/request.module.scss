@@ -1,0 +1,82 @@
+.row{
+    display: flex;
+    flex-direction: row;
+
+    .col{
+        flex: 0 auto;
+        width: 100%;
+
+        .search{
+            margin-bottom: 1rem;
+            padding: 0px 15px;
+            position: relative;
+            margin-top: 0;
+
+            svg{
+                position: absolute;
+                bottom: 30%;
+                right: 20px;
+                color: rgb(146, 158, 169);
+            }
+
+            ::placeholder{
+                font-family: 'IranSans';
+                font-size: 14px;
+            }
+
+            input{
+                background-color: #F3F3F3;
+                padding-right: 1.5rem;
+
+
+            }
+        
+
+            input:focus{
+                color: #495057;
+                outline: 0;
+                box-shadow: 0 0 0 0.2rem #2e467142;
+            }
+        }
+
+        .card{
+            background-color: #fff;
+            padding: 1rem;
+
+            table{
+                border-collapse: collapse;
+                width: 100%;
+                text-align: center;
+
+                tbody{
+                    font-size: 13px;
+
+                    tr:nth-child(even){
+
+                        background-color: #f2f2f2;
+
+                        th,td{
+                            padding: 8px;
+
+                            svg{
+                                color: #3A69E6;
+                            }
+                        }
+                    }
+
+                    tr:nth-child(odd){
+
+                        th,td{
+                            padding: 8px;
+
+                            svg{
+                                color: #3A69E6;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
