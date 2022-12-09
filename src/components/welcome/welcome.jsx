@@ -6,7 +6,6 @@ import LoginSvg from '../../images/login.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons'
 import logo from '../../images/logo.png'
-import AddToHomeScreen from '@ideasio/add-to-homescreen-react';
 
 
 
@@ -87,10 +86,6 @@ function Welcome (){
                         <img src={LoginSvg} alt="" />
                     </div>
                     <NavLink className='btn' to='/dashboard'>ورود <FontAwesomeIcon icon={faArrowAltCircleLeft}/></NavLink>
-                </div>
-                <div id="kir" style={{ display:'none' }}>
-
-                <AddToHomeScreen appId='salam'/>
                 </div>
             </div>
             }
