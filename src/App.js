@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Component, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
@@ -32,20 +32,25 @@ const Container = styled.div`
 
 function App() {
 
+  // check authentication
   const [auth , setAuth] = useState(false)
 
+  // language platform
   const {t , i18n} = useTranslation()
 
+  // get data component
   const [dataManage , setDataManage] = useState()
 
+  // get data function component
   const getDataManage = (i) => {
     // console.log(i)
     setDataManage(i)
   }
 
+  // get id data
   const [urlId , setUrlId] = useState()
 
-
+  // get id data function component
   const setId = (id) => {
     setUrlId(id)
   }
