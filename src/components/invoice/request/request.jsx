@@ -55,6 +55,23 @@ function Request() {
   // state modal context
   const {modal , setModal} = useContext(Context)
 
+  // state img file 
+  const [uploadImg , setUploadImg] = useState({})
+
+  // function upload img
+  const imgFilehandler = (e,index) => {
+    //if (e.target.files.length !== 0) {
+        setUploadImg((obj)=>{
+          uploadImg[index]=URL.createObjectURL(e.target.files[0])
+          console.log(obj)
+          return {...uploadImg}
+        })
+      
+   // }
+  }
+  
+
+
   return (
     <Container>
         <div className={styles.row}>
@@ -83,12 +100,16 @@ function Request() {
                         <td>{i.serial}</td>
                         <td>{i.date}</td>
                         <td><div onClick={()=> setModal(index)}><FontAwesomeIcon icon={i.icon}/></div></td>
-
                         <Modals show={modal === index}>
                           <div className='modal'>
                             <div className="modalTitle">شماره فاکتور {i.serial}</div>
                             <div className="modalBody">
-                              {i.serial}
+                                <label style={{ cursor:'pointer' }} htmlFor="uploadImages"><FontAwesomeIcon className={styles.upload} icon={faFileUpload}/> <p style={{ marginBlock:'0' }}>بارگداری تصویر</p></label>
+                                <input type="file" id="uploadImages" className="dNone" onChange={(e)=>imgFilehandler(e,index)} />
+                                  <span key={uploadImg}>
+                                    <img src={uploadImg[index] && ''} style={{ maxWidth:'100%' , height:'auto' , marginTop:'1rem' }}/>
+                                  </span>
+                          
                             </div>
                             <div className="modalFooter"><button style={{ fontSize:'13px' , borderRadius:'5px' }} onClick={()=> setModal(false)} className='btn btn-secondary'>خروج</button></div>
                           </div>

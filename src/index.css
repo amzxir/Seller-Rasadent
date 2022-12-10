@@ -202,9 +202,12 @@ body {
   background-color: #fff;
   border-radius: 8px;
 }
+
 @media only screen and (max-width: 600px) {
   .modal{
     width: 80vw;
+    margin: 0 1.5rem;
+
   }
 }
 
