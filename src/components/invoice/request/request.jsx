@@ -1,8 +1,10 @@
-import { useEffect , useState } from "react"
+import { useEffect , useState , useContext } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFileUpload , faSearch } from '@fortawesome/free-solid-svg-icons'
 import styled from "styled-components"
 import styles from './request.module.scss'
+import Modals from "../../modal/modal"
+import Context from "../../../context/context"
 
 const Container = styled.div`
 padding:25px 0px 0px 0px;
@@ -50,6 +52,9 @@ function Request() {
 
   // console.log(searchValue)
 
+  // state modal context
+  const {modal , setModal} = useContext(Context)
+
   return (
     <Container>
         <div className={styles.row}>
@@ -62,7 +67,7 @@ function Request() {
                 value={innerValue}
                 onChange={(e)=> setInnerValue(e.target.value)}
                />
-              <FontAwesomeIcon icon={faSearch}/>
+              <FontAwesomeIcon onClick={()=> setModal(true)} icon={faSearch}/>
             </form>
             <div className={styles.card}>
               <table article={article}>
@@ -77,7 +82,17 @@ function Request() {
                       <tr key={index}>
                         <td>{i.serial}</td>
                         <td>{i.date}</td>
-                        <td><FontAwesomeIcon icon={i.icon}/></td>
+                        <td><div onClick={()=> setModal(index)}><FontAwesomeIcon icon={i.icon}/></div></td>
+
+                        <Modals show={modal === index}>
+                          <div className='modal'>
+                            <div className="modalTitle">شماره فاکتور {i.serial}</div>
+                            <div className="modalBody">
+                              {i.serial}
+                            </div>
+                            <div className="modalFooter"><button style={{ fontSize:'13px' , borderRadius:'5px' }} onClick={()=> setModal(false)} className='btn btn-secondary'>خروج</button></div>
+                          </div>
+                        </Modals>
                       </tr>
                     )
                   })}

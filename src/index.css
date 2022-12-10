@@ -71,6 +71,7 @@ body {
 
 .btn {
   cursor: pointer;
+  font-family: 'IranSans';
   display: inline-block;
   font-weight: 400;
   color: #212529;
@@ -174,4 +175,54 @@ body {
   background: #555; 
 }
 
+.dNone{
+  display: none;
+}
+.dBlock{
+  display: block;
+}
+.openModal{
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: 100000 !important;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.modal{
+  position: relative;
+  width: 35vw;
+  background-color: #fff;
+  border-radius: 8px;
+}
+@media only screen and (max-width: 600px) {
+  .modal{
+    width: 80vw;
+  }
+}
+
+.modalTitle{
+  font-size: 15px;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e2e2;
+  padding: 1rem;
+}
+.modalBody{
+  padding: 1rem;
+  border-bottom: 1px solid #e2e2e2;
+}
+.modalFooter{
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}

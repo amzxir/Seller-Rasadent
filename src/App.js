@@ -55,14 +55,18 @@ function App() {
     setUrlId(id)
   }
 
-  const location = useLocation();
+  // state modal
+  const [modal , setModal] = useState(false)
 
+
+  const location = useLocation();
 
 
   return (
     <Context.Provider value={{ 
       auth , setAuth , 
-      t , i18n
+      t , i18n , setModal , 
+      modal
      }}>
       <NoInternetConnection>
           <Nav id={urlId}/>

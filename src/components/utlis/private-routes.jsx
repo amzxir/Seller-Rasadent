@@ -5,7 +5,7 @@ import Context from '../../context/context'
 const PrivateRoutes = () => {
     const {auth , setAuth} = useContext(Context)
 
-    console.log(auth)
+    // console.log(auth)
 
     return(
         auth ? <Outlet/> : <Navigate to="/login"/>
