@@ -104,15 +104,21 @@ function Request() {
                           <div className='modal'>
                             <div className="modalTitle">شماره فاکتور {i.serial}</div>
                             <div className="modalBody">
-                                <label style={{ cursor:'pointer' }} htmlFor={i.serial}><FontAwesomeIcon className={styles.upload} icon={faFileUpload}/> <p style={{ marginBlock:'0' }}>بارگداری تصویر</p></label>
-                                <input type="file" id={i.serial} className="dNone" onChange={(e)=>imgFilehandler(e,index)} />
+                              {
+                                Object.keys(uploadImg).length === index ?
+                                <>
+                                  <label style={{ cursor:'pointer' }} htmlFor={i.serial}><FontAwesomeIcon className={styles.upload} icon={faFileUpload}/> <p style={{ marginBlock:'0' }}>بارگداری تصویر</p></label>
+                                  <input type="file" id={i.serial} className="dNone" onChange={(e)=>imgFilehandler(e , index)} />
+                                </>
+                                :
                                 <div style={{ display:'flex',flexDirection:'row',flexWrap:'wrap',width:'100%' }}>
                                   {
                                     uploadImg[index]?.map(item=>(
-                                      <img width={50} src={item } style={{   marginTop:'1rem' }}/>
+                                      <img width={50} src={item } style={{ marginTop:'1rem' }}/>
                                     ))
                                   }
                                 </div>
+                              }
                             </div>
                             <div className="modalFooter"><button style={{ fontSize:'13px' , borderRadius:'5px' }} onClick={()=> setModal(false)} className='btn btn-secondary'>خروج</button></div>
                           </div>
