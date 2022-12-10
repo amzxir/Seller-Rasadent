@@ -56,20 +56,10 @@ function Request() {
   const {modal , setModal} = useContext(Context)
 
   // state img file 
-  const [uploadImg , setUploadImg] = useState({})
+  const [uploadImg , setUploadImg] = useState(null)
 
   // function upload img
-  const imgFilehandler = (e,index) => {
-    //if (e.target.files.length !== 0) {
-        setUploadImg((obj)=>{
-          uploadImg[index]=URL.createObjectURL(e.target.files[0])
-          console.log(obj)
-          return {...uploadImg}
-        })
-      
-   // }
-  }
-  
+
 
 
   return (
@@ -105,10 +95,19 @@ function Request() {
                             <div className="modalTitle">شماره فاکتور {i.serial}</div>
                             <div className="modalBody">
                                 <label style={{ cursor:'pointer' }} htmlFor="uploadImages"><FontAwesomeIcon className={styles.upload} icon={faFileUpload}/> <p style={{ marginBlock:'0' }}>بارگداری تصویر</p></label>
-                                <input type="file" id="uploadImages" className="dNone" onChange={(e)=>imgFilehandler(e,index)} />
-                                  <span key={uploadImg}>
-                                    <img src={uploadImg[index] && ''} style={{ maxWidth:'100%' , height:'auto' , marginTop:'1rem' }}/>
-                                  </span>
+                                <input type="file" id="uploadImages" className="dNone" 
+                                    onChange={(e , index) => {
+                                      console.log(e.target.files[0]);
+                                      setUploadImg(e.target.files[0]);
+                                    }}
+                                />
+                                {uploadImg && (
+                                  <div>
+                                  <img width="250px" src={URL.createObjectURL(uploadImg)} />
+                                  <br />
+                                  <button onClick={()=>setUploadImg(null)}>Remove</button>
+                                  </div>
+                                )}
                           
                             </div>
                             <div className="modalFooter"><button style={{ fontSize:'13px' , borderRadius:'5px' }} onClick={()=> setModal(false)} className='btn btn-secondary'>خروج</button></div>
