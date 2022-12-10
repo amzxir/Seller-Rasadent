@@ -103,7 +103,7 @@ function Request() {
                                 />
                                 {uploadImg && (
                                   <div>
-                                  <img width="250px" src={URL.createObjectURL(uploadImg)} />
+                                  <img width={'200px'} src={URL.createObjectURL(uploadImg)} />
                                   <br />
                                   <button onClick={()=>setUploadImg(null)}>Remove</button>
                                   </div>
