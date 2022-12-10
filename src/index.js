@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './serviceWorkerRegistration';
-
 import './i18n'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

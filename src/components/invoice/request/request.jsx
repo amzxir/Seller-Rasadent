@@ -56,10 +56,22 @@ function Request() {
   const {modal , setModal} = useContext(Context)
 
   // state img file 
-  const [uploadImg , setUploadImg] = useState(null)
+  const [uploadImg , setUploadImg] = useState({})
 
   // function upload img
-
+  const imgFilehandler = (e ,kk) => {
+      console.log(kk)
+        setUploadImg((obj)=>{
+        if(kk in obj)
+            obj[kk].push(URL.createObjectURL(e.target.files[0]))
+        else{
+          obj[kk]=[]
+          obj[kk].push(URL.createObjectURL(e.target.files[0]))
+        }
+      return {...obj}
+    });
+  }
+  
 
 
   return (
@@ -94,21 +106,15 @@ function Request() {
                           <div className='modal'>
                             <div className="modalTitle">شماره فاکتور {i.serial}</div>
                             <div className="modalBody">
-                                <label style={{ cursor:'pointer' }} htmlFor="uploadImages"><FontAwesomeIcon className={styles.upload} icon={faFileUpload}/> <p style={{ marginBlock:'0' }}>بارگداری تصویر</p></label>
-                                <input type="file" id="uploadImages" className="dNone" 
-                                    onChange={(e , index) => {
-                                      console.log(e.target.files[0]);
-                                      setUploadImg(e.target.files[0]);
-                                    }}
-                                />
-                                {uploadImg && (
-                                  <div>
-                                  <img width={'200px'} src={URL.createObjectURL(uploadImg)} />
-                                  <br />
-                                  <button onClick={()=>setUploadImg(null)}>Remove</button>
-                                  </div>
-                                )}
-                          
+                                <label style={{ cursor:'pointer' }} htmlFor={i.serial}><FontAwesomeIcon className={styles.upload} icon={faFileUpload}/> <p style={{ marginBlock:'0' }}>بارگداری تصویر</p></label>
+                                <input type="file" id={i.serial} className="dNone" onChange={(e)=>imgFilehandler(e,index)} />
+                                <div style={{ display:'flex',flexDirection:'row',flexWrap:'wrap',width:'100%' }}>
+                                  {
+                                    uploadImg[index]?.map(item=>(
+                                      <img width={50} src={item } style={{   marginTop:'1rem' }}/>
+                                    ))
+                                  }
+                                </div>
                             </div>
                             <div className="modalFooter"><button style={{ fontSize:'13px' , borderRadius:'5px' }} onClick={()=> setModal(false)} className='btn btn-secondary'>خروج</button></div>
                           </div>
