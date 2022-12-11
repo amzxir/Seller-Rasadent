@@ -114,7 +114,7 @@ function Request() {
                                 <div style={{ display:'flex',flexDirection:'row',flexWrap:'wrap',width:'100%' }}>
                                   {
                                     uploadImg[index]?.map(item=>(
-                                      <img width={50} src={item } style={{ marginTop:'1rem' }}/>
+                                      <img width={50} src={item }/>
                                     ))
                                   }
                                 </div>
