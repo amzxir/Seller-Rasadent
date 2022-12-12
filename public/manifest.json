@@ -20,6 +20,21 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "scope": "/",
+  "scope_url": "/",
+  "intent_filters": {
+    "scope_url_scheme": "http",
+    "scope_url_host": "sel.ginocode.ir",
+    "scope_url_path": "/"
+  },
+  "media_overrides": {
+    "(prefers-color-scheme: dark)": {
+      "theme_color": "#ffffff",
+      "background_color": "#ffffff"
+    },
+    "(prefers-color-scheme: light)": {
+      "theme_color": "#ffffff",
+      "background_color": "#ffffff"
+    }
+  }
 }
