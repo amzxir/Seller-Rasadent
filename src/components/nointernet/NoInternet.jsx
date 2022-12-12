@@ -1,19 +1,22 @@
 import {useState , useEffect} from 'react';
 import styled from 'styled-components';
-import noInternet from '../../images/internet.png'
 
 const Container = styled.div({
+    height:'80vh',
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
 
-    '&> div.imgCenter':{
-        display:'flex',
-        justifyContent:'center',
-        marginBottom:'1rem',
+    // '&> div.imgCenter':{
+    //     display:'flex',
+    //     justifyContent:'center',
+    //     marginBottom:'1rem',
 
-        '& img':{
-            maxWidth:'100%',
-            height:'auto',
-        }
-    },
+    //     '& img':{
+    //         maxWidth:'100%',
+    //         height:'100px',
+    //     }
+    // },
 
     '&> div.content':{
         padding:'0px 15px 0px 15px',
@@ -58,9 +61,6 @@ const NoInternetConnection = (props) => {
     } else {
         return(
             <Container>
-                <div className="imgCenter">
-                    <img src={noInternet} alt="" />
-                </div>
                 <div className="content">
                     <h1>اینترنت وصل نیست</h1>
                     <p>لظفا دیوایس خود را به اینترنت متصل کنید</p>

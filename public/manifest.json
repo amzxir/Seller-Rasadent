@@ -23,7 +23,7 @@
   "scope": "/",
   "scope_url": "/",
   "intent_filters": {
-    "scope_url_scheme": "http",
+    "scope_url_scheme": "https",
     "scope_url_host": "sel.ginocode.ir",
     "scope_url_path": "/"
   },

@@ -5,11 +5,10 @@ import { NavLink } from 'react-router-dom'
 
 const Container = styled.div`
 min-height:542px;
-// padding:25px 15px 0px 15px;
 
-@media (max-width: 600px) {
-    padding:25px 15px 72px 15px;
-} 
+// @media (min-width: 600px) {
+//     padding:25px 15px 72px 15px;
+// } 
 `
 
 function Messages ({functionData}){
