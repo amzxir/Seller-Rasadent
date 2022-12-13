@@ -5,7 +5,6 @@ import styles from './welcome.module.scss'
 import LoginSvg from '../../images/login.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons'
-import logo from '../../images/logo.png'
 
 
 
