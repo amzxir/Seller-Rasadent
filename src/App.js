@@ -97,7 +97,7 @@ function App() {
         position="top-right"
         rtl={true}
         theme="colored"
-        style={{ maxWidth: "250px" , zIndex:'100000' }}
+        style={{ maxWidth: "260px" , zIndex:'100000' , position:'absolute' }}
       />
     </Context.Provider>
   );
