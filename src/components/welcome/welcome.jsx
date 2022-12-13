@@ -49,32 +49,8 @@ function Welcome (){
         document.title = 'خوش آمدید'
     })
 
-    const [isLoding , setIsLoding] = useState(undefined)
-
-    useEffect(() => {
-        const timeLoad = setTimeout(() => {
-            setIsLoding(true);
-        }, 4000);
-    
-        return () => {
-          clearTimeout(timeLoad);
-        };
-    }, []);
-
-    const loadingWelcome = ()=> {
-        return(
-            <Loading>
-                <div className='content'>
-                    <img src={logo} alt="" />
-                    <h1>Seller Rasadent Application</h1>
-                </div>
-            </Loading>
-        )
-    }
-
     return(
         <Container>
-            {!isLoding? loadingWelcome():
             <div className={styles.Welcome}>
                 <div className={styles.content}>
                     <small>خوش آمدید</small>
@@ -85,10 +61,9 @@ function Welcome (){
                     <div className={styles.imgCenter}>
                         <img src={LoginSvg} alt="" />
                     </div>
-                    <NavLink className='btn' to='/dashboard'>ورود <FontAwesomeIcon icon={faArrowAltCircleLeft}/></NavLink>
+                    <NavLink className='btn' to='/login'>ورود <FontAwesomeIcon icon={faArrowAltCircleLeft}/></NavLink>
                 </div>
             </div>
-            }
         </Container>
     )
 }
