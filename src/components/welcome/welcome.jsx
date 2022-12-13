@@ -5,6 +5,7 @@ import styles from './welcome.module.scss'
 import LoginSvg from '../../images/login.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons'
+import bg from './bg/background.gif'
 
 
 
@@ -50,6 +51,7 @@ function Welcome (){
 
     return(
         <Container>
+            <img src={bg} className={styles.bg} alt="" />
             <div className={styles.Welcome}>
                 <div className={styles.content}>
                     <small>خوش آمدید</small>
@@ -61,8 +63,8 @@ function Welcome (){
                         <img src={LoginSvg} alt="" />
                     </div>
                     <NavLink className='btn' to='/login'>ورود <FontAwesomeIcon icon={faArrowAltCircleLeft}/></NavLink>
+                    </div>
                 </div>
-            </div>
         </Container>
     )
 }
