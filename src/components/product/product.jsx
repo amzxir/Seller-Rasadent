@@ -4,8 +4,11 @@ import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const Container = styled.div`
-min-height:517px;
 padding:25px 15px 0px 15px;
+
+@media (min-width: 600px) {
+    min-height:507px;
+} 
 
 @media (max-width: 600px) {
     padding:25px 15px 72px 15px;

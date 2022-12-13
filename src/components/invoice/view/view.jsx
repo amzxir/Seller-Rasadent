@@ -38,6 +38,8 @@ function Veiw({dataManage , setId}) {
             <div className={styles.details}>
                 <p className={styles.title}>جزئیات فاکتور</p>
                 <div className={styles.deatails}>
+                    <div className={styles.flex}><p>نام خریدار</p> <p>امیر احمدی</p></div>
+                    <div className={styles.flex}><p>نام فروشنده</p> <p>لورم ایپسوم</p></div>
                     <div className={styles.flex}><p>دسته بندی</p> <p>لوازم دندان پزشکی</p></div>
                     <div className={styles.flex}><p>تاریخ</p> <p>۱۴۰۱/۲/۴</p></div>
                     <div className={styles.flex}><p>کد فاکتور</p> <p>۱۸۴۸۳۷۴</p></div>

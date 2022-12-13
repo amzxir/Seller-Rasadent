@@ -51,7 +51,6 @@ function Welcome (){
 
     return(
         <Container>
-            <img src={bg} className={styles.bg} alt="" />
             <div className={styles.Welcome}>
                 <div className={styles.content}>
                     <small>خوش آمدید</small>

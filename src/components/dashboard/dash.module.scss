@@ -14,30 +14,39 @@ $gray:#8B8B8B;
         flex: 0 auto;
         width: 48%;
 
-        .card{
-            background-color: $bgWhite;
-            padding: 1rem;
-            box-shadow: rgb(0 0 0 / 8%) 0px 0.125rem 0.25rem;
-            border-radius: 15px;
-
-            svg{
-                font-size: 35px;
-                color: $primary;
-            }
-
-            p:nth-child(even){
-                margin-block: .3rem;
-                color: $darks;
-                font-weight: bold;
-            }
-
-            p:nth-child(odd){
-                margin-block: 0;
-                color: $gray;
-                font-weight: lighter;
+        a{
+            text-decoration: none;
+            
+            .card{
+                background-color: $bgWhite;
+                padding: 1rem;
+                box-shadow: rgb(0 0 0 / 8%) 0px 0.125rem 0.25rem;
+                border-radius: 15px;
+                
+                
+    
+                svg{
+                    font-size: 35px;
+                    color: $primary;
+                }
+    
+                p{
+                    margin-block: .3rem;
+                    color: $darks;
+                    font-weight: bolder;
+                    font-size: 12px;
+    
+                    span{
+                        margin-block: 0;
+                        color: $gray;
+                        font-weight: lighter;
+                    }
+                }
+    
             }
 
         }
+
     }
 }
 

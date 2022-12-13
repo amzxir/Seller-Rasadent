@@ -4,11 +4,15 @@ import { faBagShopping , faFileInvoice } from '@fortawesome/free-solid-svg-icons
 import styled from "styled-components"
 import styles from './dash.module.scss'
 import PirChart from "../chart/pirChart"
+import { NavLink } from "react-router-dom"
 
 
 const Container = styled.div`
-min-height:517px;
 padding:25px 15px 0px 15px;
+
+@media (min-width: 600px) {
+    min-height:507px;
+} 
 
 @media (max-width: 600px) {
     padding:25px 15px 72px 15px;
@@ -22,8 +26,8 @@ function Dashboard () {
     })
 
     const data = [
-        {id:1 , name:'فاکتور ها' , int:'12' , icon:faFileInvoice},
-        {id:2 , name:'محصولات' , int:'23' , icon:faBagShopping},
+        {id:1 , name:'فاکتور ها' , int:'12' , link:'/manage-invoice' , icon:faFileInvoice},
+        {id:2 , name:'درخواست فاکتور رسمی' , int:'23' , link:'/request-invoice' , icon:faBagShopping},
     ]
 
     const [userData , setUserData] = useState({
@@ -40,11 +44,12 @@ function Dashboard () {
                 {data.map((i , index)=> {
                     return(
                         <div key={index} className={styles.col6}>
-                            <div className={styles.card}>
-                                <FontAwesomeIcon icon={i.icon}/>
-                                <p>{i.name}</p>
-                                <p>{i.int}</p>
-                            </div>
+                            <NavLink to={i.link}>
+                                <div className={styles.card}>
+                                    <FontAwesomeIcon icon={i.icon}/>
+                                    <p>{i.name} <span>{i.int}</span></p>
+                                </div>
+                            </NavLink>
                         </div>
                     )
                 })}

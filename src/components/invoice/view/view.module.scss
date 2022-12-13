@@ -98,6 +98,14 @@ $bgCard:#fff;
     }
 
     .justifybtn{
+        position: fixed;
+        right: 0;
+        left: 0;
+        padding: 0px 15px;
+        width: 100%;
+        bottom: 10px;
+        box-sizing: border-box;
+
 
         button{
             background-color: #3A69E6;

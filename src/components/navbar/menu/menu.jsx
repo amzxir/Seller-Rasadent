@@ -25,7 +25,7 @@ function Menu ({id}){
                     <NavLink to='/dashboard' className={({ isActive }) => (isActive ? 'actives' : 'notActive')}><FontAwesomeIcon icon={faHome}/></NavLink>
                     <NavLink to='/product' className={({ isActive }) => (isActive ? 'actives' : 'notActive')}><FontAwesomeIcon icon={faBox}/></NavLink>
                     <NavLink to='/invoice' className={({ isActive }) => (isActive ? 'actives' : 'notActive')}><FontAwesomeIcon icon={faFileInvoice}/><span className={styles.bage}><small>5</small></span></NavLink>
-                    <NavLink to='/messages' className={({ isActive }) => (isActive ? 'actives' : 'notActive')}><FontAwesomeIcon icon={faMessage}/><span className={styles.bage}><small>1</small></span></NavLink>
+                    {/* <NavLink to='/messages' className={({ isActive }) => (isActive ? 'actives' : 'notActive')}><FontAwesomeIcon icon={faMessage}/><span className={styles.bage}><small>1</small></span></NavLink> */}
                 </nav>
             </Container>
         )

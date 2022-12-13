@@ -94,9 +94,10 @@ function App() {
           <Menu id={urlId}/>
       </NoInternetConnection>
       <ToastContainer 
-        position="bottom-right"
+        position="top-right"
         rtl={true}
         theme="colored"
+        style={{ maxWidth: "250px" , zIndex:'100000' }}
       />
     </Context.Provider>
   );
