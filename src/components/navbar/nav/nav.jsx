@@ -26,10 +26,10 @@ function Nav ({id}){
 
     const logOut = () => {
         if(auth === true){
-
             setAuth(false)
         } 
         return toast.success("با موفقیت از حساب خود خارج شدید")
+        
     }
 
     const navBack = () => {
