@@ -2,10 +2,11 @@ import { useEffect , useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import styles from './welcome.module.scss'
-import LoginSvg from '../../images/login.svg'
+import logo from '../../images/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons'
-import bg from './bg/background.gif'
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import bg from '../../images/022.jpg'
 
 
 
@@ -51,19 +52,20 @@ function Welcome (){
 
     return(
         <Container>
+            <img src={bg} alt="" className={styles.bg} />
             <div className={styles.Welcome}>
                 <div className={styles.content}>
-                    <small>خوش آمدید</small>
-                    <h1>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</h1>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
-                </div>
-                <div className={styles.bottomContent}>
-                    <div className={styles.imgCenter}>
-                        <img src={LoginSvg} alt="" />
+                    <div className={styles.centerImg}>
+                        <img id={styles.heart} src={logo} alt="" />
                     </div>
-                    <NavLink className='btn' to='/login'>ورود <FontAwesomeIcon icon={faArrowAltCircleLeft}/></NavLink>
+                    <div className={styles.bottomContent}>
+                        <NavLink className='btn' to='/login'>ورود <FontAwesomeIcon icon={faChevronLeft}/></NavLink>
                     </div>
                 </div>
+            </div>
+            <div className={styles.border}>
+                <p>Seller Rasadent Application</p>
+            </div>
         </Container>
     )
 }
