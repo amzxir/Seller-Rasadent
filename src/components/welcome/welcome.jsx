@@ -5,7 +5,7 @@ import styles from './welcome.module.scss'
 import logo from '../../images/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
-import bg from '../../images/022.svg'
+import bg from '../../images/022.jpg'
 
 
 const Container = styled.div`
