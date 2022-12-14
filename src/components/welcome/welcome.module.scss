@@ -2,7 +2,6 @@ $white:#fff;
 
 .bg{
     max-width: 100%;
-    width: 100%;
     position: relative;
     filter: grayscale(30%);
 }
@@ -16,7 +15,8 @@ $white:#fff;
 @media only screen and (max-width: 600px) {
     .bg{
       height: 100vh !important;
-        position: fixed;
+      position: fixed;
+      max-width: none;
     }
 }
 
