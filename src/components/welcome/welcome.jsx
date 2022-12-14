@@ -4,8 +4,7 @@ import styled from 'styled-components'
 import styles from './welcome.module.scss'
 import logo from '../../images/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons'
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import bg from '../../images/022.svg'
 
 
