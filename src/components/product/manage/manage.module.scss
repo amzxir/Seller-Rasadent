@@ -2,6 +2,37 @@ $navyBlue:#121D32;
 $white:#fff;
 $dark:#000;
 
+.search{
+    margin-bottom: 1rem;
+    position: relative;
+    margin-top: 0;
+
+    svg{
+        position: absolute;
+        bottom: 30%;
+        right: 8px;
+        color: rgb(146, 158, 169);
+    }
+
+    ::placeholder{
+        font-family: 'IranSans';
+        font-size: 14px;
+    }
+
+    input{
+        background-color: #F3F3F3;
+        padding-right: 1.7rem;
+        border-radius: 20px;
+    }
+
+
+    input:focus{
+        color: #495057;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem #2e467142;
+    }
+}
+
 .row{
 
     display: flex;

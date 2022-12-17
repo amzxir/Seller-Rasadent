@@ -8,7 +8,7 @@ function Paginate({ setItemOffset , dataProduct , pageCount }) {
  
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * 6) % dataProduct.length;
+    const newOffset = (event.selected * 5) % dataProduct.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
