@@ -8,6 +8,7 @@ import { faSearch , faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import styled from "styled-components"
 import styles from '../create.module.scss'
 import Context from "../../../../context/context";
+import { useEffect } from "react";
 
 
 const Container = styled.div`
@@ -19,6 +20,10 @@ const schema = yup.object().shape({
   })
 
 function StepOne(props) {
+
+    useEffect(()=> {
+        document.title = 'دسته بندی محصول'
+    })
 
     const {t , i18n} = useContext(Context)
 

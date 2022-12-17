@@ -7,6 +7,7 @@ import { faFileSignature , faChevronLeft , faMoneyBill , faStore , faEye , faUpl
 import styled from "styled-components"
 import styles from '../create.module.scss'
 import Context from "../../../../context/context";
+import { useEffect } from "react";
 
 
 
@@ -14,6 +15,12 @@ const Container = styled.div`
 `
 
 const schema = yup.object().shape({
+    uploadImages: yup.mixed().test("file", "فیلد سصویر محصول اجباری است", (value) => {
+    if (value.length > 0) {  
+        return true;
+    }
+    return false;
+    }),
     nameFa: yup.string().required('فیلد نام فارسی محصول اجباری است'),
     nameEn: yup.string().required('فیلد نام انگیلیسی محصول اجباری است'),
     price: yup.number().typeError('فیلد قیمت باید عدد باشد').required('فیلد قیمت محصول اجباری است').integer('فیلد قیمت باید عدد صحیح باشد'),
@@ -25,7 +32,13 @@ const schema = yup.object().shape({
 })
 
 
-function StepTwo() {
+
+
+function StepTwo(props) {
+
+    useEffect(()=> {
+        document.title = 'اطلاعات محصول'
+    })
     
     const [selectedImage, setSelectedImage] = useState(null);
 
@@ -35,8 +48,9 @@ function StepTwo() {
         resolver: yupResolver(schema)
     });
     
-    const onSubmit = (data , e) => {
+    const onSubmit = (data) => {
         console.log(data)
+        props.nextStep(data);
     }
 
 
@@ -50,7 +64,7 @@ function StepTwo() {
                         <label htmlFor="uploadImages" style={{ position:'absolute' , left:'85%' , top:'60%'  }}
                         className={styles.nameLabel}><FontAwesomeIcon icon={faUpload}/></label>
                     </div>
-                    <span className={styles.error}>{errors.uploadImages?.message}</span>
+                    <span style={{ display:'flex' , justifyContent:'center' , paddingTop:'20px' }} className={styles.error}>{errors.uploadImages?.message}</span>
                     <input type="file" id="uploadImages" className="formControl dNone" multiple {...register("uploadImages")}/>
                 </div>
                 <div className={styles.formGroup}>
