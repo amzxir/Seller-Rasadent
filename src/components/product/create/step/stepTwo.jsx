@@ -22,10 +22,8 @@ const schema = yup.object().shape({
     statusSee: yup.string().required('فیلد وضعیت نمایش اجباری است'),
     description: yup.string().required('فیلد توضیحات محصول اجباری است').min(12 , 'فیلد توضیحات باید ۱۲ کارکتر باشد'),
 
-
-
-  
 })
+
 
 function StepTwo() {
     
@@ -37,9 +35,11 @@ function StepTwo() {
         resolver: yupResolver(schema)
     });
     
-      const onSubmit = (data) => {
+    const onSubmit = (data , e) => {
         console.log(data)
-      }
+    }
+
+
 
   return (
     <Container>
@@ -51,7 +51,7 @@ function StepTwo() {
                         className={styles.nameLabel}><FontAwesomeIcon icon={faUpload}/></label>
                     </div>
                     <span className={styles.error}>{errors.uploadImages?.message}</span>
-                    <input type="file" id="uploadImages" className="formControl dNone"/>
+                    <input type="file" id="uploadImages" className="formControl dNone" multiple {...register("uploadImages")}/>
                 </div>
                 <div className={styles.formGroup}>
                     <label className={styles.nameLabel}>{t('labelNameFa')}</label>
@@ -81,7 +81,7 @@ function StepTwo() {
                     <label className={styles.nameLabel}>{t('labelstatusStock')}</label>
                     <span className={styles.error}>{errors.statusStock?.message}</span>
                     <select className="formSelect" {...register("statusStock")}>
-                    <option>انتخاب کنید</option>
+                    <option value=''>انتخاب کنید</option>
                     <option value="بله">بله</option>
                     <option value="خیر">خیر</option>
                     </select>
@@ -89,9 +89,9 @@ function StepTwo() {
                 </div>
                 <div className={styles.formGroup}>
                     <label className={styles.nameLabel}>{t('labelstatusSee')}</label>
-                    <span className={styles.error}>{errors.statusStock?.message}</span>
+                    <span className={styles.error}>{errors.statusSee?.message}</span>
                     <select className="formSelect" {...register("statusSee")}>
-                    <option value='نتخاب کنید'>انتخاب کنید</option>
+                    <option value=''>انتخاب کنید</option>
                     <option value="بله">بله</option>
                     <option value="خیر">خیر</option>
                     </select>
