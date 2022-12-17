@@ -1,0 +1,27 @@
+ul{
+    display: flex;
+    align-items: center;
+    padding: 0px 1.5rem;
+    list-style: none;
+    justify-content: center;
+    margin-block: 0;
+
+    li{
+        background-color: #fff;
+        margin: 0 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35px;
+        height: 35px;
+        color: #000;
+        border-radius: 10px;  
+        cursor: pointer;
+
+        a{
+            margin-top: 6px;
+        }
+    }
+
+}
+

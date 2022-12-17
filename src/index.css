@@ -234,3 +234,15 @@ body {
   display: flex;
   justify-content: flex-end;
 }
+
+.selected{
+  background-color: #3A69E6 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  /* padding: 5px 15px; */
+  color: #fff;
+  border-radius: 10px;
+}
