@@ -5,6 +5,7 @@ import styles from './view.module.scss'
 
 const Container = styled.div`
 padding:25px 15px 0px 15px;
+
 `
 
 function Veiw({dataManage , setId}) {

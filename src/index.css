@@ -1,3 +1,6 @@
+@import url('https://gitcdn.ir/library/PersianFonts/vazir/style.css');
+
+
 @font-face {
   font-family: 'IranSans';
   src: url("./font/IRANSansWeb.woff") format("woff");
@@ -68,6 +71,10 @@ body {
     border-radius: 25px;
     min-height: 0 !important;
   }
+}
+
+.vazir{
+  font-family: vazir !important;
 }
 
 .btn {
@@ -243,7 +250,7 @@ body {
   width: 35px;
   height: 35px;
   /* padding: 5px 15px; */
-  color: #fff;
+  color: #fff !important;
   border-radius: 10px;
 }
 
@@ -278,6 +285,7 @@ body {
  .dropdown-content > .ul{
   text-align: center;
   display: block;
+  padding: 0;
 }
 
  .dropdown-content > .ul > .itemLi{

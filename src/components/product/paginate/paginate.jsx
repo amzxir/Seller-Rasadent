@@ -25,7 +25,8 @@ function Paginate({ setItemOffset , dataProduct , pageCount }) {
         pageCount={pageCount}
         previousLabel={<FontAwesomeIcon icon={faChevronRight}/>}
         renderOnZeroPageCount={null}
-        className={styles.ul}
+        className={styles.paginates}
+        
     />
     </>
   )
