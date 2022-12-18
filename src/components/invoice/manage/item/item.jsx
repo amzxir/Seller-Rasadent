@@ -31,10 +31,10 @@ function Item({handelFunction , dataInvoice , setDataInvoice , currentItems}) {
                                 <FontAwesomeIcon icon={faEllipsisVertical}/>
                             </div>
                             <div className={dropdowns === index ?'dropdown-content dBlock':'dropdown-content dNone'}>
-                                <ul>
-                                    <li onClick={()=> functionDelete(i)}><a>حذف</a></li>
-                                    <li><NavLink to={`/view-invoice/${i.id}`} onClick={()=> handelFunction(i)}>مشاهده</NavLink></li>
-                                    <li><a>ksdk</a></li>
+                                <ul className='ul'>
+                                    <li className='itemLi' onClick={()=> functionDelete(i)}><a className='link'>حذف</a></li>
+                                    <li className='itemLi'><NavLink className='link' to={`/view-invoice/${i.id}`} onClick={()=> handelFunction(i)}>مشاهده</NavLink></li>
+                                    <li className='itemLi'><NavLink className='link' to='/request-invoice'>درخواست فاکتور رسمی</NavLink></li>
                                 </ul>
                             </div>
                         </div>
