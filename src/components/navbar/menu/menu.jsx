@@ -5,9 +5,10 @@ import styled from 'styled-components'
 import styles from './menu.module.scss'
 
 const Container = styled.div`
-position: sticky;
+position: absolute;
 bottom: 0%;
 width:100%;
+
 
 @media (max-width: 600px) {
     position: fixed;

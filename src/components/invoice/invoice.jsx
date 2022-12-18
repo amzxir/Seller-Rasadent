@@ -6,8 +6,13 @@ import { NavLink } from 'react-router-dom'
 const Container = styled.div`
 padding:25px 15px 0px 15px;
 
+// @media (min-width: 600px) {
+//     min-height:507px;
+// } 
+
 @media (min-width: 600px) {
-    min-height:507px;
+    height:500px;
+    overflow:auto;
 } 
 
 @media (max-width: 600px) {
