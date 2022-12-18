@@ -15,7 +15,7 @@ const Container = styled.div`
 `
 
 const schema = yup.object().shape({
-    uploadImages: yup.mixed().test("file", "فیلد سصویر محصول اجباری است", (value) => {
+    uploadImages: yup.mixed().test("file", "فیلد تصویر محصول اجباری است", (value) => {
     if (value.length > 0) {  
         return true;
     }
@@ -112,7 +112,7 @@ function StepTwo(props) {
                     <FontAwesomeIcon icon={faEye} />
                 </div>
                 <div className={styles.formGroup}>
-                    <label className={styles.nameLabel}>توضیحات محصول</label>
+                    <label className={styles.nameLabel}>{t('descriptionProduct')}</label>
                     <span className={styles.error}>{errors.description?.message}</span>
                     <textarea type="text" className="formControl" {...register("description")} />
                 </div>

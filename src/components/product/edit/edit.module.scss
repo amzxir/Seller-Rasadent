@@ -36,6 +36,22 @@ $danger:red;
                 outline: 0;
                 box-shadow: 0 0 0 0.2rem #2e467142;
             }
+
+            textarea{
+                margin-top: .7rem;
+                border-radius: 10px;
+                padding-right: 2.5rem;
+                box-sizing: border-box;
+                font-family: 'IranSans';
+
+            }
+            textarea:focus{
+                color: #495057;
+                background-color: #fff;
+                border-color: #3ABAF5;
+                outline: 0;
+                box-shadow: 0 0 0 0.2rem #2e467142;
+            }
     
             select{
                 margin-top: .7rem;
@@ -76,4 +92,22 @@ $danger:red;
     color: $danger;
     font-weight: bold;
     margin-right: .5rem;
+}
+
+.borderImg{
+    background: #3A69E6;
+    border: 1px solid #3A69E6;
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    position: relative;
+
+    label{
+        svg{
+            color: #fff !important;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    }
 }

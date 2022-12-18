@@ -7,7 +7,7 @@ import styled from "styled-components"
 import Context from "../../../context/context";
 import styles from './edit.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFileSignature , faMoneyBill , faStore , faEye , faB , faGlobe , faHandHoldingMedical , faHandshake  } from '@fortawesome/free-solid-svg-icons'
+import { faFileSignature , faMoneyBill , faStore , faEye , faB , faGlobe , faHandHoldingMedical , faHandshake , faUpload  } from '@fortawesome/free-solid-svg-icons'
 
 
 const Container = styled.div`
@@ -31,6 +31,12 @@ function Edit({dataManage , setId}) {
   // console.log(dataManage)
 
   const schema = yup.object().shape({
+    uploadImages: yup.mixed().test("file", "فیلد تصویر محصول اجباری است", (value) => {
+    if (value.length > 0) {  
+        return true;
+    }
+    return false;
+    }),
     nameFa: yup.string().required('فیلد نام فارسی محصول اجباری است'),
     nameEn: yup.string().required('فیلد نام انگیلیسی محصول اجباری است'),
     price: yup.number().typeError('فیلد قیمت باید عدد باشد').required('فیلد قیمت محصول اجباری است').integer('فیلد قیمت باید عدد صحیح باشد'),
@@ -41,6 +47,7 @@ function Edit({dataManage , setId}) {
     country: yup.string().required('فیلد کشور سازنده اجباری است'),
     warranty: yup.string().required('فیلد گارانتی اجباری است'),
     guarantee: yup.string().required('فیلد ضمانت اجباری است'),
+    description: yup.string().required('فیلد توضیحات محصول اجباری است').min(12 , 'فیلد توضیحات باید ۱۲ کارکتر باشد'),
   
   })
 
@@ -56,6 +63,14 @@ function Edit({dataManage , setId}) {
     <Container>
         <form className={styles.editProduct} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.pad}>
+            <div className={styles.formGroup}>
+                <div className={styles.borderImg}>
+                    <label htmlFor="uploadImages" style={{ position:'absolute' , left:'85%' , top:'60%'  }}
+                    className={styles.nameLabel}><FontAwesomeIcon icon={faUpload}/></label>
+                </div>
+                <span style={{ display:'flex' , justifyContent:'center' , paddingTop:'20px' }} className={styles.error}>{errors.uploadImages?.message}</span>
+                <input type="file" id="uploadImages" className="formControl dNone" multiple {...register("uploadImages")}/>
+            </div>
             <div className={styles.formGroup}>
               <label className={styles.nameLabel}>{t('labelNameFa')}</label>
               <span className={styles.error}>{errors.nameFa?.message}</span>
@@ -83,8 +98,8 @@ function Edit({dataManage , setId}) {
             <div className={styles.formGroup}>
               <label className={styles.nameLabel}>{t('labelstatusStock')}</label>
               <span className={styles.error}>{errors.statusStock?.message}</span>
-              <select className="formSelect" {...register("statusStock")}>
-                <option>انتخاب کنید</option>
+              <select className="formSelect" {...register("statusStock")} defaultValue={dataManage.statusStock}>
+                <option value=''>انتخاب کنید</option>
                 <option value="بله">بله</option>
                 <option value="خیر">خیر</option>
               </select>
@@ -92,8 +107,8 @@ function Edit({dataManage , setId}) {
             </div>
             <div className={styles.formGroup}>
               <label className={styles.nameLabel}>{t('labelstatusSee')}</label>
-              <span className={styles.error}>{errors.statusStock?.message}</span>
-              <select className="formSelect" {...register("statusSee")}>
+              <span className={styles.error}>{errors.statusSee?.message}</span>
+              <select className="formSelect" {...register("statusSee")} defaultValue={dataManage.statusSee}>
                 <option>انتخاب کنید</option>
                 <option value="بله">بله</option>
                 <option value="خیر">خیر</option>
@@ -102,35 +117,40 @@ function Edit({dataManage , setId}) {
             </div>
             <div className={styles.formGroup}>
               <label className={styles.nameLabel}>{t('labelBrand')}</label>
-              <span className={styles.error}>{errors.statusStock?.message}</span>
-              <select className="formSelect" {...register("brand")} >
+              <span className={styles.error}>{errors.brand?.message}</span>
+              <select className="formSelect" {...register("brand")} defaultValue={dataManage.brand}>
                 <option>انتخاب کنید</option>
               </select>
               <FontAwesomeIcon icon={faB} />
             </div>
             <div className={styles.formGroup}>
               <label className={styles.nameLabel}>{t('labelCountry')}</label>
-              <span className={styles.error}>{errors.statusStock?.message}</span>
-              <select className="formSelect" {...register("country")} >
+              <span className={styles.error}>{errors.country?.message}</span>
+              <select className="formSelect" {...register("country")} defaultValue={dataManage.country}>
                 <option>انتخاب کنید</option>
               </select>
               <FontAwesomeIcon icon={faGlobe} />
             </div>
             <div className={styles.formGroup}>
               <label className={styles.nameLabel}>{t('labelWarranty')}</label>
-              <span className={styles.error}>{errors.statusStock?.message}</span>
-              <select className="formSelect" {...register("warranty")}>
+              <span className={styles.error}>{errors.warranty?.message}</span>
+              <select className="formSelect" {...register("warranty")} defaultValue={dataManage.warranty}>
                 <option>انتخاب کنید</option>
               </select>
               <FontAwesomeIcon icon={faHandHoldingMedical} />
             </div>
             <div className={styles.formGroup}>
               <label className={styles.nameLabel}>{t('labelGuarantee')}</label>
-              <span className={styles.error}>{errors.statusStock?.message}</span>
-              <select className="formSelect" {...register("guarantee")}>
+              <span className={styles.error}>{errors.guarantee?.message}</span>
+              <select className="formSelect" {...register("guarantee")} defaultValue={dataManage.guarantee}>
                 <option>انتخاب کنید</option>
               </select>
               <FontAwesomeIcon icon={faHandshake} />
+            </div>
+            <div className={styles.formGroup}>
+                <label className={styles.nameLabel}>{t('descriptionProduct')}</label>
+                <span className={styles.error}>{errors.description?.message}</span>
+                <textarea type="text" className="formControl" {...register("description")} />
             </div>
           </div>
           <div className={styles.justifyBtn}>
