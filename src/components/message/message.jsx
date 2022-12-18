@@ -11,10 +11,8 @@ background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
 //     min-height:532px;
 // } 
 
-@media (min-width: 600px) {
     height:532px;
     overflow:auto;
-} 
 
 // @media (min-width: 600px) {
 //     padding:25px 15px 72px 15px;
