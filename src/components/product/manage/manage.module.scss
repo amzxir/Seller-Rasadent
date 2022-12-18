@@ -21,15 +21,19 @@ $dark:#000;
 
     input{
         background-color: #F3F3F3;
+        border-bottom: 2px solid #ced4da;
         padding-right: 1.7rem;
         border-radius: 20px;
+        border-top: 0;
+        border-right: 0;
+        border-left: 0;
     }
 
 
     input:focus{
         color: #495057;
         outline: 0;
-        box-shadow: 0 0 0 0.2rem #2e467142;
+        // box-shadow: 0 0 0 0.2rem #2e467142;
     }
 }
 

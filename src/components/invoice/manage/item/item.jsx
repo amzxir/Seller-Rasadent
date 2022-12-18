@@ -1,15 +1,19 @@
+import { useState } from 'react';
+import { NavLink } from "react-router-dom";
 import styles from '../manage.module.scss'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileInvoice , faTrash , faEye } from '@fortawesome/free-solid-svg-icons'
-import { NavLink } from "react-router-dom";
+import { faFileInvoice , faTrash , faEye , faEllipsisVertical } from '@fortawesome/free-solid-svg-icons'
+
 
 function Item({handelFunction , dataInvoice , setDataInvoice , currentItems}) {
     
 
-    const functionDelete = (item) => {
-        const remove = dataInvoice.filter(i => i.id !== item.id)
-        setDataInvoice(remove)
-    };
+   const functionDelete = (item) => {
+       const remove = dataInvoice.filter(i => i.id !== item.id)
+       setDataInvoice(remove)
+   };
+
+   const [dropdowns , setDropdowns] = useState(false)
 
   return (
     <>
@@ -23,8 +27,16 @@ function Item({handelFunction , dataInvoice , setDataInvoice , currentItems}) {
                             <p>{i.nameFa}</p>
                         </div>
                         <div className={styles.manage}>
-                            <NavLink to={`/view-invoice/${i.id}`} onClick={()=> handelFunction(i)}><FontAwesomeIcon icon={faEye}/></NavLink>
-                            <span onClick={()=> functionDelete(i)}><FontAwesomeIcon icon={faTrash}/></span>
+                            <div className='dropdown' onClick={()=> dropdowns === false ? setDropdowns(index): setDropdowns(false)}>
+                                <FontAwesomeIcon icon={faEllipsisVertical}/>
+                            </div>
+                            <div className={dropdowns === index ?'dropdown-content dBlock':'dropdown-content dNone'}>
+                                <ul>
+                                    <li onClick={()=> functionDelete(i)}><a>حذف</a></li>
+                                    <li><NavLink to={`/view-invoice/${i.id}`} onClick={()=> handelFunction(i)}>مشاهده</NavLink></li>
+                                    <li><a>ksdk</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
