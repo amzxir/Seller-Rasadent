@@ -78,8 +78,19 @@ function Manage({ functionData }) {
             />
           <FontAwesomeIcon icon={faSearch}/>
       </form>
-      <Item handelFunction={functionData} dataProduct={dataProduct} setDataProduct={setDataProduct} currentItems={currentItems}/>
-      <Paginate  dataProduct={dataProduct} setItemOffset={setItemOffset} endOffset={endOffset} currentItems={currentItems} pageCount={pageCount} />
+      <Item 
+        handelFunction={functionData} 
+        dataProduct={dataProduct} 
+        setDataProduct={setDataProduct} 
+        currentItems={currentItems}
+      />
+      <Paginate  
+        dataProduct={dataProduct} 
+        setItemOffset={setItemOffset} 
+        endOffset={endOffset} 
+        currentItems={currentItems} 
+        pageCount={pageCount}
+       />
     </Container>
   )
 }
