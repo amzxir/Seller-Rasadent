@@ -5,10 +5,10 @@ import { NavLink } from 'react-router-dom'
 import avatar from '../../images/user.png'
 
 const Container = styled.div`
+background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
 
 @media (min-width: 600px) {
     min-height:532px;
-    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
 } 
 
 // @media (min-width: 600px) {
