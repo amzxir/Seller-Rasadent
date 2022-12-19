@@ -7,12 +7,18 @@ import avatar from '../../images/user.png'
 const Container = styled.div`
 background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
 
-// @media (min-width: 600px) {
-//     min-height:532px;
-// } 
+@media (max-width: 600px) {
+    position: absolute;
+    top: 63px;
+    bottom: 72px;
+    overflow: auto;
+    height: -webkit-fill-available;
+} 
 
+@media (min-width: 600px) {
     height:532px;
     overflow:auto;
+}
 
 // @media (min-width: 600px) {
 //     padding:25px 15px 72px 15px;
