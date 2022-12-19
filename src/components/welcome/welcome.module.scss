@@ -23,7 +23,9 @@ $white:#fff;
 
 .Welcome{
   
-    min-height: 667px;
+    // min-height: 667px;
+    height:auto!important;
+    min-height:100%;
     position: absolute;
     top: 0;
     bottom: 0;
