@@ -60,13 +60,12 @@ function StepTwo(props) {
         <form className={styles.formProduct} onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.pad}>
                 <div className={styles.formGroup}>
-                    <div className={styles.borderImg}>
-                        <label htmlFor="uploadImages" style={{ position:'absolute' , left:'85%' , top:'60%'  }}
-                        className={styles.nameLabel}><FontAwesomeIcon icon={faUpload}/></label>
-                    </div>
-                    <span style={{ display:'flex' , justifyContent:'center' , paddingTop:'20px' }} className={styles.error}>{errors.uploadImages?.message}</span>
-                    <input type="file" id="uploadImages" className="formControl dNone" multiple {...register("uploadImages")}/>
+                    <label htmlFor="uploadImages" className={styles.nameLabel}>{t('labelUploadImages')}</label>
+                    <span className={styles.error}>{errors.uploadImages?.message}</span>
+                    <input type="file" className="formControl" id="uploadImages" multiple {...register("uploadImages")}/>
+                    <FontAwesomeIcon icon={faUpload} />
                 </div>
+
                 <div className={styles.formGroup}>
                     <label className={styles.nameLabel}>{t('labelNameFa')}</label>
                     <span className={styles.error}>{errors.nameFa?.message}</span>

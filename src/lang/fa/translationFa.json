@@ -2,15 +2,9 @@
     "labelContent":"محتوای خود را وارد کنید ",
     "submit":"ثبت",
     "namePlatform":"اپلیکیشن تحت وب فروشندگان رسادنت",
-    "titlePlatform":"سیستم یکپارچه‌ی تولید و مدیریت محتوا ژینو",
-    "loginPlatform":"ورود به سامانه",
     "labelMobile":"شماره موبایل",
     "labelCode":"کد تایید خود را وارد کنید",
-    "createContent":"ایجاد محتوای جدید",
-    "manageContent":"مدیریت محتوای من",
-    "welcomeMessage":" عزیز به سامانه محتوا ژينو خوش آمدید",
     "back":"بازگشت",
-    "contentNumber":"محتوای شماره",
     "notFound":"صفحه مورد نظر یافت نشد",
     "labelNameFa":"نام فارسی محصول",
     "labelNameEn":"نام انگلیسی محصول",
@@ -25,7 +19,8 @@
     "submitProduct":"ثبت محصول",
     "categoryProduct":"جستجوی دسته بندی",
     "descriptionProduct":"توضیحات محصول",
-    "nextStep":"مرحله بعد"
+    "nextStep":"مرحله بعد",
+    "labelUploadImages":"تصویر محصول "
 
 
 

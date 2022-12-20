@@ -65,7 +65,7 @@ html , body {
   /* min-height: 100vh; */
   direction: rtl;
   height:auto!important;
-  min-height:100%;
+  min-height:100vh;
 }
 
 @media only screen and (min-width: 600px) {
@@ -285,6 +285,12 @@ html , body {
   min-width: 20vw;
   background-color: #fff;
   box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+}
+
+@media only screen and (max-width: 600px) {
+  .dropdown-content{
+    min-width: 50vw;
+  }
 }
 
  .dropdown-content > .ul{
