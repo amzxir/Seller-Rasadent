@@ -1,8 +1,11 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect , useContext } from "react"
+import { useParams } from "react-router-dom"
 import styled from "styled-components"
-import styles from "./view.module.scss";
+import styles from "./view.module.scss"
 import logo from '../../../images/logo.png'
+import JsPDF from 'jspdf'
+import Context from '../../../context/context'
+
 
 const Container = styled.div`
 
@@ -12,6 +15,8 @@ function Veiw({dataManage , setId}) {
 
     const {id} = useParams();
 
+    const {t , i18n} = useContext(Context)
+
     useEffect(()=>{
         setId(id)
     },[id])
@@ -20,10 +25,17 @@ function Veiw({dataManage , setId}) {
         document.title = dataManage?.nameFa
     })
 
+    const generatePDF = () => {
+        const report = new JsPDF('portrait','pt','a4' , 'ttf')
+        report.html(document.querySelector('#report')).then(()=> {
+            report.save('report.pdf');
+        })
+    }
+
 
   return (
     <Container>
-        <div className={styles.card}>
+        <div id="report" className={styles.card}>
             <div className={styles.invoice}>
                 <div className={styles.border}>
                     <img src={logo} alt="" />
@@ -36,7 +48,7 @@ function Veiw({dataManage , setId}) {
                 </div>
             </div>
             <div className={styles.details}>
-                <p className={styles.title}>جزئیات فاکتور</p>
+                <p className={styles.title}>{t('nextStep')}</p>
                 <div className={styles.deatails}>
                     <div className={styles.flex}><p>نام خریدار</p> <p>امیر احمدی</p></div>
                     <div className={styles.flex}><p>نام فروشنده</p> <p>لورم ایپسوم</p></div>
@@ -47,7 +59,7 @@ function Veiw({dataManage , setId}) {
                 </div>
             </div>
             <div className={styles.justifybtn}>
-                <button className="btn">خروجی PDF</button>
+                <button className="btn" onClick={generatePDF}>خروجی PDF</button>
             </div>
         </div>
     </Container>

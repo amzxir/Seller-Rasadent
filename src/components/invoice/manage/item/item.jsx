@@ -22,6 +22,10 @@ function Item({handelFunction , dataInvoice , setDataInvoice , currentItems}) {
     toast.success('فاکتور با موفقیت رد شد')
    }
 
+   const functionPreparation = () => {
+    toast.success('پیام اعلام آمادگی ارسال شد')
+   }
+
    const [dropdowns , setDropdowns] = useState(false)
 
   return (
@@ -43,6 +47,7 @@ function Item({handelFunction , dataInvoice , setDataInvoice , currentItems}) {
                                 <ul className='ul'>
                                     <li className='itemLi' onClick={()=> functionDelete(i)}><a className='link'>حذف</a></li>
                                     <li className='itemLi'><NavLink className='link' to={`/view-invoice/${i.id}`} onClick={()=> handelFunction(i)}>مشاهده</NavLink></li>
+                                    <li className='itemLi' onClick={()=> functionPreparation()}><a className='link'>اعلام آمادگی</a></li>
                                     <li className='itemLi' onClick={()=> functionSuccess()}><a className='link'>تایید </a></li>
                                     <li className='itemLi' onClick={()=> functionDisapproval()}><a className='link'>رد</a></li>
                                 </ul>
