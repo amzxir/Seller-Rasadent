@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import styles from '../manage.module.scss'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileInvoice , faTrash , faEye , faEllipsisVertical } from '@fortawesome/free-solid-svg-icons'
+import { toast } from 'react-toastify';
 
 
 function Item({handelFunction , dataInvoice , setDataInvoice , currentItems}) {
@@ -12,6 +13,14 @@ function Item({handelFunction , dataInvoice , setDataInvoice , currentItems}) {
        const remove = dataInvoice.filter(i => i.id !== item.id)
        setDataInvoice(remove)
    };
+
+   const functionSuccess = () => {
+    toast.success('فاکتور با موفقیت تایید شد')
+   }
+
+   const functionDisapproval = () => {
+    toast.success('فاکتور با موفقیت رد شد')
+   }
 
    const [dropdowns , setDropdowns] = useState(false)
 
@@ -34,7 +43,8 @@ function Item({handelFunction , dataInvoice , setDataInvoice , currentItems}) {
                                 <ul className='ul'>
                                     <li className='itemLi' onClick={()=> functionDelete(i)}><a className='link'>حذف</a></li>
                                     <li className='itemLi'><NavLink className='link' to={`/view-invoice/${i.id}`} onClick={()=> handelFunction(i)}>مشاهده</NavLink></li>
-                                    <li className='itemLi'><NavLink className='link' to='/request-invoice'>درخواست فاکتور رسمی</NavLink></li>
+                                    <li className='itemLi' onClick={()=> functionSuccess()}><a className='link'>تایید </a></li>
+                                    <li className='itemLi' onClick={()=> functionDisapproval()}><a className='link'>رد</a></li>
                                 </ul>
                             </div>
                         </div>

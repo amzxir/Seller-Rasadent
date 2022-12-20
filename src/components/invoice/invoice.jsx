@@ -28,7 +28,7 @@ function Invoice (){
 
     const data =[
         {name:'مدیریت فاکتور' , link:'/manage-invoice' , class:styles.manageInvo},
-        {name:'درخواست فاکتور رسمی' , link:'/request-invoice' , class:styles.requestInvo},
+        {name:'درخواست های فاکتور رسمی' , link:'/request-invoice' , class:styles.requestInvo},
     ]
 
     return(
