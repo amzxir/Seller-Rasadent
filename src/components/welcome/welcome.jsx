@@ -11,35 +11,7 @@ import Context from '../../context/context'
 const Container = styled.div`
 `
 
-const Loading = styled.div({
-    height:'667px',
-    display:'flex',
-    justifyContent:'center',
-    alignItems:'center',
-    backgroundImage: 'linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)',
 
-    '@media (max-width: 600px)': {
-        height:'100vh',
-
-    },
-
-    '&> div.content':{
-        textAlign:'center',
-
-        '& h1':{
-            fontSize:'20px',
-            fontFamily:'sans-serif',
-            color:'#119FDC',
-        },
-        
-
-        '& img':{
-            maxWidth:'60%',
-            height:'auto',
-            zIndex:'1000'
-        }
-    }
-})
 
 function Welcome (){
 
