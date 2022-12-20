@@ -58,7 +58,7 @@ function StepOne (props){
                     <label className={styles.nameLabel}>{t('labelMobile')}</label>
                     <span className={styles.error}>{errors.mobile?.message}</span>
                     <FontAwesomeIcon icon={faMobileAlt}/>
-                    <input type="text" className='formControl' {...register("mobile")} />
+                    <input type="text" className='formControl vazir' {...register("mobile")} />
                 </div>
                 <div className={styles.justifyCenter}>
                     <button className='btn custom-btn'>ارسال کد</button>

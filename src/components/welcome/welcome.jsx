@@ -1,4 +1,4 @@
-import { useEffect , useState } from 'react'
+import { useEffect , useState , useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import styles from './welcome.module.scss'
@@ -6,7 +6,7 @@ import logo from '../../images/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import bg from '../../images/022.jpg'
-
+import Context from '../../context/context'
 
 const Container = styled.div`
 `
@@ -47,6 +47,8 @@ function Welcome (){
         document.title = 'خوش آمدید'
     })
 
+    const {t , i18n} = useContext(Context)
+
     return(
         <Container>
             <img src={bg} alt="" className={styles.bg} />
@@ -61,7 +63,7 @@ function Welcome (){
                 </div>
             </div>
             <div className={styles.border}>
-                <p>Seller Rasadent Application</p>
+                <p>{t('namePlatform')}</p>
             </div>
         </Container>
     )
