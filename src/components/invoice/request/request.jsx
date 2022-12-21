@@ -1,20 +1,27 @@
 import { useEffect , useState , useContext } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFileUpload , faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faFileUpload , faSearch , faEye } from '@fortawesome/free-solid-svg-icons'
 import styled from "styled-components"
 import styles from './request.module.scss'
 import Modals from "../../modal/modal"
 import Context from "../../../context/context"
+import { NavLink } from "react-router-dom"
 
 const Container = styled.div`
 padding:25px 0px 0px 0px;
 `
 
 // data tabel
+
 const data = [
-  {serial:'0024006547' , date:'1400/2/4' , icon:faFileUpload},
-  {serial:'003400938' , date:'1400/5/4' , icon:faFileUpload},
-  {serial:'001234642' , date:'1400/7/4' , icon:faFileUpload}
+  {id:1 , serial:'0024006547' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
+  {id:2 , serial:'0024007589' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
+  {id:3 , serial:'0024006547' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
+  {id:4 , serial:'0024006547' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
+  {id:5 , serial:'0024006547' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
+  {id:6 , serial:'0024006547' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
+  {id:7 , serial:'0024006547' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
+  {id:8 , serial:'0024006547' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
 ]
 
 // if for search table
@@ -24,7 +31,7 @@ const filterArticles = (searchValue) => {
   } return data.filter(article => article.serial.toLowerCase().includes(searchValue.toLowerCase()))
 }
 
-function Request() {
+function Request({functionData}) {
 
   // title page //
   useEffect(()=> {
@@ -90,16 +97,18 @@ function Request() {
               <table article={article}>
                 <tbody>
                   <tr>
-                    <th>شماره فاکتور</th>
-                    <th>فاکتو تاریخ</th>
-                    <th>درخواست فاکتور</th>
+                    <th>شماره</th>
+                    <th>تاریخ</th>
+                    <th>مشاهده</th>
+                    <th>بارگذاری</th>
                   </tr>
                   {article.map((i , index)=> {
                     return(
                       <tr key={index}>
-                        <td>{i.serial}</td>
-                        <td>{i.date}</td>
-                        <td><div onClick={()=> setModal(index)}><FontAwesomeIcon icon={i.icon}/></div></td>
+                        <td style={{ fontFamily:'vazir' }}>{i.serial}</td>
+                        <td style={{ fontFamily:'vazir' }}>{i.date}</td>
+                        <td><NavLink to={`/view-invoice/${i.id}`} onClick={()=> functionData(i)}><FontAwesomeIcon icon={faEye}/></NavLink></td>
+                        <td><div onClick={()=> setModal(index)}><FontAwesomeIcon icon={faFileUpload}/></div></td>
                         <Modals show={modal === index}>
                           <div className='modal'>
                             <div className="modalTitle">شماره فاکتور {i.serial}</div>

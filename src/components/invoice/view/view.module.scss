@@ -51,6 +51,7 @@ $bgCard:#fff;
                 font-weight: bold;
                 font-size: 18px;
                 margin-block-end: .4rem;
+                font-family: vazir;
             }
 
             .feature{
@@ -104,7 +105,8 @@ $bgCard:#fff;
         margin-bottom: 1rem;
         width: 100%;
         box-sizing: border-box;
-
+        position: sticky;
+        bottom: 10px;
 
         button{
             background-color: #3A69E6;

@@ -83,7 +83,7 @@ function App() {
                     <Route path="/edit-product/:id" element={<Edit dataManage={dataManage} setId={setId}/>}/>
                     <Route path="/invoice" exact element={<Invoice/>}/>
                     <Route path="/manage-invoice" element={<ManageInvoice functionData={getDataManage}/>}/>
-                    <Route path="/request-invoice" element={<RequestInvoice/>}/>
+                    <Route path="/request-invoice" element={<RequestInvoice functionData={getDataManage}/>}/>
                     <Route path="/view-invoice/:id" element={<ViewInvoice dataManage={dataManage} setId={setId}/>}/>
                     <Route path="/messages" exact element={<Messages functionData={getDataManage}/>}/>
                     <Route path="/messages-view/:id" exact element={<VeiwMessage dataManage={dataManage} setId={setId}/>}/>

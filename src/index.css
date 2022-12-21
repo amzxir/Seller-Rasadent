@@ -303,6 +303,7 @@ html , body {
   width: 100%;
   height: auto;
   margin: 0px 0px 10px 0px;
+  cursor: pointer;
   
 }
 
