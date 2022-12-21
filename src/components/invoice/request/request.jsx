@@ -117,7 +117,7 @@ function Request({functionData}) {
                                 Object.keys(uploadImg).length === index ?
                                 <>
                                   <label style={{ cursor:'pointer' }} htmlFor={i.serial}><FontAwesomeIcon className={styles.upload} icon={faFileUpload}/> <p style={{ marginBlock:'0' }}>بارگداری تصویر</p></label>
-                                  <input type="file" id={i.serial} className="dNone" onChange={(e)=>imgFilehandler(e , index)} />
+                                  <input type="file" id={i.serial} className="dNone" multiple onChange={(e)=>imgFilehandler(e , index)} />
                                 </>
                                 :
                                 <div style={{ display:'flex',flexDirection:'row',flexWrap:'wrap',width:'100%' }}>
