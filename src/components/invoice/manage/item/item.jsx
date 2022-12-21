@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState , useRef , useEffect } from 'react';
 import { NavLink } from "react-router-dom";
 import styles from '../manage.module.scss'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileInvoice , faTrash , faEye , faEllipsisVertical } from '@fortawesome/free-solid-svg-icons'
+import { faFileInvoice , faEllipsisVertical } from '@fortawesome/free-solid-svg-icons'
 import { toast } from 'react-toastify';
+import listenForOutsideClick from '../../../listenOutsideClicks/listen-for-outside-clicks'
+
 
 
 function Item({handelFunction , dataInvoice , setDataInvoice , currentItems}) {
@@ -26,11 +28,17 @@ function Item({handelFunction , dataInvoice , setDataInvoice , currentItems}) {
     toast.success('پیام اعلام آمادگی ارسال شد')
    }
 
-   const [dropdowns , setDropdowns] = useState(false)
+    // Hide and show dropdown
+    const [isOpen, setIsOpen] = useState(false)
 
+    // Hide Dropdown on Outside Click
+    const menuRef = useRef(null)
+    const [listening, setListening] = useState(false)
+    useEffect(listenForOutsideClick(listening, setListening, menuRef, setIsOpen))
+  
   return (
     <>
-    <div className={styles.row}>
+    <div ref={menuRef} className={styles.row}>
         {currentItems && currentItems.map((i , index)=> {
             return(
                 <div key={index} className={styles.col6}>
@@ -40,23 +48,31 @@ function Item({handelFunction , dataInvoice , setDataInvoice , currentItems}) {
                             <p>{i.nameFa}</p>
                         </div>
                         <div className={styles.manage}>
-                            <div className='dropdown' onClick={()=> dropdowns === false ? setDropdowns(index): setDropdowns(false)}>
+
+                            <div className='dropdown' onClick={() => setIsOpen(index) }>
                                 <FontAwesomeIcon icon={faEllipsisVertical}/>
                             </div>
-                            <div className={dropdowns === index ?'dropdown-content dBlock':'dropdown-content dNone'}>
-                                <ul className='ul'>
-                                    <li className='itemLi' onClick={()=> functionDelete(i)}><a className='link'>حذف</a></li>
-                                    <li className='itemLi'><NavLink className='link' to={`/view-invoice/${i.id}`} onClick={()=> handelFunction(i)}>مشاهده</NavLink></li>
-                                    <li className='itemLi' onClick={()=> functionPreparation()}><a className='link'>اعلام آمادگی</a></li>
-                                    <li className='itemLi' onClick={()=> functionSuccess()}><a className='link'>تایید </a></li>
-                                    <li className='itemLi' onClick={()=> functionDisapproval()}><a className='link'>رد</a></li>
-                                </ul>
-                            </div>
+
+                            {isOpen === index ? (
+                                <div className='dropdown-content'>
+                                    <ul className='ul'>
+                                        <li className='itemLi' onClick={()=> functionDelete(i)}><a className='link'>حذف</a></li>
+                                        <li className='itemLi'><NavLink className='link' to={`/view-invoice/${i.id}`} onClick={()=> handelFunction(i)}>مشاهده</NavLink></li>
+                                        <li className='itemLi' onClick={()=> functionPreparation()}><a className='link'>اعلام آمادگی</a></li>
+                                        <li className='itemLi' onClick={()=> functionSuccess()}><a className='link'>تایید </a></li>
+                                        <li className='itemLi' onClick={()=> functionDisapproval()}><a className='link'>رد</a></li>
+                                    </ul>
+                                </div>
+                            ) : ''}
+
                         </div>
                     </div>
                 </div>
             )
         })}
+
+
+
     </div>
     </>
   )
