@@ -82,6 +82,10 @@ html , body {
   font-family: vazir !important;
 }
 
+.ltr{
+  direction: ltr;
+}
+
 .btn {
   cursor: pointer;
   font-family: 'IranSans';

@@ -1,4 +1,4 @@
-import { useContext , useState } from "react";
+import { useContext , useState , useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -7,7 +7,8 @@ import { faFileSignature , faChevronLeft , faMoneyBill , faStore , faEye , faUpl
 import styled from "styled-components"
 import styles from '../create.module.scss'
 import Context from "../../../../context/context";
-import { useEffect } from "react";
+import SeparatedNumberInput from 'react-separated-number-input';
+
 
 
 
@@ -81,7 +82,7 @@ function StepTwo(props) {
                 <div className={styles.formGroup}>
                     <label className={styles.nameLabel}>{t('labelPrice')}</label>
                     <span className={styles.error}>{errors.price?.message}</span>
-                    <input type="text" className="formControl vazir" {...register("price")} />
+                    <SeparatedNumberInput groupLengths={[3, 3, 3 , 3 , 3 , 3]} type="text" className="formControl vazir ltr" {...register("price")} />
                     <FontAwesomeIcon icon={faMoneyBill} />
                 </div>
                 <div className={styles.formGroup}>
