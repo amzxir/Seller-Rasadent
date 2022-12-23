@@ -1,11 +1,11 @@
 import { useEffect , useState , useContext } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFileUpload , faSearch , faEye } from '@fortawesome/free-solid-svg-icons'
+import {  faSearch } from '@fortawesome/free-solid-svg-icons'
 import styled from "styled-components"
 import styles from './request.module.scss'
-import Modals from "../../modal/modal"
 import Context from "../../../context/context"
-import { NavLink } from "react-router-dom"
+import Item from "./item/item"
+import Paginate from "./paginate/paginate"
 
 const Container = styled.div`
 padding:25px 0px 0px 0px;
@@ -24,13 +24,6 @@ const data = [
   {id:8 , serial:'0024006547' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
 ]
 
-// // if for search table
-// const filterArticles = (searchValue) => {
-//   if (searchValue === '') {
-//     return data
-//   } return data.filter(article => article.serial.toLowerCase().includes(searchValue.toLowerCase()))
-// }
-
 function Request({functionData}) {
 
   // title page //
@@ -41,23 +34,15 @@ function Request({functionData}) {
   // data table //
   const [article , setArticle] = useState(data)
 
-  // // value input//
-  // const [innerValue , setInnerValue] = useState("")
-  // const [searchValue , setSearchValue] = useState("")
+  const [itemOffset, setItemOffset] = useState(0);
 
-  // // function search input table
-  // const handelSubmit = (e) => {
-  //   e.preventDefault()
-  //   const callBack = (searchValue) => setSearchValue(searchValue)
-  //   callBack(innerValue)
-  // }
-  
-  // useEffect(()=> {
-  //   const filterdata = filterArticles(searchValue)
-  //   setArticle(filterdata)
-  // },[searchValue])
+  const endOffset = itemOffset + 10;
 
-  // console.log(searchValue)
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+
+  const currentItems = article.slice(itemOffset, endOffset);
+
+  const pageCount = Math.ceil(article.length / 10);
 
   // state modal context
   const {modal , setModal} = useContext(Context)
@@ -79,14 +64,8 @@ function Request({functionData}) {
     });
   }
 
-  // const [searchTerm , setSearchTerm] = useState ("")
+  const [searchTerm , setSearchTerm] = useState ("")
 
-  // // search feild
-  // if(searchTerm.length > 0){
-  //   article = article.filter((i)=> {
-  //       return i.serial.match(searchTerm)
-  //   })
-  // }
   
   return (
     <Container>
@@ -97,58 +76,28 @@ function Request({functionData}) {
                 type="text" 
                 className="formControl" 
                 placeholder="شماره فاکتور را وارد کنید ..."
-                // onChange={(e) => setSearchTerm(e.target.value)}
-                // value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                value={searchTerm}
                />
               <FontAwesomeIcon onClick={()=> setModal(true)} icon={faSearch}/>
             </div>
-            <div className={styles.card}>
-              <table article={article}>
-                <tbody>
-                  <tr>
-                    <th>شماره</th>
-                    <th>تاریخ</th>
-                    <th>مشاهده</th>
-                    <th>بارگذاری</th>
-                  </tr>
-                  {article.map((i , index)=> {
-                    return(
-                      <tr key={index}>
-                        <td style={{ fontFamily:'vazir' }}>{i.serial}</td>
-                        <td style={{ fontFamily:'vazir' }}>{i.date}</td>
-                        <td><NavLink to={`/view-invoice/${i.id}`} onClick={()=> functionData(i)}><FontAwesomeIcon icon={faEye}/></NavLink></td>
-                        <td><div onClick={()=> setModal(index)}><FontAwesomeIcon icon={faFileUpload}/></div></td>
-                        <Modals show={modal === index}>
-                          <div className='modal'>
-                            <div className="modalTitle">شماره فاکتور {i.serial}</div>
-                            <div className="modalBody">
-                              {
-                                Object.keys(uploadImg).length === index ?
-                                <>
-                                  <label style={{ cursor:'pointer' }} htmlFor={i.serial}><FontAwesomeIcon className={styles.upload} icon={faFileUpload}/> <p style={{ marginBlock:'0' }}>بارگداری تصویر</p></label>
-                                  <input type="file" id={i.serial} className="dNone" multiple onChange={(e)=>imgFilehandler(e , index)} />
-                                </>
-                                :
-                                <div style={{ display:'flex',flexDirection:'row',flexWrap:'wrap',width:'100%' }}>
-                                  {
-                                    uploadImg[index]?.map(item=>(
-                                      <img width={50} src={item }/>
-                                    ))
-                                  }
-                                </div>
-                              }
-                            </div>
-                            <div className="modalFooter"><button style={{ fontSize:'13px' , borderRadius:'5px' }} onClick={()=> setModal(false)} className='btn btn-secondary'>خروج</button></div>
-                          </div>
-                        </Modals>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </table>
-            </div>
+            <Item
+              article={article}
+              uploadImg={uploadImg}
+              functionData={functionData}
+              imgFilehandler={imgFilehandler}
+              currentItems={currentItems}
+              searchTerm={searchTerm}
+            />
           </div>
         </div>
+        <Paginate
+          article={article}
+          setItemOffset={setItemOffset}
+          endOffset={endOffset}
+          currentItems={currentItems} 
+          pageCount={pageCount}
+        />
     </Container>
   )
 }

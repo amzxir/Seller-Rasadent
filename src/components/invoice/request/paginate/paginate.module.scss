@@ -1,0 +1,37 @@
+.paginates{
+    display: flex;
+    align-items: center;
+    padding: 0px 1.5rem;
+    list-style: none;
+    justify-content: center;
+    margin-block: 0;
+    // position: absolute;
+    bottom: 20px;
+    right: 0;
+    left: 0;
+    font-family: vazir !important;
+    margin-bottom: 1rem;
+
+
+    li{
+        background-color: #fff;
+        box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%) !important;
+        margin: 0 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35px;
+        height: 35px;
+        color: #41464b;
+        border-radius: 10px;  
+        cursor: pointer;
+
+        a{
+            margin-top: 4px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+    }
+
+}
+
