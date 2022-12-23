@@ -39,3 +39,66 @@ $white:#fff;
     color: $white;
     border-radius: 10px;
 }
+
+.row{
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .cardOne{
+        flex: 0 auto;
+        width: 48%;
+        background: #fff;
+        text-decoration: none;
+        text-align: center;
+        box-shadow: rgb(0 0 0 / 8%) 0px 0.125rem 0.25rem;
+
+
+        .content{
+            padding: 1rem;
+
+            p{
+                font-size: 12px;
+                font-weight: bold;
+                color: #324A5D;
+
+            }
+
+            img{
+                width: 100px;
+                height: 100px;
+            }
+
+        }
+    }
+    
+    .cardTwo{
+        flex: 0 auto;
+        width: 48%;
+        background: #fff;
+        text-decoration: none;
+        text-align: center;
+        box-shadow: rgb(0 0 0 / 8%) 0px 0.125rem 0.25rem;
+
+
+
+        .content{
+            padding: 1rem;
+
+            p{
+                font-size: 12px;
+                font-weight: bold;
+                color: #324A5D;
+            }
+
+            img{
+                width: 100px;
+                height: 100px;
+            }
+
+        }
+        
+    }
+}

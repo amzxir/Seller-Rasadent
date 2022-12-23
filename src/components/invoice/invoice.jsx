@@ -2,6 +2,7 @@ import styles from './invoice.module.scss'
 import styled from "styled-components"
 import { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
+import invoice from '../../images/invoice.svg'
 
 const Container = styled.div`
 padding:25px 15px 0px 15px;
@@ -27,18 +28,24 @@ function Invoice (){
     })
 
     const data =[
-        {name:'مدیریت فاکتور' , link:'/manage-invoice' , class:styles.manageInvo},
-        {name:'درخواست های فاکتور رسمی' , link:'/request-invoice' , class:styles.requestInvo},
+        {name:'مدیریت فاکتور' , link:'/manage-invoice' , class:styles.cardOne , logo:invoice},
+        {name:'درخواست های فاکتور رسمی' , link:'/request-invoice' , class:styles.cardTwo , logo:invoice},
     ]
 
     return(
         <Container>
+            <div className={styles.row}>
             {data.map((i , index)=> {
                 return(
-
-                    <NavLink key={index} to={i.link} className={i.class}>{i.name}</NavLink>
-                )
-            })}
+                        <NavLink key={index} to={i.link} className={i.class}>
+                            <div className={styles.content}>
+                                <img src={i.logo} alt="" />
+                                <p>{i.name}</p>
+                            </div>
+                        </NavLink>
+                        )
+                    })}
+            </div>
         </Container>
     )
 }
