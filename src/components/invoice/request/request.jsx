@@ -24,12 +24,12 @@ const data = [
   {id:8 , serial:'0024006547' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
 ]
 
-// if for search table
-const filterArticles = (searchValue) => {
-  if (searchValue === '') {
-    return data
-  } return data.filter(article => article.serial.toLowerCase().includes(searchValue.toLowerCase()))
-}
+// // if for search table
+// const filterArticles = (searchValue) => {
+//   if (searchValue === '') {
+//     return data
+//   } return data.filter(article => article.serial.toLowerCase().includes(searchValue.toLowerCase()))
+// }
 
 function Request({functionData}) {
 
@@ -41,21 +41,21 @@ function Request({functionData}) {
   // data table //
   const [article , setArticle] = useState(data)
 
-  // value input//
-  const [innerValue , setInnerValue] = useState("")
-  const [searchValue , setSearchValue] = useState("")
+  // // value input//
+  // const [innerValue , setInnerValue] = useState("")
+  // const [searchValue , setSearchValue] = useState("")
 
-  // function search input table
-  const handelSubmit = (e) => {
-    e.preventDefault()
-    const callBack = (searchValue) => setSearchValue(searchValue)
-    callBack(innerValue)
-  }
+  // // function search input table
+  // const handelSubmit = (e) => {
+  //   e.preventDefault()
+  //   const callBack = (searchValue) => setSearchValue(searchValue)
+  //   callBack(innerValue)
+  // }
   
-  useEffect(()=> {
-    const filterdata = filterArticles(searchValue)
-    setArticle(filterdata)
-  },[searchValue])
+  // useEffect(()=> {
+  //   const filterdata = filterArticles(searchValue)
+  //   setArticle(filterdata)
+  // },[searchValue])
 
   // console.log(searchValue)
 
@@ -78,21 +78,30 @@ function Request({functionData}) {
       return {...obj}
     });
   }
+
+  // const [searchTerm , setSearchTerm] = useState ("")
+
+  // // search feild
+  // if(searchTerm.length > 0){
+  //   article = article.filter((i)=> {
+  //       return i.serial.match(searchTerm)
+  //   })
+  // }
   
   return (
     <Container>
         <div className={styles.row}>
           <div className={styles.col}>
-            <form className={styles.search} onSubmit={handelSubmit}>
+            <div className={styles.search}>
               <input 
                 type="text" 
                 className="formControl" 
                 placeholder="شماره فاکتور را وارد کنید ..."
-                value={innerValue}
-                onChange={(e)=> setInnerValue(e.target.value)}
+                // onChange={(e) => setSearchTerm(e.target.value)}
+                // value={searchTerm}
                />
               <FontAwesomeIcon onClick={()=> setModal(true)} icon={faSearch}/>
-            </form>
+            </div>
             <div className={styles.card}>
               <table article={article}>
                 <tbody>

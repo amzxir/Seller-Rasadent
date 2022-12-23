@@ -26,12 +26,12 @@ const data = [
     {id:8 , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
 ]
 
-// if for search table
-const filterArticles = (searchValue) => {
-    if (searchValue === '') {
-        return data
-    } return data.filter(article => article.nameFa.toLowerCase().includes(searchValue.toLowerCase()))
-}
+// // if for search table
+// const filterArticles = (searchValue) => {
+//     if (searchValue === '') {
+//         return data
+//     } return data.filter(article => article.nameFa.toLowerCase().includes(searchValue.toLowerCase()))
+// }
 
 function Manage ({functionData}){
 
@@ -51,40 +51,42 @@ function Manage ({functionData}){
   
     const pageCount = Math.ceil(dataInvoice.length / 5);
 
-    // value input//
-    const [innerValue , setInnerValue] = useState("")
-    const [searchValue , setSearchValue] = useState("")
+    // // value input//
+    // const [innerValue , setInnerValue] = useState("")
+    // const [searchValue , setSearchValue] = useState("")
     
-    // function search input table
-    const handelSubmit = (e) => {
-        e.preventDefault()
-        const callBack = (searchValue) => setSearchValue(searchValue)
-        callBack(innerValue)
-    }
+    // // function search input table
+    // const handelSubmit = (e) => {
+    //     e.preventDefault()
+    //     const callBack = (searchValue) => setSearchValue(searchValue)
+    //     callBack(innerValue)
+    // }
     
-    useEffect(()=> {
-        const filterdata = filterArticles(searchValue)
-        setDataInvoice(filterdata)
-    },[searchValue])
+    // useEffect(()=> {
+    //     const filterdata = filterArticles(searchValue)
+    //     setDataInvoice(filterdata)
+    // },[searchValue])
     
+    const [searchTerm , setSearchTerm] = useState ("")
 
     return(
         <Container>
-            <form className={styles.search} onSubmit={handelSubmit}>
+            <div className={styles.search}>
                 <input 
                 type="text" 
                 className="formControl" 
                 placeholder="محصولات خود را جستجو کنید ..."
-                value={innerValue}
-                onChange={(e)=> setInnerValue(e.target.value)}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                value={searchTerm}
                 />
                 <FontAwesomeIcon icon={faSearch}/>
-            </form>
+            </div>
             <Item 
                 handelFunction={functionData}
                 dataInvoice={dataInvoice}
                 setDataInvoice={setDataInvoice}
                 currentItems={currentItems}
+                searchTerm={searchTerm}
             />
             <Paginate
                 dataInvoice={dataInvoice}

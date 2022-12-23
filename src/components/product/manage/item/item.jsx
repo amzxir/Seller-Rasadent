@@ -7,7 +7,7 @@ import listenForOutsideClick from '../../../listenOutsideClicks/listen-for-outsi
 import { toast } from "react-toastify";
 
 
-function Item({handelFunction , dataProduct , setDataProduct , currentItems}) {
+function Item({handelFunction , dataProduct , setDataProduct , currentItems , searchTerm}) {
     
 
     const functionDelete = (item) => {
@@ -31,6 +31,12 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems}) {
     const [listening, setListening] = useState(false)
     useEffect(listenForOutsideClick(listening, setListening, menuRef, setIsOpen))
 
+    if(searchTerm.length > 0){
+        currentItems = dataProduct.filter((i)=> {
+            return i.nameFa.match(searchTerm)
+        })
+    }
+    
   return (
     <>
         <div ref={menuRef} className={styles.row}>

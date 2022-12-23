@@ -8,7 +8,7 @@ import listenForOutsideClick from '../../../listenOutsideClicks/listen-for-outsi
 
 
 
-function Item({handelFunction , dataInvoice , setDataInvoice , currentItems}) {
+function Item({handelFunction , dataInvoice , setDataInvoice , currentItems , searchTerm}) {
     
 
    const functionDelete = (item) => {
@@ -35,6 +35,12 @@ function Item({handelFunction , dataInvoice , setDataInvoice , currentItems}) {
     const menuRef = useRef(null)
     const [listening, setListening] = useState(false)
     useEffect(listenForOutsideClick(listening, setListening, menuRef, setIsOpen))
+
+    if(searchTerm.length > 0){
+        currentItems = dataInvoice.filter((i)=> {
+            return i.nameFa.match(searchTerm)
+        })
+    }
   
   return (
     <>

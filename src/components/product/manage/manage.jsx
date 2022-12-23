@@ -11,7 +11,7 @@ padding:25px 15px 0px 15px;
 `
   const data = [
     {id:1 , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'بله' , price:20000 , statusSee:'بله' , statusStock:'بله' , stock:10 , warranty:'بله'} ,
-    {id:2 , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'خیر' , price:20000 , statusSee:'خیر' , statusStock:'خیر' , stock:10 , warranty:'خیر'} ,
+    {id:2 , nameFa:'ژل اسید اچ جامبو مروابن 7%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'خیر' , price:20000 , statusSee:'خیر' , statusStock:'خیر' , stock:10 , warranty:'خیر'} ,
     {id:3 , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'بله' , price:20000 , statusSee:'بله' , statusStock:'بله' , stock:10 , warranty:'بله'} ,
     {id:4 , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'خیر' , price:20000 , statusSee:'خیر' , statusStock:'خیر' , stock:10 , warranty:'خیر'} ,
     {id:5 , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'بله' , price:20000 , statusSee:'بله' , statusStock:'بله' , stock:10 , warranty:'بله'} ,
@@ -24,11 +24,11 @@ padding:25px 15px 0px 15px;
   ]
 
   // if for search table
-  const filterArticles = (searchValue) => {
-    if (searchValue === '') {
-      return data
-    } return data.filter(article => article.nameFa.toLowerCase().includes(searchValue.toLowerCase()))
-  }
+  // const filterArticles = (searchValue) => {
+  //   if (searchValue === '') {
+  //     return data
+  //   } return data.filter(article => article.nameFa.toLowerCase().includes(searchValue.toLowerCase()))
+  // }
 
 function Manage({ functionData }) {
 
@@ -49,40 +49,42 @@ function Manage({ functionData }) {
 
   const pageCount = Math.ceil(dataProduct.length / 5);
 
-    // value input//
-    const [innerValue , setInnerValue] = useState("")
-    const [searchValue , setSearchValue] = useState("")
+    // // value input//
+    // const [innerValue , setInnerValue] = useState("")
+    // const [searchValue , setSearchValue] = useState("")
   
-    // function search input table
-    const handelSubmit = (e) => {
-      e.preventDefault()
-      const callBack = (searchValue) => setSearchValue(searchValue)
-      callBack(innerValue)
-    }
+    // // function search input table
+    // const handelSubmit = (e) => {
+    //   e.preventDefault()
+    //   const callBack = (searchValue) => setSearchValue(searchValue)
+    //   callBack(innerValue)
+    // }
     
-    useEffect(()=> {
-      const filterdata = filterArticles(searchValue)
-      setDataProduct(filterdata)
-    },[searchValue])
+    // useEffect(()=> {
+    //   const filterdata = filterArticles(searchValue)
+    //   setDataProduct(filterdata)
+    // },[searchValue])
 
+    const [searchTerm , setSearchTerm] = useState ("")
 
   return (
     <Container>
-      <form className={styles.search} onSubmit={handelSubmit}>
+      <div className={styles.search}>
           <input 
             type="text" 
             className="formControl" 
             placeholder="محصولات خود را جستجو کنید ..."
-            value={innerValue}
-            onChange={(e)=> setInnerValue(e.target.value)}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchTerm}
             />
           <FontAwesomeIcon icon={faSearch}/>
-      </form>
+      </div>
       <Item 
         handelFunction={functionData} 
         dataProduct={dataProduct} 
         setDataProduct={setDataProduct} 
         currentItems={currentItems}
+        searchTerm={searchTerm}
       />
       <Paginate  
         dataProduct={dataProduct} 
