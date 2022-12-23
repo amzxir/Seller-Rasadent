@@ -263,6 +263,21 @@ html , body {
   border-radius: 10px;
 }
 
+/* .backdrop{
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: 100000 !important;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
 .dropdown{
   background: #3A69E6;
   border: 1px solid #3A69E6;

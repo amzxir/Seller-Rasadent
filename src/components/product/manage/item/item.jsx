@@ -43,7 +43,7 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems}) {
                     <p>{i.nameFa}</p>
                     </div>
                     <div className={styles.manage}>
-                        <div className='dropdown' onClick={() => setIsOpen(index) }>
+                        <div className='dropdown' onClick={() => isOpen === false ? setIsOpen(index) : setIsOpen(false) }>
                             <FontAwesomeIcon icon={faEllipsisVertical}/>
                         </div>
 
@@ -58,8 +58,6 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems}) {
                                 </ul>
                             </div>
                         ) : ''}
-                    {/* <NavLink to={`/edit-product/${i.id}`} onClick={()=> handelFunction(i)}><FontAwesomeIcon icon={faEdit}/></NavLink>
-                    <span onClick={()=>functionDelete(i)}><FontAwesomeIcon icon={faTrash}/></span> */}
                     </div>
                 </div>
                 )

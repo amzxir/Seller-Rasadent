@@ -49,7 +49,7 @@ function Item({handelFunction , dataInvoice , setDataInvoice , currentItems}) {
                         </div>
                         <div className={styles.manage}>
 
-                            <div className='dropdown' onClick={() => setIsOpen(index) }>
+                            <div className='dropdown' onClick={() => isOpen === false ? setIsOpen(index) : setIsOpen(false) }>
                                 <FontAwesomeIcon icon={faEllipsisVertical}/>
                             </div>
 
