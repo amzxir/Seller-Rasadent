@@ -58,7 +58,11 @@ function Veiw({dataManage , setId}) {
                     <div className={styles.flex}><p>دسته بندی</p> <p>لوازم دندان پزشکی</p></div>
                     <div className={styles.flex}><p>تاریخ</p> <p>۱۴۰۱/۲/۴</p></div>
                     <div className={styles.flex}><p>کد فاکتور</p> <p>۱۸۴۸۳۷۴</p></div>
-                    <div className={styles.flex}><p>شماره کارت</p> <p>۸۸۹۸ ****</p></div>
+                    <div className={styles.flex}><p>تعداد محصول</p> <p>۱۰</p></div>
+                    <div className={styles.flex}><p>قیمت واحد</p> <p>۱۰۰,۰۰۰</p></div>
+                    <div className={styles.flex}><p>قیمت کل</p> <p>۲۰۰,۰۰۰</p></div>
+                    <div className={styles.flex}><p>قیمت نهایی</p> <p>۳۰۰,۰۰۰</p></div>
+
                 </div>
             </div>
             <div className={styles.justifybtn}>
