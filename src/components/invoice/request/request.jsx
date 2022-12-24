@@ -6,6 +6,7 @@ import styles from './request.module.scss'
 import Context from "../../../context/context"
 import Item from "./item/item"
 import Paginate from "./paginate/paginate"
+import { toast } from "react-toastify"
 
 const Container = styled.div`
 padding:25px 0px 0px 0px;
@@ -54,14 +55,17 @@ function Request({functionData}) {
   const imgFilehandler = (e ,kk) => {
       console.log(kk)
         setUploadImg((obj)=>{
-        if(kk in obj)
-            obj[kk].push(URL.createObjectURL(e.target.files[0]))
+        if(kk in obj){
+          obj[kk].push(URL.createObjectURL(e.target.files[0]))
+        }
+            
         else{
           obj[kk]=[]
           obj[kk].push(URL.createObjectURL(e.target.files[0]))
         }
       return {...obj}
     });
+    toast.success('تصویر آپلود شد')
   }
 
   const [searchTerm , setSearchTerm] = useState ("")

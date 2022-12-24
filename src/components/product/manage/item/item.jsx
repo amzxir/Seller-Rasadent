@@ -1,13 +1,34 @@
-import { useState , useRef , useEffect } from "react";
+import { useState , useRef , useEffect , useContext } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
 import styles from '../manage.module.scss'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faNewspaper , faEdit , faEllipsisVertical } from '@fortawesome/free-solid-svg-icons'
+import { faNewspaper , faMoneyBill , faEllipsisVertical } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from "react-router-dom";
 import listenForOutsideClick from '../../../listenOutsideClicks/listen-for-outside-clicks'
 import { toast } from "react-toastify";
+import Context from '../../../../context/context'
+import Modals from "../../../modal/modal";
+import SeparatedNumberInput from 'react-separated-number-input';
 
+
+const schema = yup.object().shape({
+    price: yup.number().typeError('فیلد قیمت باید عدد باشد').required('فیلد قیمت محصول اجباری است').integer('فیلد قیمت باید عدد صحیح باشد'),
+
+})
 
 function Item({handelFunction , dataProduct , setDataProduct , currentItems , searchTerm}) {
+
+    const {modal , setModal} = useContext(Context)
+
+    const { register, handleSubmit, formState:{ errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
+    
+    const onSubmit = (data) => {
+        console.log(data)
+    }
     
 
     const functionDelete = (item) => {
@@ -54,15 +75,33 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
                         </div>
 
                         {isOpen === index ? (
+                            <>
                             <div className='dropdown-content'>
                                 <ul className='ul'>
                                     <li className='itemLi' onClick={()=>functionDelete(i)}><a className='link'>حذف</a></li>
                                     <li className='itemLi'><NavLink className='link' to={`/edit-product/${i.id}`} onClick={()=> handelFunction(i)}>ویرایش</NavLink></li>
-                                    <li className='itemLi'><a className='link'>تغییر قیمت</a></li>
+                                    <li className='itemLi'><a className='link' onClick={()=> setModal(index)}>تغییر قیمت</a></li>
                                     <li className='itemLi' onClick={()=> functionAvailable()}><a className='link'>موجود</a></li>
                                     <li className='itemLi' onClick={()=> functionOutOfAvailable()}><a className='link'>عدم موجودی</a></li>
                                 </ul>
                             </div>
+                            <Modals show={modal === index}>
+                                <div className='modal'>
+                                    <div className="modalTitle" style={{ color:'#000' }}>ویرایش قیمت محصول</div>
+                                    <div className="modalBody">
+                                    <form className={styles.formGroup} onSubmit={handleSubmit(onSubmit)}>
+                                        <div className={styles.error}>{errors.price?.message}</div>
+                                        <input type="text" className="formControl vazir ltr" {...register("price")} />
+                                        <FontAwesomeIcon icon={faMoneyBill}/>
+                                    </form>
+                                    </div>
+                                    <div className="modalFooter">
+                                        <button style={{ fontSize:'13px' , borderRadius:'5px' }} onClick={()=> setModal(false)} className='btn btn-secondary m-2'>خروج</button>
+                                        <button style={{ fontSize:'13px' , borderRadius:'5px' }} className="btn custom-btn m-2" onClick={handleSubmit(onSubmit)}>ویرایش</button>
+                                    </div>
+                                </div>
+                            </Modals>
+                            </>
                         ) : ''}
                     </div>
                 </div>

@@ -56,7 +56,9 @@ function Item({uploadImg , article , searchTerm , functionData , imgFilehandler 
                             </div>
                             }
                         </div>
-                        <div className="modalFooter"><button style={{ fontSize:'13px' , borderRadius:'5px' }} onClick={()=> setModal(false)} className='btn btn-secondary'>خروج</button></div>
+                        <div className="modalFooter">
+                            <button style={{ fontSize:'13px' , borderRadius:'5px' }} onClick={()=> setModal(false)} className='btn btn-secondary m-2'>خروج</button>
+                        </div>
                         </div>
                     </Modals>
                     </tr>
