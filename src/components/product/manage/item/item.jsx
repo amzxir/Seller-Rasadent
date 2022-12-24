@@ -57,6 +57,27 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
             return i.nameFa.match(searchTerm)
         })
     }
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+    const ref = useRef()
+
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+          // If the menu is open and the clicked target is not within the menu,
+          // then close the menu
+          if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
+            setIsMenuOpen(false)
+          }
+        }
+    
+        document.addEventListener("mousedown", checkIfClickedOutside)
+    
+        return () => {
+          // Cleanup the event listener
+          document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [isMenuOpen])
     
   return (
     <>
@@ -70,13 +91,13 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
                     <p>{i.nameFa}</p>
                     </div>
                     <div className={styles.manage}>
-                        <div className='dropdown' onClick={() => isOpen === false ? setIsOpen(index) : setIsOpen(false) }>
+                        <div className='dropdown' onClick={() => isMenuOpen === false ? setIsMenuOpen(i) : setIsMenuOpen(false) }>
                             <FontAwesomeIcon icon={faEllipsisVertical}/>
                         </div>
 
-                        {isOpen === index ? (
+                        {isMenuOpen === i && (
                             <>
-                            <div className='dropdown-content'>
+                            <div ref={ref} className='dropdown-content'>
                                 <ul className='ul'>
                                     <li className='itemLi' onClick={()=>functionDelete(i)}><a className='link'>حذف</a></li>
                                     <li className='itemLi'><NavLink className='link' to={`/edit-product/${i.id}`} onClick={()=> handelFunction(i)}>ویرایش</NavLink></li>
@@ -102,7 +123,7 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
                                 </div>
                             </Modals>
                             </>
-                        ) : ''}
+                        )}
                     </div>
                 </div>
                 )

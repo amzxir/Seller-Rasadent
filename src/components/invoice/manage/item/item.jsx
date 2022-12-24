@@ -4,7 +4,6 @@ import styles from '../manage.module.scss'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileInvoice , faEllipsisVertical } from '@fortawesome/free-solid-svg-icons'
 import { toast } from 'react-toastify';
-import listenForOutsideClick from '../../../listenOutsideClicks/listen-for-outside-clicks'
 
 
 
@@ -28,23 +27,36 @@ function Item({handelFunction , dataInvoice , setDataInvoice , currentItems , se
     toast.success('پیام اعلام آمادگی ارسال شد')
    }
 
-    // Hide and show dropdown
-    const [isOpen, setIsOpen] = useState(false)
-
-    // Hide Dropdown on Outside Click
-    const menuRef = useRef(null)
-    const [listening, setListening] = useState(false)
-    useEffect(listenForOutsideClick(listening, setListening, menuRef, setIsOpen))
-
     if(searchTerm.length > 0){
         currentItems = dataInvoice.filter((i)=> {
             return i.nameFa.match(searchTerm)
         })
     }
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+    const ref = useRef()
+
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+          // If the menu is open and the clicked target is not within the menu,
+          // then close the menu
+          if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
+            setIsMenuOpen(false)
+          }
+        }
+    
+        document.addEventListener("mousedown", checkIfClickedOutside)
+    
+        return () => {
+          // Cleanup the event listener
+          document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [isMenuOpen])
   
   return (
     <>
-    <div ref={menuRef} className={styles.row}>
+    <div className={styles.row}>
         {currentItems && currentItems.map((i , index)=> {
             return(
                 <div key={index} className={styles.col6}>
@@ -55,12 +67,12 @@ function Item({handelFunction , dataInvoice , setDataInvoice , currentItems , se
                         </div>
                         <div className={styles.manage}>
 
-                            <div className='dropdown' onClick={() => isOpen === false ? setIsOpen(index) : setIsOpen(false) }>
+                            <div className='dropdown' onClick={() => isMenuOpen === false ? setIsMenuOpen(i) : setIsMenuOpen(false)}>
                                 <FontAwesomeIcon icon={faEllipsisVertical}/>
                             </div>
 
-                            {isOpen === index ? (
-                                <div className='dropdown-content'>
+                            { isMenuOpen === i &&  (
+                                <div ref={ref} className='dropdown-content'>
                                     <ul className='ul'>
                                         <li className='itemLi' onClick={()=> functionDelete(i)}><a className='link'>حذف</a></li>
                                         <li className='itemLi'><NavLink className='link' to={`/view-invoice/${i.id}`} onClick={()=> handelFunction(i)}>مشاهده</NavLink></li>
@@ -69,15 +81,13 @@ function Item({handelFunction , dataInvoice , setDataInvoice , currentItems , se
                                         <li className='itemLi' onClick={()=> functionDisapproval()}><a className='link'>رد</a></li>
                                     </ul>
                                 </div>
-                            ) : ''}
+                            ) }
 
                         </div>
                     </div>
                 </div>
             )
         })}
-
-
 
     </div>
     </>
