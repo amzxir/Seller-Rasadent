@@ -4,7 +4,6 @@ import styled from "styled-components"
 import styles from "./view.module.scss"
 import logo from '../../../images/logo.png'
 import Context from '../../../context/context'
-// import JsPDF from 'jspdf';
 import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
 
 const Container = styled.div`
