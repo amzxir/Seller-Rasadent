@@ -96,7 +96,6 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
                         <div className='dropdown' onClick={() => isMenuOpen === false ? setIsMenuOpen(i) : setIsMenuOpen(false) }>
                             <FontAwesomeIcon icon={faEllipsisVertical}/>
                         </div>
-
                         {isMenuOpen === i && (
                             <>
                             <div className='dropdown-content'>
