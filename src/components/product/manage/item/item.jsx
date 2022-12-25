@@ -28,6 +28,8 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
     
     const onSubmit = (data) => {
         console.log(data)
+        toast.success('قیمت کالا با موفقیت ویرایش شد')
+        setModal(false)
     }
     
 
@@ -66,7 +68,7 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
         const checkIfClickedOutside = e => {
           // If the menu is open and the clicked target is not within the menu,
           // then close the menu
-          if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
+          if (modal === false ? isMenuOpen && ref.current && !ref.current.contains(e.target):'') {
             setIsMenuOpen(false)
           }
         }
@@ -77,7 +79,7 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
           // Cleanup the event listener
           document.removeEventListener("mousedown", checkIfClickedOutside)
         }
-    }, [isMenuOpen])
+    }, [isMenuOpen , modal])
     
   return (
     <>
@@ -97,8 +99,8 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
 
                         {isMenuOpen === i && (
                             <>
-                            <div ref={ref} className='dropdown-content'>
-                                <ul className='ul'>
+                            <div className='dropdown-content'>
+                                <ul  ref={ref} className='ul'>
                                     <li className='itemLi' onClick={()=>functionDelete(i)}><a className='link'>حذف</a></li>
                                     <li className='itemLi'><NavLink className='link' to={`/edit-product/${i.id}`} onClick={()=> handelFunction(i)}>ویرایش</NavLink></li>
                                     <li className='itemLi'><a className='link' onClick={()=> setModal(index)}>تغییر قیمت</a></li>
@@ -112,7 +114,7 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
                                     <div className="modalBody">
                                     <form className={styles.formGroup} onSubmit={handleSubmit(onSubmit)}>
                                         <div className={styles.error}>{errors.price?.message}</div>
-                                        <input type="text" className="formControl vazir ltr" {...register("price")} />
+                                        <SeparatedNumberInput type="text" groupLengths={[3, 3, 3 , 3 , 3 , 3]} className="formControl vazir ltr" {...register("price")} />
                                         <FontAwesomeIcon icon={faMoneyBill}/>
                                     </form>
                                     </div>
