@@ -4,7 +4,7 @@ import styled from "styled-components"
 import styles from "./view.module.scss"
 import logo from '../../../images/logo.png'
 import Context from '../../../context/context'
-import JsPDF from 'jspdf';
+// import JsPDF from 'jspdf';
 
 
 
@@ -27,13 +27,13 @@ function Veiw({dataManage , setId}) {
     })
 
 
-    const generatePDF = () => {
+    // const generatePDF = () => {
 
-    const report = new JsPDF('portrait','pt','a4');
-        report.html(document.querySelector('#report')).then(()=>{
-            report.save('report.pdf');
-        })
-    }
+    // const report = new JsPDF('portrait','pt','a4');
+    //     report.html(document.querySelector('#report')).then(()=>{
+    //         report.save('report.pdf');
+    //     })
+    // }
 
 
   return (
@@ -66,7 +66,7 @@ function Veiw({dataManage , setId}) {
                 </div>
             </div>
             <div className={styles.justifybtn}>
-                <button type="button" className="btn" onClick={generatePDF}>خروجی PDF</button>
+                <button type="button" className="btn">خروجی PDF</button>
             </div>
         </div>
     </Container>
