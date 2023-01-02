@@ -3,7 +3,6 @@ const path = require("path");
 const Dotenv = require("dotenv-webpack");
 const { InjectManifest } = require("workbox-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
-const PUBLIC_PATH = 'http://app.ginocode.ir/';
 
 
 const webpackPlugins = [
@@ -41,7 +40,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
-    publicPath: PUBLIC_PATH,
+    publicPath: "/",
   },
   devServer: {
     historyApiFallback: true,
