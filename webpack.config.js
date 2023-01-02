@@ -4,7 +4,6 @@ const Dotenv = require("dotenv-webpack");
 const { InjectManifest } = require("workbox-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 
-
 const webpackPlugins = [
   new HtmlWebpackPlugin({
     template: path.resolve(__dirname, "public/index.html"),
