@@ -15,14 +15,14 @@ padding:25px 0px 0px 0px;
 // data tabel
 
 const data = [
-  {id:1 , serial:'0024006547' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
+  {id:1 , serial:'0024006541' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
   {id:2 , serial:'0024007589' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
-  {id:3 , serial:'0024006547' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
-  {id:4 , serial:'0024006547' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
-  {id:5 , serial:'0024006547' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
+  {id:3 , serial:'0024006543' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
+  {id:4 , serial:'0024006544' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
+  {id:5 , serial:'0024006546' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
   {id:6 , serial:'0024006547' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
-  {id:7 , serial:'0024006547' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
-  {id:8 , serial:'0024006547' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
+  {id:7 , serial:'0024006541' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
+  {id:8 , serial:'0024006542' , date:'1400/2/4' , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
 ]
 
 function Request({functionData}) {
@@ -48,25 +48,25 @@ function Request({functionData}) {
   // state modal context
   const {modal , setModal} = useContext(Context)
 
-  // state img file 
-  const [uploadImg , setUploadImg] = useState({})
+  // // state img file 
+  // const [uploadImg , setUploadImg] = useState({})
 
-  // function upload img
-  const imgFilehandler = (e ,kk) => {
-      console.log(kk)
-        setUploadImg((obj)=>{
-        if(kk in obj){
-          obj[kk].push(URL.createObjectURL(e.target.files[0]))
-        }
+  // // function upload img
+  // const imgFilehandler = (e ,kk) => {
+  //     console.log(kk)
+  //       setUploadImg((obj)=>{
+  //       if(kk in obj){
+  //         obj[kk].push(URL.createObjectURL(e.target.files[0]))
+  //       }
             
-        else{
-          obj[kk]=[]
-          obj[kk].push(URL.createObjectURL(e.target.files[0]))
-        }
-      return {...obj}
-    });
-    toast.success('تصویر آپلود شد')
-  }
+  //       else{
+  //         obj[kk]=[]
+  //         obj[kk].push(URL.createObjectURL(e.target.files[0]))
+  //       }
+  //     return {...obj}
+  //   });
+  //   toast.success('تصویر آپلود شد')
+  // }
 
   const [searchTerm , setSearchTerm] = useState ("")
 
@@ -87,9 +87,9 @@ function Request({functionData}) {
             </div>
             <Item
               article={article}
-              uploadImg={uploadImg}
+              // uploadImg={uploadImg}
               functionData={functionData}
-              imgFilehandler={imgFilehandler}
+              // imgFilehandler={imgFilehandler}
               currentItems={currentItems}
               searchTerm={searchTerm}
             />

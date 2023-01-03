@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useContext , useState } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFileUpload , faEye } from '@fortawesome/free-solid-svg-icons'
 import Modals from "../../../modal/modal"
 import { NavLink } from "react-router-dom"
@@ -17,7 +17,23 @@ function Item({uploadImg , article , searchTerm , functionData , imgFilehandler 
             return i.serial.match(searchTerm)
         })
     }
-    
+
+    const [imgsSrc, setImgsSrc] = useState([]);
+
+    const onChange = (e) => {
+        for (const file of e.target.files) {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => {
+            setImgsSrc((imgs) => [...imgs, reader.result]);
+          };
+          reader.onerror = () => {
+            console.log(reader.error);
+          };
+        }
+    };
+
+    //   console.log(imgsSrc, imgsSrc.length);
 
   return (
     <>
@@ -41,21 +57,22 @@ function Item({uploadImg , article , searchTerm , functionData , imgFilehandler 
                         <div className='modal'>
                         <div className="modalTitle">شماره فاکتور {i.serial}</div>
                         <div className="modalBody">
-                            {
-                            Object.keys(uploadImg).length === index ?
+
+                        {
+                            imgsSrc === index ?
                             <>
-                                <label style={{ cursor:'pointer' }} htmlFor={i.serial}><FontAwesomeIcon className={styles.upload} icon={faFileUpload}/> <p style={{ marginBlock:'0' }}>بارگداری تصویر</p></label>
-                                <input type="file" id={i.serial} className="dNone" multiple onChange={(e)=>imgFilehandler(e , index)} />
+                                <label style={{ cursor:'pointer' }} htmlFor={index}><FontAwesomeIcon className={styles.upload} icon={faFileUpload}/> <p style={{ marginBlock:'0' }}>بارگداری تصویر</p></label>
+                                <input type="file" id={index} className="dNone" multiple onChange={onChange} />
                             </>
                             :
                             <div style={{ display:'flex',flexDirection:'row',flexWrap:'wrap',width:'100%' }}>
-                                {
-                                uploadImg[index]?.map(item=>(
-                                    <img width={50} src={item }/>
-                                ))
-                                }
+                                {imgsSrc.map((link) => (
+                                    <img src={link} width={50} />
+                                ))}
                             </div>
-                            }
+                        }
+
+   
                         </div>
                         <div className="modalFooter">
                             <button style={{ fontSize:'13px' , borderRadius:'5px' }} onClick={()=> setModal(false)} className='btn btn-secondary m-2'>خروج</button>
