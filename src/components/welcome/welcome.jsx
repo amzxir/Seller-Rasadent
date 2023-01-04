@@ -1,10 +1,10 @@
-import { useEffect , useState , useContext } from 'react'
+import { useEffect , useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components'
 import styles from './welcome.module.scss'
 import logo from '../../images/logo.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import bg from '../../images/022.jpg'
 import Context from '../../context/context'
 
@@ -15,10 +15,12 @@ const Container = styled.div`
 
 function Welcome (){
 
+    // title page
     useEffect(()=> {
         document.title = 'خوش آمدید'
     })
 
+    // state context
     const {t , i18n} = useContext(Context)
 
     return(

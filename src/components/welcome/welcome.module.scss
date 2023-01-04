@@ -1,4 +1,6 @@
 $white:#fff;
+$primary:#224ec8;
+$info:#61DAFB;
 
 .bg{
     max-width: 100%;
@@ -118,9 +120,9 @@ $white:#fff;
 
             a{
                 font-family: 'IranSans';
-                background-color: #224ec8;
-                border-color: #224ec8;
-                color: #fff;
+                background-color: $primary;
+                border-color: $primary;
+                color: $white;
                 width: 100%;
                 padding: .7rem;
                 margin-top: 1rem;
@@ -171,7 +173,7 @@ $white:#fff;
     p{
         font-size: 14px;
         margin-block: 0;
-        color: #61DAFB;
+        color: $info;
         font-family: 'IranSans';
         font-weight: bold;
     }
