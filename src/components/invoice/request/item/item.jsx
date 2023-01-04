@@ -1,10 +1,24 @@
 import { useContext , useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFileUpload , faEye } from '@fortawesome/free-solid-svg-icons'
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+import { faFileUpload , faEye , faUpload } from '@fortawesome/free-solid-svg-icons'
 import Modals from "../../../modal/modal"
 import { NavLink } from "react-router-dom"
 import styles from '../request.module.scss'
 import Context from "../../../../context/context"
+import { toast } from "react-toastify";
+
+const schema = yup.object().shape({
+    uploadInvoive: yup.mixed().test("file", "فیلد تصویر محصول اجباری است", (value) => {
+    if (value.length > 0) {  
+        return true;
+    }
+    return false;
+    }),
+
+})
 
 function Item({uploadImg , article , searchTerm , functionData , imgFilehandler , currentItems }) {
 
@@ -18,22 +32,18 @@ function Item({uploadImg , article , searchTerm , functionData , imgFilehandler 
         })
     }
 
-    const [imgsSrc, setImgsSrc] = useState([]);
+    const { register, handleSubmit, formState:{ errors } , reset } = useForm({
+        resolver: yupResolver(schema)
+    });
 
-    const onChange = (e) => {
-        for (const file of e.target.files) {
-          const reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onload = () => {
-            setImgsSrc((imgs) => [...imgs, reader.result]);
-          };
-          reader.onerror = () => {
-            console.log(reader.error);
-          };
-        }
-    };
+    const onSubmit = (data) => {
+        console.log(data)
+        toast.success('فاکتور یا موفقیت بارگذاری شد')
+        reset()
+    }
 
-    //   console.log(imgsSrc, imgsSrc.length);
+    const [modalData , setModalData] = useState(null)
+
 
   return (
     <>
@@ -52,36 +62,34 @@ function Item({uploadImg , article , searchTerm , functionData , imgFilehandler 
                     <td style={{ fontFamily:'vazir' }}>{i.serial}</td>
                     <td style={{ fontFamily:'vazir' }}>{i.date}</td>
                     <td><NavLink to={`/view-invoice/${i.id}`} onClick={()=> functionData(i)}><FontAwesomeIcon icon={faEye}/></NavLink></td>
-                    <td><div onClick={()=> setModal(index)}><FontAwesomeIcon icon={faFileUpload}/></div></td>
-                    <Modals show={modal === index}>
-                        <div className='modal'>
-                        <div className="modalTitle">شماره فاکتور {i.serial}</div>
-                        <div className="modalBody">
-
-                        {
-                            imgsSrc === index ?
-                            <>
-                                <label style={{ cursor:'pointer' }} htmlFor={index}><FontAwesomeIcon className={styles.upload} icon={faFileUpload}/> <p style={{ marginBlock:'0' }}>بارگداری تصویر</p></label>
-                                <input type="file" id={index} className="dNone" multiple onChange={onChange} />
-                            </>
-                            :
-                            <div style={{ display:'flex',flexDirection:'row',flexWrap:'wrap',width:'100%' }}>
-                                {imgsSrc.map((link) => (
-                                    <img src={link} width={50} />
-                                ))}
-                            </div>
-                        }
-
-   
-                        </div>
-                        <div className="modalFooter">
-                            <button style={{ fontSize:'13px' , borderRadius:'5px' }} onClick={()=> setModal(false)} className='btn btn-secondary m-2'>خروج</button>
-                        </div>
-                        </div>
-                    </Modals>
+                    <td><div onClick={()=> {setModal(i.id); setModalData(i) }}><FontAwesomeIcon icon={faFileUpload}/></div></td>
                     </tr>
                 )
                 })}
+
+            
+                <Modals show={modal === modalData?.id}>
+                    {console.log(modalData?.id)}
+                    <div className='modal'>
+                    <div className="modalTitle">شماره فاکتور {modalData?.serial}</div>
+                    <div className="modalBody">
+
+                    <form style={{ marginTop:'0' }}>
+                        <div className={styles.formGroups}>
+                            <label htmlFor={modalData?.serial} className={styles.nameLabel}>بارگذاری فاکتور</label>
+                            <span className={styles.error}>{errors.uploadInvoive?.message}</span>
+                            <input type="file" className="formControl" id={modalData?.serial} {...register("uploadInvoive")}/>
+                            <FontAwesomeIcon icon={faUpload} />
+                        </div>
+                    </form>   
+                    </div>
+                    <div className="modalFooter">
+                        <button style={{ fontSize:'13px' , borderRadius:'5px' }} onClick={handleSubmit(onSubmit)} className='btn custom-btn m-2'>ثبت</button>
+                        <button style={{ fontSize:'13px' , borderRadius:'5px' }} onClick={()=> setModal(false)} className='btn btn-secondary m-2'>خروج</button>
+                    </div>
+                    </div>
+                </Modals>
+                
             </tbody>
             </table>
         </div>

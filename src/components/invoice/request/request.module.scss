@@ -1,3 +1,8 @@
+$gray:rgb(146, 158, 169);
+$danger:red;
+
+
+
 .row{
     display: flex;
     flex-direction: row;
@@ -87,8 +92,50 @@
     }
 }
 
-.upload{
-    font-size: 30px;
-    color: #3A69E6;
+// .upload{
+//     font-size: 30px;
+//     color: #3A69E6;
+    
+// }
+
+.error{
+    font-size: 11px;
+    font-family: 'IranSans';
+    margin-block-start: 0 !important;
+    color: $danger;
+    font-weight: bold;
+    margin-right: .5rem;
+}
+
+.formGroups{
+    position: relative;
+    text-align: right !important;
+
+
+    .nameLabel{
+        font-size: 13px;
+        font-weight: 500;
+        font-family: 'IranSans';
+    }
+
+    svg{
+        position: absolute;
+        bottom: 15%;
+        right: 15px;
+        color: $gray;
+    }
+
+    input{
+        margin-top: .7rem;
+        border-radius: 10px;
+        padding-right: 2.5rem;
+    }
+    input:focus{
+        color: #495057;
+        background-color: #fff;
+        border-color: #3ABAF5;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem #2e467142;
+    }
     
 }

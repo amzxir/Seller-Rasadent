@@ -33,8 +33,6 @@ const schema = yup.object().shape({
 })
 
 
-
-
 function StepTwo(props) {
 
     useEffect(()=> {
