@@ -1,19 +1,18 @@
-import { useContext } from "react";
+import { useContext , useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft , faB , faGlobe , faHandHoldingMedical , faHandshake  } from '@fortawesome/free-solid-svg-icons'
+import * as yup from "yup";
 import styled from "styled-components"
 import Context from "../../../../context/context";
 import styles from '../create.module.scss'
-import StepOne from "./stepOne";
-import { useEffect } from "react";
 
 const Container = styled.div`
 `
 
+// validate hook form
 const schema = yup.object().shape({
   brand: yup.string().required('فیلد برند اجباری است'),
   country: yup.string().required('فیلد کشور سازنده اجباری است'),
@@ -24,12 +23,15 @@ const schema = yup.object().shape({
 
 function StepThere(props) {
 
-useEffect(()=> {
-  document.title = 'ویژگی محصولات'
-})
+  // title page
+  useEffect(()=> {
+    document.title = 'ویژگی محصولات'
+  })
 
+  // language application
   const {t , i18n} = useContext(Context)
 
+  // state react hook form
   const { register, handleSubmit, formState:{ errors } } = useForm({
     resolver: yupResolver(schema)
   });

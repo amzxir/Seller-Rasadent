@@ -1,19 +1,19 @@
-import { useContext } from "react";
+import { useContext , useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
-import * as yup from "yup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch , faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import * as yup from "yup";
 import styled from "styled-components"
 import styles from '../create.module.scss'
 import Context from "../../../../context/context";
-import { useEffect } from "react";
 
 
 const Container = styled.div`
 `
 
+// validate hook form
 const schema = yup.object().shape({
     category: yup.string().required('فیلد دسته بندی اجباری است'),
   
@@ -21,12 +21,15 @@ const schema = yup.object().shape({
 
 function StepOne(props) {
 
+    // title page
     useEffect(()=> {
         document.title = 'دسته بندی محصول'
     })
 
+    // language application
     const {t , i18n} = useContext(Context)
 
+    // state react hook form
     const { register, handleSubmit, formState:{ errors } } = useForm({
         resolver: yupResolver(schema)
     });

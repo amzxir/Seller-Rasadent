@@ -1,6 +1,7 @@
 $primary1:#3ABAF5;
 $primary2:#3A69E6;
 $white:#fff;
+$gray:#324A5D;
 
 
 .createPro{
@@ -50,7 +51,7 @@ $white:#fff;
     .cardOne{
         flex: 0 auto;
         width: 48%;
-        background: #fff;
+        background: $white;
         text-decoration: none;
         text-align: center;
         box-shadow: rgb(0 0 0 / 8%) 0px 0.125rem 0.25rem;
@@ -77,7 +78,7 @@ $white:#fff;
     .cardTwo{
         flex: 0 auto;
         width: 48%;
-        background: #fff;
+        background: $white;
         text-decoration: none;
         text-align: center;
         box-shadow: rgb(0 0 0 / 8%) 0px 0.125rem 0.25rem;
@@ -90,7 +91,7 @@ $white:#fff;
             p{
                 font-size: 12px;
                 font-weight: bold;
-                color: #324A5D;
+                color: $gray;
             }
 
             img{

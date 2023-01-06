@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import styled from "styled-components"
-import styles from './create.module.scss'
 import Context from "../../../context/context";
 import WizardForm from 'react-wizard-form'
 import StepOne from "./step/stepOne";
@@ -13,6 +12,7 @@ const Container = styled.div`
 
 function Create() {
 
+  // array data category product
   const dataProduct = [
     {id:1 , category:'دستکش'},
     {id:2 , category:'کامپوزیت'},
@@ -21,10 +21,12 @@ function Create() {
     {id:5 , category:'سفید کننده'},
   ]
 
+  // title page
   useEffect(()=> {
     document.title = 'ایجاد محصول'
   })
 
+  // language application
   const {t , i18n} = useContext(Context)
   
   return (

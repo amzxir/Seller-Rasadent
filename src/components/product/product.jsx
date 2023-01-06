@@ -1,7 +1,7 @@
+import { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import styles from './product.module.scss'
 import styled from "styled-components"
-import { NavLink } from 'react-router-dom';
-import { useEffect } from 'react';
 import box from '../../images/box.svg'
 import note from '../../images/manage.svg'
 
@@ -21,10 +21,12 @@ padding:25px 15px 0px 15px;
 
 function Product (){
 
+    // title page 
     useEffect(()=> {
         document.title = 'محصولات'
     })
 
+    // array data card
     const data =[
         {name:'ایجاد محصول جدید' , link:'/create-product' , class:styles.cardOne , logo:note},
         {name:'مدیریت محصولات' , link:'/manage-product' , class:styles.cardTwo , logo:box},
