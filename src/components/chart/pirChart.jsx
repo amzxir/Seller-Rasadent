@@ -8,4 +8,4 @@ function PirChart(props) {
   )
 }
 
-export default PirChart
+export default PirChart;
