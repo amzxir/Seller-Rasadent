@@ -1,12 +1,12 @@
+import { useContext } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMobileAlt  } from '@fortawesome/free-solid-svg-icons'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
 import * as yup from "yup";
 import styled from "styled-components"
 import styles from './login.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMobileAlt  } from '@fortawesome/free-solid-svg-icons'
-import { useContext, useState } from "react";
 import Context from "../../context/context";
 
 
@@ -14,16 +14,21 @@ const Container = styled.div`
 
 `
 
+// regex error
 const phoneRegExp = /^(\+\d{1,3}[- ]?)?\d{11}$/
 
+
+// validate form hook
 const schema = yup.object().shape({
     mobile: yup.string().required('فیلد شماره موبایل اجباری است').matches(phoneRegExp , 'شماره موبایل را به درستی وارد کنید'),
 })
 
 function StepOne (props){
 
+    // language application
     const {t , i18n} = useContext(Context)
 
+    // react hook form
     const { register, handleSubmit, formState:{ errors } } = useForm({
         resolver: yupResolver(schema),
     });
