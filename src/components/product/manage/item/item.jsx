@@ -1,18 +1,18 @@
 import { useState , useRef , useEffect , useContext } from "react";
+import { NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
-import styles from '../manage.module.scss'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNewspaper , faMoneyBill , faEllipsisVertical } from '@fortawesome/free-solid-svg-icons'
-import { NavLink } from "react-router-dom";
-import listenForOutsideClick from '../../../listenOutsideClicks/listen-for-outside-clicks'
 import { toast } from "react-toastify";
+import * as yup from "yup";
+import styles from '../manage.module.scss'
+import listenForOutsideClick from '../../../listenOutsideClicks/listen-for-outside-clicks'
 import Context from '../../../../context/context'
 import Modals from "../../../modal/modal";
 import SeparatedNumberInput from 'react-separated-number-input';
 
-
+// validate hook form
 const schema = yup.object().shape({
     price: yup.number().typeError('فیلد قیمت باید عدد باشد').required('فیلد قیمت محصول اجباری است').integer('فیلد قیمت باید عدد صحیح باشد'),
 
@@ -20,8 +20,10 @@ const schema = yup.object().shape({
 
 function Item({handelFunction , dataProduct , setDataProduct , currentItems , searchTerm}) {
 
+    // state context
     const {modal , setModal} = useContext(Context)
 
+    // state react hook form
     const { register, handleSubmit, formState:{ errors } } = useForm({
         resolver: yupResolver(schema)
     });
@@ -33,15 +35,18 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
     }
     
 
+    // handel delete
     const functionDelete = (item) => {
         const remove = dataProduct.filter(i => i.id !== item.id)
         setDataProduct(remove)
     };
 
+    // Available product
     const functionAvailable = () => {
         toast.success('موجودیت محصول تایید شد')
     }
 
+    // OutOfAvailable product
     const functionOutOfAvailable = () => {
         toast.success('عدم موجودیت محصول تایید شد')
     }
@@ -135,4 +140,4 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
   )
 }
 
-export default Item
+export default Item;

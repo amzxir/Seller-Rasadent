@@ -6,9 +6,11 @@ import Paginate from "../paginate/paginate";
 import Item from "./item/item";
 import styles from './manage.module.scss'
 
-const Container = styled.div`
-padding:25px 15px 0px 15px;
-`
+  const Container = styled.div`
+  padding:25px 15px 0px 15px;
+  `
+
+  // array data product
   const data = [
     {id:1 , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'بله' , price:20000 , statusSee:'بله' , statusStock:'بله' , stock:10 , warranty:'بله'} ,
     {id:2 , nameFa:'ژل اسید اچ جامبو مروابن 7%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'خیر' , price:20000 , statusSee:'خیر' , statusStock:'خیر' , stock:10 , warranty:'خیر'} ,
@@ -32,13 +34,16 @@ padding:25px 15px 0px 15px;
 
 function Manage({ functionData }) {
 
+  // title page
   useEffect(()=> {
     document.title = 'مدیریت محصولات'
   })
 
 
+  // state data product
   const [dataProduct , setDataProduct] = useState(data)
 
+  // pagenation
   const [itemOffset, setItemOffset] = useState(0);
 
   const endOffset = itemOffset + 5;
