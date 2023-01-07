@@ -35,11 +35,11 @@ function StepOne (props){
 
     const onSubmit = (data) => {
 
-        const request = props.data
+        // const request = props.data
 
-        const checkMobile = request.find(({ mobile }) => mobile === data.mobile);
+        // const checkMobile = request.find(({ mobile }) => mobile === data.mobile);
 
-        if(!checkMobile){
+        if(!data){
 
             toast.error("شماره موبایل یافت نشد")
             console.log('mobile undefined')
@@ -66,7 +66,7 @@ function StepOne (props){
                     <input type="number" className='formControl vazir' {...register("mobile")} />
                 </div>
                 <div className={styles.justifyCenter}>
-                    <button className='btn custom-btn'>ارسال کد</button>
+                    <button className='btn custom-btn'>تایید</button>
                 </div>
             </form>
         </Container>
