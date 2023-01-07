@@ -8,6 +8,7 @@ import logo from '../../images/logo.png'
 import bg from '../../images/022.jpg'
 import Context from '../../context/context'
 
+
 const Container = styled.div`
 `
 

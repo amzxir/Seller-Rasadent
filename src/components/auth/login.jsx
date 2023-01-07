@@ -3,6 +3,8 @@ import styled from "styled-components"
 import WizardForm from 'react-wizard-form'
 import StepOne from "./step-one"
 import StepTwo from "./step-two"
+import axios from "axios"
+
 
 
 const Container = styled.div`
@@ -16,6 +18,12 @@ function Login (){
     useEffect(()=> {
         document.title = 'ورود به حساب کاربری'
     })
+
+    useEffect(()=> [
+        
+    ])
+
+    const [apiLogin , setApiLogin] = useState()
 
     // data login
     const request = [

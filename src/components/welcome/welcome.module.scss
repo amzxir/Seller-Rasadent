@@ -6,7 +6,7 @@ $info:#61DAFB;
     max-width: 100%;
     width: 100%;
     position: relative;
-    filter: grayscale(30%);
+    // filter: grayscale(30%);
 }
 
 @media only screen and (min-width: 600px) {
@@ -173,7 +173,7 @@ $info:#61DAFB;
     p{
         font-size: 14px;
         margin-block: 0;
-        color: $info;
+        color: $white;
         font-family: 'IranSans';
         font-weight: bold;
     }
