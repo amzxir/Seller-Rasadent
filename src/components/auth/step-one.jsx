@@ -9,6 +9,8 @@ import styled from "styled-components"
 import styles from './login.module.scss'
 import Context from "../../context/context";
 import axios from "axios";
+import { useCookies } from 'react-cookie';
+
 
 
 const Container = styled.div`
@@ -34,20 +36,26 @@ function StepOne (props){
         resolver: yupResolver(schema),
     });
 
-    const onSubmit = async(data) => {
 
-        if(!data){
+    const onSubmit = (data) => {
 
-            toast.error("شماره موبایل یافت نشد")
-            console.log('mobile undefined')
+        props.nextStep(data)
+        console.log(data)
 
-        } else {
+            // const loginUser = data
+            // const Response = await axios.post(`https://test.rasadent.com/api/login` , loginUser)
+            // const statusCode = Response.data.status_code
 
-            const loginUser = data
-            const Response = await axios.post(`https://test.rasadent.com/api/login` , loginUser)
-            // props.setMobileData(data)
-            props.nextStep(loginUser);
-        }
+            // console.log(statusCode)
+            // console.log(Response)
+
+
+
+            // if(statusCode === 422){
+                
+            //     toast.error('تلفن همراه مورد انتخاب شده معتبر نیست.')
+
+            // }  
     }
 
     return(

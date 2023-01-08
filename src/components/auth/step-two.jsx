@@ -34,28 +34,58 @@ function StepTwo (props){
     const { register, handleSubmit, formState:{ errors } } = useForm({
         resolver: yupResolver(schema),
     });
-
+    
     const onSubmit = async(data) => {
+
+        const mobile = props.data.mobile
+        const password = data.password
+
+        const loginApi = { mobile , password }
+
+        console.log(loginApi)
+
+        const Response = await axios.post(`https://test.rasadent.com/api/login` , loginApi)
+        const statusCode = Response.data.status_code
+        const errorMsg = Response.data.msg
+
+        console.log(Response)
+        console.log(statusCode)
+        console.log(errorMsg)
+
+
+        if (statusCode === 422){
+
+            toast.error(errorMsg)
+
+        } else if (statusCode === 200) {
+
+            const getToken = Response.data.token
+            console.log(getToken)
+            toast.success('با موفقیت وارد شدید')
+            navigate('/dashboard')
+            setAuth(true)
+
+        }
 
         // find code in array
         // const checkCode = request.find(({ code }) => code === data.code);
 
-        if (!data){
+        // if (!data){
             
-            toast.error("گذرواژه را به درستی وارد کنید")
-            console.log('password undefined')
+        //     toast.error("گذرواژه را به درستی وارد کنید")
+        //     console.log('password undefined')
 
-        } else {
+        // } else {
 
-            const password = data
-            const Response = await axios.post(`https://test.rasadent.com/api/login` , password)
-            console.log(password)
-            toast.success("با موفقیت وارد شدید")
-            navigate('/dashboard')
+        //     const password = data
+        //     const Response = await axios.post(`https://test.rasadent.com/api/login` , password)
+        //     console.log(password)
+        //     toast.success("با موفقیت وارد شدید")
+        //     navigate('/dashboard')
 
-        }
+        // }
 
-        setAuth(true)
+        // setAuth(true)
     }
 
     const handelCode = () => {
