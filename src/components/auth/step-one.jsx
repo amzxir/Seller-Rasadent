@@ -8,6 +8,7 @@ import * as yup from "yup";
 import styled from "styled-components"
 import styles from './login.module.scss'
 import Context from "../../context/context";
+import axios from "axios";
 
 
 const Container = styled.div`
@@ -33,11 +34,7 @@ function StepOne (props){
         resolver: yupResolver(schema),
     });
 
-    const onSubmit = (data) => {
-
-        // const request = props.data
-
-        // const checkMobile = request.find(({ mobile }) => mobile === data.mobile);
+    const onSubmit = async(data) => {
 
         if(!data){
 
@@ -46,9 +43,10 @@ function StepOne (props){
 
         } else {
 
-            console.log(data)
-            props.setMobileData(data)
-            props.nextStep(data);
+            const loginUser = data
+            const Response = await axios.post(`https://test.rasadent.com/api/login` , loginUser)
+            // props.setMobileData(data)
+            props.nextStep(loginUser);
         }
     }
 

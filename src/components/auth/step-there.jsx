@@ -9,6 +9,7 @@ import * as yup from "yup"
 import styled from "styled-components"
 import styles from './login.module.scss'
 import Context from '../../context/context'
+import axios from 'axios'
 
 
 
@@ -36,14 +37,7 @@ function StepTwo (props){
     });
 
 
-    const onSubmit = (data) => {
-
-        // const mobile = props.mobileData
-
-        // const request = props.data
-
-        // find code in array
-        // const checkCode = request.find(({ code }) => code === data.code);
+    const onSubmit = async(data) => {
 
         if (!data){
             
@@ -53,7 +47,7 @@ function StepTwo (props){
         } else {
 
             const code = data
-            // const otp = {code , mobile}
+            const Response = await axios.post(`https://test.rasadent.com/api/login` , code)
             console.log(code)
             toast.success("با موفقیت وارد شدید")
             navigate('/dashboard')
