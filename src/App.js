@@ -23,6 +23,7 @@ import VeiwMessage from "./components/message/view/view";
 import RequestInvoice from "./components/invoice/request/request";
 import { ComponentTransition, AnimationTypes } from "react-component-transition";
 import Protected from "./Protected";
+import NotFound from "./components/not-found/not-found";
 
 
 
@@ -73,6 +74,7 @@ function App() {
             <Container>
               <ComponentTransition enterAnimation={AnimationTypes.slideLeft.enter}>
                 <Routes key={location.key} location={location}>
+                  <Route path="*" exact element={<NotFound/>}/>
                   <Route path="/login" exact element={<Login/>}/>
                   <Route path="/" exact element={<Welcome/>}/>
                   <Route element={<Protected/>}>
