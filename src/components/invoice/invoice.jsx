@@ -29,7 +29,7 @@ function Invoice (){
 
     const data =[
         {name:'مدیریت فاکتور' , link:'/manage-invoice' , class:styles.cardOne , logo:invoice},
-        {name:'درخواست های فاکتور رسمی' , link:'/request-invoice' , class:styles.cardTwo , logo:invoice},
+        // {name:'درخواست های فاکتور رسمی' , link:'/request-invoice' , class:styles.cardTwo , logo:invoice},
     ]
 
     return(

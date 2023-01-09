@@ -33,7 +33,7 @@ function Welcome (){
                         <img id={styles.heart} src={logo} alt="" />
                     </div>
                     <div className={styles.bottomContent}>
-                        <NavLink className='btn' to='/login'>ورود <FontAwesomeIcon icon={faChevronLeft}/></NavLink>
+                        <NavLink className='btn' to='/dashboard'>ورود <FontAwesomeIcon icon={faChevronLeft}/></NavLink>
                     </div>
                 </div>
             </div>

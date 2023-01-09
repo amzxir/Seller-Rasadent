@@ -25,11 +25,9 @@ function Login (){
         <Container>
             <WizardForm>
                 <StepOne 
-                    // data={request} 
                     setMobileData={setMobileData}
                 />
                 <StepTwo 
-                    // data={request} 
                     mobileData={mobileData}
                 />
                 <StepThere/>

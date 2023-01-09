@@ -47,7 +47,7 @@ function StepTwo (props){
 
         axios.post('https://testfe.rasadent.com/api/login' , loginApi)
         
-        .then(function (response) {
+        .then( (response) => {
 
             const statusCode = response.data.status_code
             const errorMsg = response.data.msg
@@ -59,27 +59,15 @@ function StepTwo (props){
             } else {
                 const getToken = response.data.token
                 console.log('ok' , getToken)
+                localStorage.setItem("token" , response.data.token)
+                navigate('/dashboard')
             }
+
             
         })
-        .catch(function (error) {
+        .catch( (error) => {
             console.log(error);
         })
-
-        // if (statusCode === 422){
-
-        //     toast.error(errorMsg)
-
-        // } else if (statusCode === 200) {
-
-        //     const getToken = Response.data.token
-        //     // console.log(getToken)
-        //     toast.success('با موفقیت وارد شدید')
-        //     navigate('/dashboard')
-        //     // setAuth(true)
-
-        // }
-
     }
 
     const handelCode = () => {

@@ -30,14 +30,13 @@ function Dashboard () {
     // array data chart
     const data = [
         {id:1 , name:'فاکتور ها' , int:'12' , link:'/manage-invoice' , icon:faFileInvoice},
-        {id:2 , name:'فاکتور رسمی' , int:'23' , link:'/request-invoice' , icon:faFileInvoice},
+        {id:1 , name:'محصولات' , int:'23' , link:'/manage-invoice' , icon:faFileInvoice},
         
     ]
 
     // array data card
     const datas = [
         {id:1 , name:'فاکتور ها' , int:'12' , link:'/manage-invoice' , icon:faFileInvoice},
-        {id:2 , name:'فاکتور رسمی' , int:'23' , link:'/request-invoice' , icon:faFileInvoiceDollar},
         {id:3 , name:'کیف پول' , int:'10000000' , link:null , icon:faWallet},
         
     ]

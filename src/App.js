@@ -1,4 +1,4 @@
-import { Component, useState } from "react";
+import { useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +11,6 @@ import Messages from "./components/message/message";
 import Menu from "./components/navbar/menu/menu";
 import Nav from "./components/navbar/nav/nav";
 import Product from "./components/product/product";
-import PrivateRoutes from "./components/utlis/private-routes";
 import Welcome from "./components/welcome/welcome";
 import Context from "./context/context";
 import NoInternetConnection from "./components/nointernet/NoInternet";
@@ -23,6 +22,7 @@ import ViewInvoice from "./components/invoice/view/view";
 import VeiwMessage from "./components/message/view/view";
 import RequestInvoice from "./components/invoice/request/request";
 import { ComponentTransition, AnimationTypes } from "react-component-transition";
+import Protected from "./Protected";
 
 
 
@@ -73,20 +73,20 @@ function App() {
             <Container>
               <ComponentTransition enterAnimation={AnimationTypes.slideLeft.enter}>
                 <Routes key={location.key} location={location}>
-                  <Route path="/" exact element={<Welcome/>}/>
                   <Route path="/login" exact element={<Login/>}/>
-                  <Route element={<PrivateRoutes/>}>
-                    <Route path="/dashboard" exact element={<Dashboard/>}/>
-                    <Route path="/product" exact element={<Product/>}/>
-                    <Route path="/create-product" element={<Create/>}/>
-                    <Route path="/manage-product" element={<ManageProduct functionData={getDataManage}/>}/>
-                    <Route path="/edit-product/:id" element={<Edit dataManage={dataManage} setId={setId}/>}/>
-                    <Route path="/invoice" exact element={<Invoice/>}/>
-                    <Route path="/manage-invoice" element={<ManageInvoice functionData={getDataManage}/>}/>
-                    <Route path="/request-invoice" element={<RequestInvoice functionData={getDataManage}/>}/>
-                    <Route path="/view-invoice/:id" element={<ViewInvoice dataManage={dataManage} setId={setId}/>}/>
-                    <Route path="/messages" exact element={<Messages functionData={getDataManage}/>}/>
-                    <Route path="/messages-view/:id" exact element={<VeiwMessage dataManage={dataManage} setId={setId}/>}/>
+                  <Route path="/" exact element={<Welcome/>}/>
+                  <Route element={<Protected/>}>
+                      <Route path="/dashboard" exact element={<Dashboard/>}/>
+                      <Route path="/product" exact element={<Product/>}/>
+                      <Route path="/create-product" element={<Create/>}/>
+                      <Route path="/manage-product" element={<ManageProduct functionData={getDataManage}/>}/>
+                      <Route path="/edit-product/:id" element={<Edit dataManage={dataManage} setId={setId}/>}/>
+                      <Route path="/invoice" exact element={<Invoice/>}/>
+                      <Route path="/manage-invoice" element={<ManageInvoice functionData={getDataManage}/>}/>
+                      {/* <Route path="/request-invoice" element={<RequestInvoice functionData={getDataManage}/>}/> */}
+                      <Route path="/view-invoice/:id" element={<ViewInvoice dataManage={dataManage} setId={setId}/>}/>
+                      <Route path="/messages" exact element={<Messages functionData={getDataManage}/>}/>
+                      <Route path="/messages-view/:id" exact element={<VeiwMessage dataManage={dataManage} setId={setId}/>}/>
                   </Route>
                 </Routes>
               </ComponentTransition>
