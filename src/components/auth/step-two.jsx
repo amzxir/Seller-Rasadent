@@ -26,7 +26,7 @@ const schema = yup.object().shape({
 function StepTwo (props){
 
     // state context
-    const {setAuth} = useContext(Context)
+    const {setAuth , auth} = useContext(Context)
 
     const navigate = useNavigate();
 
@@ -34,6 +34,7 @@ function StepTwo (props){
     const { register, handleSubmit, formState:{ errors } } = useForm({
         resolver: yupResolver(schema),
     });
+    
     
     const onSubmit = async(data) => {
 
@@ -44,48 +45,41 @@ function StepTwo (props){
 
         console.log(loginApi)
 
-        const Response = await axios.post(`https://test.rasadent.com/api/login` , loginApi)
-        const statusCode = Response.data.status_code
-        const errorMsg = Response.data.msg
+        axios.post('https://testfe.rasadent.com/api/login' , loginApi)
+        
+        .then(function (response) {
 
-        console.log(Response)
-        console.log(statusCode)
-        console.log(errorMsg)
+            const statusCode = response.data.status_code
+            const errorMsg = response.data.msg
 
-
-        if (statusCode === 422){
-
-            toast.error(errorMsg)
-
-        } else if (statusCode === 200) {
-
-            const getToken = Response.data.token
-            console.log(getToken)
-            toast.success('با موفقیت وارد شدید')
-            navigate('/dashboard')
-            setAuth(true)
-
-        }
-
-        // find code in array
-        // const checkCode = request.find(({ code }) => code === data.code);
-
-        // if (!data){
+            if (statusCode === 422) {
+                toast.error(errorMsg)
+            } else if (statusCode === 500) {
+                console.log('error server')
+            } else {
+                const getToken = response.data.token
+                console.log('ok' , getToken)
+            }
             
-        //     toast.error("گذرواژه را به درستی وارد کنید")
-        //     console.log('password undefined')
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
 
-        // } else {
+        // if (statusCode === 422){
 
-        //     const password = data
-        //     const Response = await axios.post(`https://test.rasadent.com/api/login` , password)
-        //     console.log(password)
-        //     toast.success("با موفقیت وارد شدید")
+        //     toast.error(errorMsg)
+
+        // } else if (statusCode === 200) {
+
+        //     const getToken = Response.data.token
+        //     // console.log(getToken)
+        //     toast.success('با موفقیت وارد شدید')
         //     navigate('/dashboard')
+        //     // setAuth(true)
 
         // }
 
-        // setAuth(true)
     }
 
     const handelCode = () => {

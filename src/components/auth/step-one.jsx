@@ -41,21 +41,6 @@ function StepOne (props){
 
         props.nextStep(data)
         console.log(data)
-
-            // const loginUser = data
-            // const Response = await axios.post(`https://test.rasadent.com/api/login` , loginUser)
-            // const statusCode = Response.data.status_code
-
-            // console.log(statusCode)
-            // console.log(Response)
-
-
-
-            // if(statusCode === 422){
-                
-            //     toast.error('تلفن همراه مورد انتخاب شده معتبر نیست.')
-
-            // }  
     }
 
     return(
