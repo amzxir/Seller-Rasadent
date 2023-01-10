@@ -74,7 +74,6 @@ function App() {
             <Container>
               <ComponentTransition enterAnimation={AnimationTypes.slideLeft.enter}>
                 <Routes key={location.key} location={location}>
-                  <Route path="*" exact element={<NotFound/>}/>
                   <Route path="/login" exact element={<Login/>}/>
                   <Route path="/" exact element={<Welcome/>}/>
                   <Route element={<Protected/>}>
@@ -89,6 +88,7 @@ function App() {
                       <Route path="/view-invoice/:id" element={<ViewInvoice dataManage={dataManage} setId={setId}/>}/>
                       <Route path="/messages" exact element={<Messages functionData={getDataManage}/>}/>
                       <Route path="/messages-view/:id" exact element={<VeiwMessage dataManage={dataManage} setId={setId}/>}/>
+                      <Route path="*" exact element={<NotFound/>}/>
                   </Route>
                 </Routes>
               </ComponentTransition>
