@@ -28,8 +28,6 @@ function Nav ({id}){
         console.log('logout')
     }
 
-    console.log(unreadMessage)
-
     const navBack = () => {
         return(
             <Container>
