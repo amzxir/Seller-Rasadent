@@ -22,15 +22,13 @@ function Nav ({id}){
 
     const navigate = useNavigate()
 
-    const {auth , setAuth} = useContext(Context)
+    const {unreadMessage , setUnreadMessage} = useContext(Context)
 
     const logOut = () => {
-        if(auth === true){
-            setAuth(false)
-        } 
-        return toast.success("با موفقیت از حساب خود خارج شدید")
-        
+        console.log('logout')
     }
+
+    console.log(unreadMessage)
 
     const navBack = () => {
         return(
@@ -54,7 +52,7 @@ function Nav ({id}){
                             <p>فروشگاه رسادنت</p>
                         </div>
                         <div className={styles.item}>
-                            <NavLink to='/messages'><FontAwesomeIcon icon={faMessage}/><span className={styles.bage}><small>1</small></span></NavLink>
+                            <NavLink to='/messages'><FontAwesomeIcon icon={faMessage}/><span className={styles.bage}><small>{unreadMessage.length}</small></span></NavLink>
                             <div onClick={logOut}><FontAwesomeIcon icon={faSignOutAlt}/></div>
                         </div>
                 </div>

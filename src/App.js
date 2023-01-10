@@ -33,14 +33,14 @@ const Container = styled.div`
 
 function App() {
 
-  // check authentication
-  const [auth , setAuth] = useState(false)
-
   // language platform
   const {t , i18n} = useTranslation()
 
   // get data component
   const [dataManage , setDataManage] = useState()
+
+  // api message state
+  const [unreadMessage , setUnreadMessage] = useState()
 
   // get data function component
   const getDataManage = (i) => {
@@ -62,12 +62,15 @@ function App() {
 
   const location = useLocation();
 
+  const token = localStorage.getItem("token");
+
+
 
   return (
     <Context.Provider value={{ 
-      auth , setAuth , 
       t , i18n , setModal , 
-      modal
+      modal , token , unreadMessage,
+      setUnreadMessage,
      }}>
       <NoInternetConnection>
           <Nav id={urlId}/>

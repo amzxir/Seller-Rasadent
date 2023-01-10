@@ -1,4 +1,4 @@
-import { useContext , useEffect } from "react";
+import { useContext , useEffect , useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
@@ -8,6 +8,7 @@ import * as yup from "yup";
 import styled from "styled-components"
 import Context from "../../../../context/context";
 import styles from '../create.module.scss'
+import axios from "axios";
 
 const Container = styled.div`
 `
@@ -21,15 +22,35 @@ const schema = yup.object().shape({
 
 })
 
-function StepThere(props) {
+function StepThere() {
+
+  // context
+  const {t , i18n , token} = useContext(Context)
 
   // title page
   useEffect(()=> {
     document.title = 'ویژگی محصولات'
   })
+  
+  // const brand 
+  const [brand , setBrand] = useState({})
 
-  // language application
-  const {t , i18n} = useContext(Context)
+  useEffect(()=> {
+      const dataBrand = async()=> {
+        // pass token in header api
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        }
+        const bodyParameters = {
+          key: "value"
+        }
+        const Response = await axios.post('http://testfe.rasadent.com/api/ListBrand', bodyParameters, config)
+        setBrand(Response.data.brands)
+
+      }
+      dataBrand();
+  }, [])
+
 
   // state react hook form
   const { register, handleSubmit, formState:{ errors } } = useForm({
@@ -43,15 +64,19 @@ function StepThere(props) {
 
   return (
     <Container>
+
       <form className={styles.formProduct} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.pad}>
           <div className={styles.formGroup}>
               <label className={styles.nameLabel}>{t('labelBrand')}</label>
               <span className={styles.error}>{errors.brand?.message}</span>
               <select className="formSelect" {...register("brand")}>
-                <option value=''>انتخاب کنید</option>
-                <option value='لورم'>لورم</option>
-
+              <option value=''>انتخاب کنید</option>
+              {Object.keys(brand).map((key, index) => {
+                  return (
+                    <option key={index} value={key}>{brand[key]}</option>
+                  );
+                })}
               </select>
               <FontAwesomeIcon icon={faB} />
           </div>

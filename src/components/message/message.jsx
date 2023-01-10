@@ -3,12 +3,17 @@ import styled from "styled-components"
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import avatar from '../../images/user.png'
+import { useContext } from 'react'
+import Context from '../../context/context'
+import axios from 'axios'
+import iconMessage from '../../images/message.svg'
 
 const Container = styled.div`
 background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
 position: absolute;
 top: 63px;
 bottom: 72px;
+width:100%;
 overflow: auto;
 height: -webkit-fill-available;
 
@@ -17,9 +22,29 @@ height: -webkit-fill-available;
 
 function Messages ({functionData}){
 
+    // state context
+    const {token , unreadMessage , setUnreadMessage} = useContext(Context)
+
+    // title page
     useEffect(()=> {
         document.title = 'پیام ها'
     })
+
+    useEffect(()=> {
+        const apiMessage = async() => {
+            // pass token in header api
+            const config = {
+                headers: { Authorization: `Bearer ${token}` }
+            }
+            const bodyParameters = {
+            key: "value"
+            }
+            const Response = await axios.post('http://testfe.rasadent.com/api/ShowList', bodyParameters, config)
+            setUnreadMessage(Response.data.messages)
+        }
+        apiMessage()
+    },[])
+
 
     const data =[
         {id:1 , name:'امیر احمدی', message:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف' , messageStatus:false},
@@ -34,28 +59,39 @@ function Messages ({functionData}){
 
     ]
 
+
+
     const [dataMessage , setDataMessage] = useState(data)
+
 
     return(
         <Container>
-            <div className={styles.row}>
-                {dataMessage.map((i , index)=> {
-                    return(
-                        <div key={index} className={styles.col6}>
-                            <NavLink to={`/messages-view/${i.id}`} className={styles.cards} onClick={()=> functionData(i)}>
-                                <div className={styles.avatar}>
-                                    <img src={avatar} alt="" />
-                                </div>
-                                <div className={styles.content}>
-                                    <p><span></span>{i.name}</p>
-                                    <p>{i.message.slice(0 , 40)+ '...'}</p>
-                                </div>
-                            </NavLink>
-                        </div>
-                    )
-                })}
+            {unreadMessage?.length === 0 ?
+                <div className={styles.empty}>
+                    <img src={iconMessage} alt="" />
+                    <p>پیام رسان شما خالی است</p>
+                </div>
+            :
+                <div className={styles.row}>
+                    {dataMessage.map((i , index)=> {
+                        return(
+                            <div key={index} className={styles.col6}>
+                                <NavLink to={`/messages-view/${i.id}`} className={styles.cards} onClick={()=> functionData(i)}>
+                                    <div className={styles.avatar}>
+                                        <img src={avatar} alt="" />
+                                    </div>
+                                    <div className={styles.content}>
+                                        <p><span></span>{i.name}</p>
+                                        <p>{i.message.slice(0 , 40)+ '...'}</p>
+                                    </div>
+                                </NavLink>
+                            </div>
+                        )
+                    })}
 
-            </div>
+                </div>
+            }
+
         </Container>
     )
 }
