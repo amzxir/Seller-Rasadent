@@ -14,18 +14,18 @@ function Veiw({dataManage , setId}) {
       document.title = 'مشاهده پیام'
   })
 
-  console.log(dataManage)
+  // console.log(dataManage)
 
-  const {id} = useParams();
+  const {i} = useParams();
 
   useEffect(()=>{
-    setId(id)
-  },[id])
+    setId(i)
+  },[i])
 
   return (
     <Container>
         <div className={styles.card}>
-          <p>{dataManage.message}</p>
+          <p>{dataManage}</p>
         </div>
     </Container>
   )

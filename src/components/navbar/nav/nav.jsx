@@ -39,7 +39,7 @@ function Nav ({id}){
             setUnreadMessage(Response.data.messages)
         }
         apiMessage()
-    })
+    },[])
 
     const logOut = () => {
         localStorage.clear("token")

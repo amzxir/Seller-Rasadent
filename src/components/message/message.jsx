@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom'
 import avatar from '../../images/user.png'
 import { useContext } from 'react'
 import Context from '../../context/context'
-import axios from 'axios'
 import iconMessage from '../../images/message.svg'
 
 const Container = styled.div`
@@ -60,22 +59,21 @@ function Messages ({functionData}){
                 </div>
             :
                 <div className={styles.row}>
-                    {dataMessage.map((i , index)=> {
+                    {unreadMessage?.map((i , index)=> {
                         return(
                             <div key={index} className={styles.col6}>
-                                <NavLink to={`/messages-view/${i.id}`} className={styles.cards} onClick={()=> functionData(i)}>
+                                <NavLink to={`/messages-view/${i}`} className={styles.cards} onClick={()=> functionData(i)}>
                                     <div className={styles.avatar}>
                                         <img src={avatar} alt="" />
                                     </div>
                                     <div className={styles.content}>
-                                        <p><span></span>{i.name}</p>
-                                        <p>{i.message.slice(0 , 40)+ '...'}</p>
+                                        <p><span></span>امیر احمدی</p>
+                                        <p>{i.slice(0 , 40)+ '...'}</p>
                                     </div>
                                 </NavLink>
                             </div>
                         )
                     })}
-
                 </div>
             }
 
