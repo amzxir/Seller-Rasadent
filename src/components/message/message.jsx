@@ -23,27 +23,14 @@ height: -webkit-fill-available;
 function Messages ({functionData}){
 
     // state context
-    const {token , unreadMessage , setUnreadMessage} = useContext(Context)
+    const {unreadMessage , setUnreadMessage , token } = useContext(Context)
 
     // title page
     useEffect(()=> {
         document.title = 'پیام ها'
     })
 
-    useEffect(()=> {
-        const apiMessage = async() => {
-            // pass token in header api
-            const config = {
-                headers: { Authorization: `Bearer ${token}` }
-            }
-            const bodyParameters = {
-            key: "value"
-            }
-            const Response = await axios.post('http://testfe.rasadent.com/api/ShowList', bodyParameters, config)
-            setUnreadMessage(Response.data.messages)
-        }
-        apiMessage()
-    },[])
+
 
 
     const data =[

@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext , useEffect } from "react"
 import { NavLink, useLocation, useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft , faMessage , faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
@@ -7,6 +7,8 @@ import styles from './nav.module.scss'
 import avatar from '../../../images/user.png'
 import Context from '../../../context/context'
 import { toast } from 'react-toastify'
+import axios from "axios"
+
 
 
 
@@ -22,11 +24,28 @@ function Nav ({id}){
 
     const navigate = useNavigate()
 
-    const {unreadMessage , setUnreadMessage} = useContext(Context)
+    const {unreadMessage , setUnreadMessage , token} = useContext(Context)
+
+    useEffect(()=> {
+        const apiMessage = async() => {
+            // pass token in header api
+            const config = {
+                headers: { Authorization: `Bearer ${token}` }
+            }
+            const bodyParameters = {
+            key: "value"
+            }
+            const Response = await axios.post('http://testfe.rasadent.com/api/ShowList', bodyParameters, config)
+            setUnreadMessage(Response.data.messages)
+        }
+        apiMessage()
+    })
 
     const logOut = () => {
+        localStorage.clear("token")
         console.log('logout')
     }
+
 
     const navBack = () => {
         return(
@@ -50,7 +69,7 @@ function Nav ({id}){
                             <p>فروشگاه رسادنت</p>
                         </div>
                         <div className={styles.item}>
-                            <NavLink to='/messages'><FontAwesomeIcon icon={faMessage}/><span className={styles.bage}><small>{unreadMessage.length}</small></span></NavLink>
+                            <NavLink to='/messages'><FontAwesomeIcon icon={faMessage}/><span className={styles.bage}><small>{unreadMessage?.length}</small></span></NavLink>
                             <div onClick={logOut}><FontAwesomeIcon icon={faSignOutAlt}/></div>
                         </div>
                 </div>
