@@ -3,13 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMobileAlt  } from '@fortawesome/free-solid-svg-icons'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { toast } from 'react-toastify';
 import * as yup from "yup";
 import styled from "styled-components"
 import styles from './login.module.scss'
 import Context from "../../context/context";
-import axios from "axios";
-import { useCookies } from 'react-cookie';
 
 
 

@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext , useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faKey } from '@fortawesome/free-solid-svg-icons'
@@ -10,6 +10,7 @@ import styled from "styled-components"
 import styles from './login.module.scss'
 import Context from '../../context/context'
 import axios from 'axios'
+import Loading from '../loading/loading'
 
 
 
@@ -26,7 +27,7 @@ const schema = yup.object().shape({
 function StepTwo (props){
 
     // state context
-    const {setAuth , auth} = useContext(Context)
+    const {setAuth , auth , spinner ,setSpinner} = useContext(Context)
 
     const navigate = useNavigate();
 
@@ -37,6 +38,7 @@ function StepTwo (props){
     
     
     const onSubmit = async(data) => {
+        setSpinner(true)
 
         const mobile = props.data.mobile
         const password = data.password
@@ -48,12 +50,13 @@ function StepTwo (props){
         axios.post('https://testfe.rasadent.com/api/login' , loginApi)
         
         .then( (response) => {
+            setSpinner(false);
 
             const statusCode = response.data.status_code
             const errorMsg = response.data.msg
 
             if (statusCode === 422) {
-                toast.error(errorMsg)
+                toast.error('گذرواژه اشتباه است')
             } else if (statusCode === 500) {
                 console.log('error server')
             } else {
@@ -74,6 +77,10 @@ function StepTwo (props){
         const mobile = props.data
         props.nextStep(mobile)
 
+    }
+
+    if(spinner){
+        return <Loading/>
     }
 
     return(

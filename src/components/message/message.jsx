@@ -7,6 +7,7 @@ import { useContext } from 'react'
 import Context from '../../context/context'
 import iconMessage from '../../images/message.svg'
 import axios from 'axios'
+import Loading from '../loading/loading'
 
 
 const Container = styled.div`
@@ -24,7 +25,7 @@ height: -webkit-fill-available;
 function Messages ({functionData}){
 
     // state context
-    const {unreadMessage , setUnreadMessage , token } = useContext(Context)
+    const {unreadMessage , setUnreadMessage , token , spinner , setSpinner } = useContext(Context)
 
     // title page
     useEffect(()=> {
@@ -33,6 +34,7 @@ function Messages ({functionData}){
 
 
     useEffect(()=> {
+        setSpinner(true)
         const apiMessage = async() => {
             // pass token in header api
             const config = {
@@ -43,8 +45,10 @@ function Messages ({functionData}){
             }
             const Response = await axios.post('http://testfe.rasadent.com/api/ShowList', bodyParameters, config)
             setUnreadMessage(Response.data.messages)
+            setSpinner(false)
         }
         apiMessage()
+        
     },[])
 
 
@@ -64,6 +68,10 @@ function Messages ({functionData}){
 
 
     const [dataMessage , setDataMessage] = useState(data)
+
+    if(spinner){
+        return <Loading/>
+    }
 
 
     return(

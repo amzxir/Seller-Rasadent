@@ -10,6 +10,7 @@ import styles from '../create.module.scss'
 import Context from "../../../../context/context";
 import { useState } from "react";
 import axios from "axios";
+import Loading from "../../../loading/loading";
 
 
 const Container = styled.div`
@@ -29,7 +30,7 @@ function StepOne(props) {
     })
 
     // context state
-    const {t , i18n , token} = useContext(Context)
+    const {t , i18n , token , spinner , setSpinner} = useContext(Context)
 
     const [apiCategory , setApiCategory] = useState({})
 
@@ -39,6 +40,7 @@ function StepOne(props) {
     });
     
     const onSubmit = async(data) => {
+        setSpinner(true)
         const name = data.category
         // pass token in header api
         const config = {
@@ -53,6 +55,7 @@ function StepOne(props) {
             const Response = await axios.post(`http://testfe.rasadent.com/api/ListCategory`, bodyParameters , config)
             const arrayCategory = Response.data.categories
             // console.log(Response)
+            setSpinner(false)
             if(arrayCategory.length === 0){
                 toast.error('دسته بندی یاقت نشد')
             } else {
@@ -85,6 +88,10 @@ function StepOne(props) {
         }
     }
 
+    if(spinner){
+        return <Loading/>
+    }
+
 
   return (
     <Container>
@@ -96,11 +103,13 @@ function StepOne(props) {
                     <input type="text" className="formControl" {...register("category")}/>
                     <FontAwesomeIcon icon={faSearch}/>
                 </div>
-                {apiCategory && Object.keys(apiCategory).map((key, index) => {
-                  return (
-                    <p onClick={()=> handelCategory(key , apiCategory[key])} key={index} >{apiCategory[key]}</p>
-                  )
-                })}
+                <div className={styles.fillter}>
+                    {apiCategory && Object.keys(apiCategory).map((key, index) => {
+                    return (
+                        <p onClick={()=> handelCategory(key , apiCategory[key])} key={index} >{apiCategory[key]}</p>
+                    )
+                    })}
+                </div>
                 <div className={styles.justifyBtn}>
                     <button className="btn custom-btn"><FontAwesomeIcon icon={faChevronLeft}/>{t('nextStep')}</button>
                 </div>

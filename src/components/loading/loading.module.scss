@@ -1,0 +1,17 @@
+.loading{
+    position: absolute;
+    height: 667px;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    right: 0;
+    left: 0;
+
+    img{
+        width: 100px;
+        height: 100px;
+    }
+}

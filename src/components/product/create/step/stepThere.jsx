@@ -8,6 +8,7 @@ import Context from "../../../../context/context"
 import styles from '../create.module.scss'
 import axios from "axios"
 import { ErrorMessage } from '@hookform/error-message';
+import Loading from "../../../loading/loading";
 
 
 
@@ -19,7 +20,7 @@ const Container = styled.div`
 function StepThere(props) {
 
   // context
-  const {t , i18n , token} = useContext(Context)
+  const {t , i18n , token , spinner , setSpinner} = useContext(Context)
 
   // title page
   useEffect(()=> {
@@ -33,7 +34,7 @@ function StepThere(props) {
 
   useEffect(()=> {
     const category_id = sessionStorage.getItem('id_category')
-
+    setSpinner(true)
     const apiFeature = async() => {
         // pass token in header api
         const config = {
@@ -46,12 +47,14 @@ function StepThere(props) {
       const Response = await axios.post('http://testfe.rasadent.com/api/CategoryFeature', bodyParameters, config)
       setFeature(Response.data)
       console.log(Response.data)
+      setSpinner(false)
     }
 
     apiFeature()
   },[])
 
   useEffect(()=> {
+      setSpinner(true)
       const dataBrand = async()=> {
         // pass token in header api
         const config = {
@@ -62,7 +65,7 @@ function StepThere(props) {
         }
         const Response = await axios.post('http://testfe.rasadent.com/api/ListBrand', bodyParameters, config)
         setBrand(Response.data.brands)
-
+        setSpinner(false)
       }
       dataBrand();
   }, [])
@@ -73,6 +76,7 @@ function StepThere(props) {
   const { register, formState: { errors }, handleSubmit } = useForm();
 
   const onSubmit = async(data) => {
+    setSpinner(true)
     const obj = data
     const peroperty = Object.values(obj)
     const newPeroperty = peroperty[0]
@@ -106,6 +110,7 @@ function StepThere(props) {
     try {
       const Response = await axios.post('http://testfe.rasadent.com/api/ProductCreate' , bodyParameters , config);
       const StatusCode = Response.data.status_code
+      setSpinner(false);
       if (StatusCode === 422){
         toast.error(Response.data.msg)
       } else {
@@ -117,6 +122,10 @@ function StepThere(props) {
         console.error(error);
     }
 
+  }
+
+  if(spinner){
+    return <Loading/>
   }
 
   return (

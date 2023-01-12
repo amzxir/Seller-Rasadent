@@ -39,6 +39,9 @@ function App() {
   // get data component
   const [dataManage , setDataManage] = useState()
 
+  // loading state
+  const [spinner, setSpinner] = useState(false);    
+
   // api message state
   const [unreadMessage , setUnreadMessage] = useState()
 
@@ -64,13 +67,12 @@ function App() {
 
   const token = localStorage.getItem("token");
 
-
-
   return (
     <Context.Provider value={{ 
       t , i18n , setModal , 
       modal , token , unreadMessage,
-      setUnreadMessage,
+      setUnreadMessage, spinner ,
+      setSpinner
      }}>
       <NoInternetConnection>
           <Nav id={urlId}/>
