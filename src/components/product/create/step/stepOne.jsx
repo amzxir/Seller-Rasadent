@@ -8,6 +8,8 @@ import * as yup from "yup";
 import styled from "styled-components"
 import styles from '../create.module.scss'
 import Context from "../../../../context/context";
+import { useState } from "react";
+import axios from "axios";
 
 
 const Container = styled.div`
@@ -26,30 +28,62 @@ function StepOne(props) {
         document.title = 'دسته بندی محصول'
     })
 
-    // language application
-    const {t , i18n} = useContext(Context)
+    // context state
+    const {t , i18n , token} = useContext(Context)
+
+    const [apiCategory , setApiCategory] = useState({})
 
     // state react hook form
     const { register, handleSubmit, formState:{ errors } } = useForm({
         resolver: yupResolver(schema)
     });
     
-    const onSubmit = (data) => {
+    const onSubmit = async(data) => {
+        const name = data.category
+        // pass token in header api
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        }
+        const bodyParameters = {
+            key: "value",
+            name:name
+        }
 
-        const responseProduct = props.dataProduct
+        try {
+            const Response = await axios.post(`http://testfe.rasadent.com/api/ListCategory`, bodyParameters , config)
+            const arrayCategory = Response.data.categories
+            // console.log(Response)
+            if(arrayCategory.length === 0){
+                toast.error('دسته بندی یاقت نشد')
+            } else {
+                setApiCategory(Response.data.categories)
+            }
+        } catch (error) {
+            console.error(error);
+        }
 
-        const checkCategory = responseProduct.find(({category}) => category === data.category )
 
-        console.log(checkCategory)
+    }
 
-        if(!checkCategory) {
-            toast.error("دسته بندی یافت نشد")
-            console.log('mobile undefined')
-        } else {
-            console.log(data)
-            props.nextStep(data);
+    const handelCategory = async(key , data) => {
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        }
+        const bodyParameters = {
+            key: "value",
+            name:data
+        }
+
+        try {
+            const Response = await axios.post(`http://testfe.rasadent.com/api/ListCategory`, bodyParameters , config)
+            // console.log(data)
+            sessionStorage.setItem('id_category' , key)
+            props.nextStep(data)
+        } catch (error) {
+            console.error(error);
         }
     }
+
 
   return (
     <Container>
@@ -61,6 +95,11 @@ function StepOne(props) {
                     <input type="text" className="formControl" {...register("category")}/>
                     <FontAwesomeIcon icon={faSearch}/>
                 </div>
+                {apiCategory && Object.keys(apiCategory).map((key, index) => {
+                  return (
+                    <p onClick={()=> handelCategory(key , apiCategory[key])} key={index} >{apiCategory[key]}</p>
+                  )
+                })}
                 <div className={styles.justifyBtn}>
                     <button className="btn custom-btn"><FontAwesomeIcon icon={faChevronLeft}/>{t('nextStep')}</button>
                 </div>

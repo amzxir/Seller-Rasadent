@@ -24,22 +24,8 @@ function Nav ({id}){
 
     const navigate = useNavigate()
 
-    const {unreadMessage , setUnreadMessage , token} = useContext(Context)
+    const {unreadMessage} = useContext(Context)
 
-    useEffect(()=> {
-        const apiMessage = async() => {
-            // pass token in header api
-            const config = {
-                headers: { Authorization: `Bearer ${token}` }
-            }
-            const bodyParameters = {
-            key: "value"
-            }
-            const Response = await axios.post('http://testfe.rasadent.com/api/ShowList', bodyParameters, config)
-            setUnreadMessage(Response.data.messages)
-        }
-        apiMessage()
-    },[])
 
     const logOut = () => {
         localStorage.clear("token")

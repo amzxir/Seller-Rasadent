@@ -6,6 +6,8 @@ import avatar from '../../images/user.png'
 import { useContext } from 'react'
 import Context from '../../context/context'
 import iconMessage from '../../images/message.svg'
+import axios from 'axios'
+
 
 const Container = styled.div`
 background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
@@ -30,6 +32,20 @@ function Messages ({functionData}){
     })
 
 
+    useEffect(()=> {
+        const apiMessage = async() => {
+            // pass token in header api
+            const config = {
+                headers: { Authorization: `Bearer ${token}` }
+            }
+            const bodyParameters = {
+            key: "value"
+            }
+            const Response = await axios.post('http://testfe.rasadent.com/api/ShowList', bodyParameters, config)
+            setUnreadMessage(Response.data.messages)
+        }
+        apiMessage()
+    },[])
 
 
     const data =[

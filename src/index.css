@@ -353,3 +353,7 @@ html , body {
 input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
+
+.componentError{
+  font-size: 10px;
+}

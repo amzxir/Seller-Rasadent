@@ -52,9 +52,11 @@ function StepTwo(props) {
     });
     
     const onSubmit = (data) => {
-        console.log(data)
+        // console.log(data)
         props.nextStep(data);
     }
+
+    console.log(props.data)
 
 
 

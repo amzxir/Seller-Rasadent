@@ -1,26 +1,22 @@
 import { useContext , useEffect , useState } from "react";
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft , faB , faGlobe , faHandHoldingMedical , faHandshake  } from '@fortawesome/free-solid-svg-icons'
-import * as yup from "yup";
+import { faChevronLeft , faB , faGlobe  } from '@fortawesome/free-solid-svg-icons'
 import styled from "styled-components"
-import Context from "../../../../context/context";
+import Context from "../../../../context/context"
 import styles from '../create.module.scss'
-import axios from "axios";
+import axios from "axios"
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+import { ErrorMessage } from '@hookform/error-message';
+
+
+
 
 const Container = styled.div`
 `
 
-// validate hook form
-const schema = yup.object().shape({
-  brand: yup.string().required('فیلد برند اجباری است'),
-  country: yup.string().required('فیلد کشور سازنده اجباری است'),
-  warranty: yup.string().required('فیلد گارانتی اجباری است'),
-  guarantee: yup.string().required('فیلد ضمانت اجباری است'),
-
-})
 
 function StepThere() {
 
@@ -34,6 +30,28 @@ function StepThere() {
   
   // const brand 
   const [brand , setBrand] = useState({})
+
+  const [feature , setFeature] = useState({})
+
+  useEffect(()=> {
+    const category_id = sessionStorage.getItem('id_category')
+
+    const apiFeature = async() => {
+        // pass token in header api
+        const config = {
+          headers: { Authorization: `Bearer ${token}` }
+      }
+      const bodyParameters = {
+        key: "value",
+        cat_id : category_id
+      }
+      const Response = await axios.post('http://testfe.rasadent.com/api/CategoryFeature', bodyParameters, config)
+      setFeature(Response.data)
+      console.log(Response.data)
+    }
+
+    apiFeature()
+  },[])
 
   useEffect(()=> {
       const dataBrand = async()=> {
@@ -51,11 +69,14 @@ function StepThere() {
       dataBrand();
   }, [])
 
+  console.log(feature)
+
+
 
   // state react hook form
-  const { register, handleSubmit, formState:{ errors } } = useForm({
-    resolver: yupResolver(schema)
-  });
+  const { register, formState: { errors }, handleSubmit } = useForm();
+
+
 
   const onSubmit = (data) => {
     console.log(data)
@@ -67,10 +88,10 @@ function StepThere() {
 
       <form className={styles.formProduct} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.pad}>
-          <div className={styles.formGroup}>
+        <div className={styles.formGroup}>
               <label className={styles.nameLabel}>{t('labelBrand')}</label>
-              <span className={styles.error}>{errors.brand?.message}</span>
-              <select className="formSelect" {...register("brand")}>
+              <span className={styles.error}><ErrorMessage errors={errors} name="brand" /></span>
+              <select className="formSelect" {...register("brand" , { required: "فیلد برند خالی است" })}>      
               <option value=''>انتخاب کنید</option>
               {Object.keys(brand).map((key, index) => {
                   return (
@@ -80,36 +101,26 @@ function StepThere() {
               </select>
               <FontAwesomeIcon icon={faB} />
           </div>
-          <div className={styles.formGroup}>
-            <label className={styles.nameLabel}>{t('labelCountry')}</label>
-            <span className={styles.error}>{errors.country?.message}</span>
-            <select className="formSelect" {...register("country")}>
-              <option value=''>انتخاب کنید</option>
-              <option value='لورم'>لورم</option>
+          {Array.isArray(feature) ? 
+            feature.map((i, index)=> {
 
-            </select>
-            <FontAwesomeIcon icon={faGlobe} />
-          </div>
-          <div className={styles.formGroup}>
-            <label className={styles.nameLabel}>{t('labelWarranty')}</label>
-            <span className={styles.error}>{errors.warranty?.message}</span>
-            <select className="formSelect" {...register("warranty")}>
-              <option value=''>انتخاب کنید</option>
-              <option value='لورم'>لورم</option>
+              const nameFeild = i.peroperty
 
-            </select>
-            <FontAwesomeIcon icon={faHandHoldingMedical} />
-          </div>
-          <div className={styles.formGroup}>
-            <label className={styles.nameLabel}>{t('labelGuarantee')}</label>
-            <span className={styles.error}>{errors.guarantee?.message}</span>
-            <select className="formSelect" {...register("guarantee")}>
-              <option value=''>انتخاب کنید</option>
-              <option value='لورم'>لورم</option>
-
-            </select>
-            <FontAwesomeIcon icon={faHandshake} />
-          </div>
+              return(
+              <div key={index} className={styles.formGroup}>
+                <label htmlFor={i.id} className={styles.nameLabel}>{i.peroperty}</label>
+                <span className={styles.error}><ErrorMessage errors={errors} name={i.peroperty} /></span>
+                <select id={i.id} className="formSelect" {...register(i.peroperty , { required: `فیلد ${i.peroperty} خالی است` })}>
+                  <option value=''>انتخاب کنید</option>
+                  <option value='لورم'>لورم</option>
+                </select>
+                <FontAwesomeIcon icon={faGlobe} />
+              </div>
+              )
+            })
+          :
+            null
+          }
           <div className={styles.justifyBtn}>
             <button className="btn custom-btn"><FontAwesomeIcon icon={faChevronLeft}/>{t('submitProduct')}</button>
           </div>
