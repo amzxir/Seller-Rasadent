@@ -69,6 +69,7 @@ function StepOne(props) {
     }
 
     const handelCategory = async(key , data) => {
+        setSpinner(true)
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         }
@@ -82,6 +83,7 @@ function StepOne(props) {
             console.log(Response)
             sessionStorage.setItem('id_category' , key)
             sessionStorage.setItem('category' , data)
+            setSpinner(false)
             props.nextStep(data)
         } catch (error) {
             console.error(error);

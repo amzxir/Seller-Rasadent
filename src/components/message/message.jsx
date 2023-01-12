@@ -34,6 +34,7 @@ function Messages ({functionData}){
 
 
     useEffect(()=> {
+        setSpinner(true)
         const apiMessage = async() => {
             // pass token in header api
             const config = {
@@ -42,8 +43,17 @@ function Messages ({functionData}){
             const bodyParameters = {
             key: "value"
             }
-            const Response = await axios.post('http://testfe.rasadent.com/api/ShowList', bodyParameters, config)
-            setUnreadMessage(Response.data.messages)
+
+            axios.post('http://testfe.rasadent.com/api/ShowList', bodyParameters, config)
+            .then((Response) => {
+                setUnreadMessage(Response.data.messages)
+                setSpinner(false);
+       
+            })
+            .catch( (error) => {
+                console.log(error);
+            })
+
         }
         apiMessage()
 
@@ -67,6 +77,10 @@ function Messages ({functionData}){
 
 
     const [dataMessage , setDataMessage] = useState(data)
+
+    if(spinner){
+        return <Loading/>
+    }
 
     return(
         <Container>

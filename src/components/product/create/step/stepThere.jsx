@@ -33,6 +33,7 @@ function StepThere(props) {
   const [feature , setFeature] = useState({})
 
   useEffect(()=> {
+    setSpinner(true)
     const category_id = sessionStorage.getItem('id_category')
     const apiFeature = async() => {
         // pass token in header api
@@ -45,6 +46,7 @@ function StepThere(props) {
       }
       const Response = await axios.post('http://testfe.rasadent.com/api/CategoryFeature', bodyParameters, config)
       setFeature(Response.data)
+      setSpinner(false)
       console.log(Response.data)
     }
 
@@ -52,6 +54,7 @@ function StepThere(props) {
   },[])
 
   useEffect(()=> {
+      setSpinner(true)
       const dataBrand = async()=> {
         // pass token in header api
         const config = {
@@ -62,6 +65,7 @@ function StepThere(props) {
         }
         const Response = await axios.post('http://testfe.rasadent.com/api/ListBrand', bodyParameters, config)
         setBrand(Response.data.brands)
+        setSpinner(false)
       }
       dataBrand();
   }, [])
