@@ -7,8 +7,6 @@ import styled from "styled-components"
 import Context from "../../../../context/context"
 import styles from '../create.module.scss'
 import axios from "axios"
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
 import { ErrorMessage } from '@hookform/error-message';
 
 
@@ -18,7 +16,7 @@ const Container = styled.div`
 `
 
 
-function StepThere() {
+function StepThere(props) {
 
   // context
   const {t , i18n , token} = useContext(Context)
@@ -69,18 +67,56 @@ function StepThere() {
       dataBrand();
   }, [])
 
-  console.log(feature)
-
-
+  // console.log(feature)
 
   // state react hook form
   const { register, formState: { errors }, handleSubmit } = useForm();
 
+  const onSubmit = async(data) => {
+    const obj = data
+    const peroperty = Object.values(obj)
+    const newPeroperty = peroperty[0]
+    var index = peroperty.indexOf(newPeroperty);
+    if (index > -1) { //Make sure item is present in the array, without if condition, -n indexes will be considered from the end of the array.
+      peroperty.splice(index, 1);
+    }
+    // console.log(peroperty)
+    
 
+    const productData = props.data
+    const categoryProduct = sessionStorage.getItem('category')
 
-  const onSubmit = (data) => {
-    console.log(data)
-    toast.success("محصول با موفقیت ثبت شد")
+    const config = {
+      headers: { Authorization: `Bearer ${token}` }
+    }
+    const bodyParameters = {
+        key: "value",
+        images:productData.uploadImages,
+        fa_name:productData.nameFa,
+        peroperies:peroperty,
+        en_name:productData.nameEn,
+        product_category:categoryProduct,
+        product_brand:data.brand,
+        product_worth:productData.price,
+        product_show:productData.statusSee,
+        product_stock:productData.statusStock,
+        product_description:productData.description,
+    }
+
+    try {
+      const Response = await axios.post('http://testfe.rasadent.com/api/ProductCreate' , bodyParameters , config);
+      const StatusCode = Response.data.status_code
+      if (StatusCode === 422){
+        toast.error(Response.data.msg)
+      } else {
+        toast.success("محصول با موفقیت ثبت شد")
+        // console.log(data)
+      }
+      console.log(Response);
+      } catch (error) {
+        console.error(error);
+    }
+
   }
 
   return (
@@ -103,9 +139,7 @@ function StepThere() {
           </div>
           {Array.isArray(feature) ? 
             feature.map((i, index)=> {
-
               const nameFeild = i.peroperty
-
               return(
               <div key={index} className={styles.formGroup}>
                 <label htmlFor={i.id} className={styles.nameLabel}>{i.peroperty}</label>

@@ -52,11 +52,9 @@ function StepTwo(props) {
     });
     
     const onSubmit = (data) => {
-        // console.log(data)
         props.nextStep(data);
     }
 
-    console.log(props.data)
 
 
 
@@ -86,13 +84,13 @@ function StepTwo(props) {
                 <div className={styles.formGroup}>
                     <label className={styles.nameLabel}>{t('labelPrice')}</label>
                     <span className={styles.error}>{errors.price?.message}</span>
-                    <SeparatedNumberInput groupLengths={[3, 3, 3 , 3 , 3 , 3]} type="text" className="formControl vazir ltr" {...register("price")} />
+                    <input type="number" className="formControl vazir ltr" {...register("price")} />
                     <FontAwesomeIcon icon={faMoneyBill} />
                 </div>
                 <div className={styles.formGroup}>
                     <label className={styles.nameLabel}>{t('labelStock')}</label>
                     <span className={styles.error}>{errors.stock?.message}</span>
-                    <input type="text" className="formControl vazir" {...register("stock")} />
+                    <input type="number" className="formControl vazir ltr" {...register("stock")} />
                     <FontAwesomeIcon icon={faStore} />
                 </div>
                 <div className={styles.formGroup}>

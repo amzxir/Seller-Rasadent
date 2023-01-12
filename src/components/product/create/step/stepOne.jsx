@@ -76,8 +76,9 @@ function StepOne(props) {
 
         try {
             const Response = await axios.post(`http://testfe.rasadent.com/api/ListCategory`, bodyParameters , config)
-            // console.log(data)
+            console.log(Response)
             sessionStorage.setItem('id_category' , key)
+            sessionStorage.setItem('category' , data)
             props.nextStep(data)
         } catch (error) {
             console.error(error);
