@@ -56,7 +56,7 @@ function StepTwo (props){
             const errorMsg = response.data.msg
 
             if (statusCode === 422) {
-                toast.error('گذرواژه اشتباه است')
+                toast.error(errorMsg)
             } else if (statusCode === 500) {
                 console.log('error server')
             } else {
