@@ -10,6 +10,7 @@ import styled from "styled-components"
 import styles from './login.module.scss'
 import Context from '../../context/context'
 import axios from 'axios'
+import Loading from '../loading/loading'
 
 
 
@@ -26,8 +27,7 @@ const schema = yup.object().shape({
 
 function StepTwo (props){
 
-    // state context
-    const {setAuth} = useContext(Context)
+    const {spinner , setSpinner} = useContext(Context)
 
     const navigate = useNavigate();
 
@@ -38,23 +38,35 @@ function StepTwo (props){
 
 
     const onSubmit = async(data) => {
+        setSpinner(true)
 
-        if (!data){
-            
-            toast.error("کد را به درستی وارد کنید")
-            console.log('code undefined')
-
-        } else {
-
-            const code = data
-            const Response = await axios.post(`https://test.rasadent.com/api/login` , code)
-            console.log(code)
-            toast.success("با موفقیت وارد شدید")
-            navigate('/dashboard')
-
+        const codeOtp = data.code
+        const verify = {
+            mobile:sessionStorage.getItem('mobile'),
+            code:codeOtp
         }
 
-        setAuth(true)
+        console.log(verify)
+
+        axios.post('https://testfe.rasadent.com/api/VerifyOtp' , verify)
+        .then(function (response) {
+            setSpinner(false)
+            // handle success
+            console.log(response)
+            const getToken = response.data.token
+            localStorage.setItem("token" , getToken)
+            navigate('/dashboard')
+            toast.success("با موفقیت وارد شدید")
+        })
+        .catch(function (error) {
+            setSpinner(false)
+            // handle error
+            console.log(error);
+        })
+    }
+
+    if (spinner){
+        return <Loading/>
     }
 
     return(

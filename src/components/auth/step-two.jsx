@@ -27,7 +27,7 @@ const schema = yup.object().shape({
 function StepTwo (props){
 
     // state context
-    const {setAuth , auth , spinner ,setSpinner} = useContext(Context)
+    const {spinner ,setSpinner} = useContext(Context)
 
     const navigate = useNavigate();
 
@@ -35,7 +35,6 @@ function StepTwo (props){
     const { register, handleSubmit, formState:{ errors } } = useForm({
         resolver: yupResolver(schema),
     });
-    
     
     const onSubmit = async(data) => {
         setSpinner(true)
@@ -50,7 +49,7 @@ function StepTwo (props){
         axios.post('https://testfe.rasadent.com/api/login' , loginApi)
         
         .then( (response) => {
-            setSpinner(false);
+            setSpinner(false)
 
             const statusCode = response.data.status_code
             const errorMsg = response.data.msg
@@ -62,7 +61,7 @@ function StepTwo (props){
             } else {
                 const getToken = response.data.token
                 console.log('ok' , getToken)
-                localStorage.setItem("token" , response.data.token)
+                localStorage.setItem("token" , getToken)
                 navigate('/dashboard')
             }
 
@@ -73,9 +72,26 @@ function StepTwo (props){
         })
     }
 
-    const handelCode = () => {
-        const mobile = props.data
-        props.nextStep(mobile)
+    const handelCode = async() => {
+        setSpinner(true)
+        const userMobile = props.data.mobile
+        sessionStorage.setItem("mobile" , userMobile)
+
+        axios.post('https://testfe.rasadent.com/api/SendOtp' , userMobile)
+        .then(function (Response) {
+            setSpinner(false)
+            // handle success
+            console.log(Response)
+
+        })
+        .catch(function (error) {
+            setSpinner(false)
+            // handle error
+            console.log(error)
+        })
+
+        props.nextStep()
+
 
     }
 
