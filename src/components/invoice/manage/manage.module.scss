@@ -1,6 +1,7 @@
 $navyBlue:#121D32;
 $white:#fff;
 $dark:#000;
+$colorOrginal:#25577a;
 
 .search{
     margin-bottom: 1rem;
@@ -67,8 +68,8 @@ $dark:#000;
                 align-items: center;
 
                 span{
-                    background: #3A69E6;
-                    border: 1px solid #3A69E6;
+                    background: $colorOrginal;
+                    border: 1px solid $colorOrginal;
                     width: 40px;
                     height: 40px;
                     display: flex;
@@ -98,8 +99,8 @@ $dark:#000;
                 align-items: center;
 
                 .link , span {
-                    background: #3A69E6;
-                    border: 1px solid #3A69E6;
+                    background: $colorOrginal;
+                    border: 1px solid $colorOrginal;
                     width: 40px;
                     height: 40px;
                     display: flex;

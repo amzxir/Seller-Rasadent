@@ -1,6 +1,6 @@
 $gray:rgb(108, 117, 125);
 $danger:red;
-$info:#3ABAF5;
+$info:#22577a;
 $white:#fff;
 $secondary:#495057;
 
@@ -33,7 +33,7 @@ $secondary:#495057;
                 position: absolute;
                 bottom: 15%;
                 right: 15px;
-                color: $gray;
+                color: $info;
             }
     
             input{
@@ -46,7 +46,7 @@ $secondary:#495057;
                 background-color: $white;
                 border-color: $info;
                 outline: 0;
-                box-shadow: 0 0 0 0.2rem #2e467142;
+                box-shadow: 0 0 0 0.2rem rgba(0,0,0,0.1);
             }
         }
     }

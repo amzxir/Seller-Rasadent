@@ -1,7 +1,7 @@
 $gray:rgb(146, 158, 169);
 $danger:red;
 $white:#fff;
-$info:#3ABAF5;
+$info:#22577a;
 $secondary:#495057;
 $blue:#3A69E6;
 
@@ -25,7 +25,7 @@ $blue:#3A69E6;
                 position: absolute;
                 bottom: 15%;
                 right: 15px;
-                color: $gray;
+                color: $info;
             }
     
             input{
@@ -33,12 +33,13 @@ $blue:#3A69E6;
                 border-radius: 10px;
                 padding-right: 2.5rem;
             }
+
             input:focus{
                 color: $secondary;
                 background-color: white;
                 border-color: $info;
                 outline: 0;
-                box-shadow: 0 0 0 0.2rem #2e467142;
+                box-shadow: 0 0 0 0.2rem rgba(0,0,0,0.1);
             }
 
             textarea{

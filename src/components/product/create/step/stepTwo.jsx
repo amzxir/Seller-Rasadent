@@ -84,13 +84,13 @@ function StepTwo(props) {
                 <div className={styles.formGroup}>
                     <label className={styles.nameLabel}>{t('labelPrice')}</label>
                     <span className={styles.error}>{errors.price?.message}</span>
-                    <input type="number" className="formControl vazir ltr" {...register("price")} />
+                    <input type="number" inputMode="numeric" className="formControl vazir ltr" {...register("price")} />
                     <FontAwesomeIcon icon={faMoneyBill} />
                 </div>
                 <div className={styles.formGroup}>
                     <label className={styles.nameLabel}>{t('labelStock')}</label>
                     <span className={styles.error}>{errors.stock?.message}</span>
-                    <input type="number" className="formControl vazir ltr" {...register("stock")} />
+                    <input type="number" inputMode="numeric" className="formControl vazir ltr" {...register("stock")} />
                     <FontAwesomeIcon icon={faStore} />
                 </div>
                 <div className={styles.formGroup}>

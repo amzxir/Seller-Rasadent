@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { NavLink } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFileInvoiceDollar , faFileInvoice , faWallet } from '@fortawesome/free-solid-svg-icons'
+import { faFileInvoice , faWallet } from '@fortawesome/free-solid-svg-icons'
 import styled from "styled-components"
 import styles from './dash.module.scss'
 import PirChart from "../chart/pirChart"
@@ -30,8 +30,7 @@ function Dashboard () {
     // array data chart
     const data = [
         {id:1 , name:'فاکتور ها' , int:'12' , link:'/manage-invoice' , icon:faFileInvoice},
-        {id:1 , name:'محصولات' , int:'23' , link:'/manage-invoice' , icon:faFileInvoice},
-        
+        {id:2 , name:'محصولات' , int:'23' , link:'/manage-invoice' , icon:faFileInvoice},        
     ]
 
     // array data card

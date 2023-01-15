@@ -32,6 +32,7 @@
 :root{
   --white:#fff;
   --dark:#000;
+  ---colorOrginal:#22577a;
   --primary:#3869E6;
   --light-primary:#60D3F9;
   --bg-light:#F3F3F3;
@@ -127,8 +128,8 @@ html , body {
 
 .custom-btn{
   color: var(--white);
-  background-color: #3ABAF5;
-  border-color: #3ABAF5;
+  background-color: var(---colorOrginal);
+  border-color: var(---colorOrginal);
 }
 
 .btn-secondary{
@@ -144,7 +145,7 @@ html , body {
 }
 
 .actives{
-  background-color: #3A69E6;
+  background-color: var(---colorOrginal);
   padding: 5px 15px;
   color: #fff;
   border-radius: 15px;
@@ -267,7 +268,7 @@ html , body {
 }
 
 .selected{
-  background-color: #3A69E6 !important;
+  background-color: var(---colorOrginal) !important;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -294,8 +295,8 @@ html , body {
 } */
 
 .dropdown{
-  background: #3A69E6;
-  border: 1px solid #3A69E6;
+  background: var(---colorOrginal);
+  border: 1px solid var(---colorOrginal);
   width: 40px;
   height: 40px;
   display: flex;

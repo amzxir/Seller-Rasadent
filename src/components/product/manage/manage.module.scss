@@ -7,6 +7,8 @@ $gray1:rgb(146, 158, 169);
 $gray2:#495057;
 $blue:#3A69E6;
 $danger:red;
+$colorOrginal:#25577a;
+
 
 .search{
     margin-bottom: 1rem;
@@ -74,8 +76,8 @@ $danger:red;
                 align-items: center;
 
                 span{
-                    background: $blue;
-                    border: 1px solid $blue;
+                    background: $colorOrginal;
+                    border: 1px solid $colorOrginal;
                     width: 40px;
                     height: 40px;
                     display: flex;
