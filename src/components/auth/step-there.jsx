@@ -80,7 +80,7 @@ function StepTwo (props){
                     <label className={styles.nameLabel}>کد ارسال شده را وارد کنید</label>
                     <span className={styles.error}>{errors.code?.message}</span>
                     <FontAwesomeIcon icon={faKey}/>
-                    <input type="number" className='formControl vazir' {...register("code")} />
+                    <input type="number" inputMode="numeric" className='formControl vazir' {...register("code")} />
                 </div>
                 <div className={styles.justifyCenter}>
                     <button className='btn custom-btn' style={{ maxWidth:'47%' , marginLeft:'auto' }}>تایید کد</button>
