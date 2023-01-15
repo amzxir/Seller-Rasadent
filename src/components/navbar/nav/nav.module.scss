@@ -1,3 +1,6 @@
+$danger:#da1212;
+
+
 .nav{
     display: flex;
     justify-content: flex-end;
@@ -91,8 +94,8 @@
             .bage{
                 width: 12px;
                 height: 12px;
-                border: 1px solid red;
-                background-color: red;
+                border: 1px solid $danger;
+                background-color: $danger;
                 position: absolute;
                 display: flex;
                 justify-content: center;
