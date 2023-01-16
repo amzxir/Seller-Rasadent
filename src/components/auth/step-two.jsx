@@ -13,7 +13,6 @@ import axios from 'axios'
 import Loading from '../loading/loading'
 
 
-
 const Container = styled.div`
 
 `
@@ -36,20 +35,26 @@ function StepTwo (props){
         resolver: yupResolver(schema),
     });
     
+
     const onSubmit = async(data) => {
-        setSpinner(true)
+        // setSpinner(true)
 
-        const mobile = props.data.mobile
-        const password = data.password
+        const mobileUser = props.data.mobile
+        const passwordUser = data.password
 
-        const loginApi = { mobile , password }
+        const loginApi = { 
+            mobile:mobileUser,
+            password:passwordUser
+        }
 
         console.log(loginApi)
-
-        axios.post('https://testfe.rasadent.com/api/login' , loginApi)
         
-        .then( (response) => {
-            setSpinner(false)
+
+        await axios.post('http://test.rasadent.com/api/login' , loginApi)
+        
+        .then((response) => {
+            console.log(response)
+            // setSpinner(false)
 
             const statusCode = response.data.status_code
             const errorMsg = response.data.msg
@@ -68,32 +73,33 @@ function StepTwo (props){
             
         })
         .catch( (error) => {
+            // setSpinner(false)
             console.log(error);
         })
     }
 
-    const handelCode = async() => {
-        setSpinner(true)
-        const userMobile = props.data.mobile
-        sessionStorage.setItem("mobile" , userMobile)
+    // const handelCode = async() => {
+    //     setSpinner(true)
+    //     const userMobile = props.data.mobile
+    //     sessionStorage.setItem("mobile" , userMobile)
 
-        axios.post('https://testfe.rasadent.com/api/SendOtp' , userMobile)
-        .then(function (Response) {
-            setSpinner(false)
-            // handle success
-            console.log(Response)
+    //     axios.post('https://test.rasadent.com/api/SendOtp' , userMobile)
+    //     .then(function (Response) {
+    //         setSpinner(false)
+    //         // handle success
+    //         console.log(Response)
 
-        })
-        .catch(function (error) {
-            setSpinner(false)
-            // handle error
-            console.log(error)
-        })
+    //     })
+    //     .catch(function (error) {
+    //         setSpinner(false)
+    //         // handle error
+    //         console.log(error)
+    //     })
 
-        props.nextStep()
+    //     props.nextStep()
 
 
-    }
+    // }
 
     if(spinner){
         return <Loading/>
@@ -103,7 +109,7 @@ function StepTwo (props){
         <Container>
             <div className={styles.content}>
                 <h1>تاییدیه شماره موبایل</h1>
-                <p>گذرواژه خود را وارد کنید یا <span style={{ cursor:'pointer' , fontWeight:'bold' }} onClick={handelCode}>ورود با کد</span>.</p>
+                <p>گذرواژه خود را وارد کنید یا <span style={{ cursor:'pointer' , fontWeight:'bold' }}>ورود با کد</span>.</p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className={styles.formGroup}>
