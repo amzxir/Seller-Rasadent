@@ -32,43 +32,43 @@ function StepThere(props) {
 
   const [feature , setFeature] = useState({})
 
-  useEffect(()=> {
-    setSpinner(true)
-    const category_id = sessionStorage.getItem('id_category')
-    const apiFeature = async() => {
-        // pass token in header api
-        const config = {
-          headers: { Authorization: `Bearer ${token}` }
-      }
-      const bodyParameters = {
-        key: "value",
-        cat_id : category_id
-      }
-      const Response = await axios.post('http://testfe.rasadent.com/api/CategoryFeature', bodyParameters, config)
-      setFeature(Response.data)
-      setSpinner(false)
-      console.log(Response.data)
-    }
+  // useEffect(()=> {
+  //   setSpinner(true)
+  //   const category_id = sessionStorage.getItem('id_category')
+  //   const apiFeature = async() => {
+  //       // pass token in header api
+  //       const config = {
+  //         headers: { Authorization: `Bearer ${token}` }
+  //     }
+  //     const bodyParameters = {
+  //       key: "value",
+  //       cat_id : category_id
+  //     }
+  //     const Response = await axios.post('http://testfe.rasadent.com/api/CategoryFeature', bodyParameters, config)
+  //     setFeature(Response.data)
+  //     setSpinner(false)
+  //     console.log(Response.data)
+  //   }
 
-    apiFeature()
-  },[])
+  //   apiFeature()
+  // },[])
 
-  useEffect(()=> {
-      setSpinner(true)
-      const dataBrand = async()=> {
-        // pass token in header api
-        const config = {
-            headers: { Authorization: `Bearer ${token}` }
-        }
-        const bodyParameters = {
-          key: "value"
-        }
-        const Response = await axios.post('http://testfe.rasadent.com/api/ListBrand', bodyParameters, config)
-        setBrand(Response.data.brands)
-        setSpinner(false)
-      }
-      dataBrand();
-  }, [])
+  // useEffect(()=> {
+  //     setSpinner(true)
+  //     const dataBrand = async()=> {
+  //       // pass token in header api
+  //       const config = {
+  //           headers: { Authorization: `Bearer ${token}` }
+  //       }
+  //       const bodyParameters = {
+  //         key: "value"
+  //       }
+  //       const Response = await axios.post('http://testfe.rasadent.com/api/ListBrand', bodyParameters, config)
+  //       setBrand(Response.data.brands)
+  //       setSpinner(false)
+  //     }
+  //     dataBrand();
+  // }, [])
 
   // console.log(feature)
 
@@ -76,51 +76,51 @@ function StepThere(props) {
   const { register, formState: { errors }, handleSubmit } = useForm();
 
   const onSubmit = async(data) => {
-    setSpinner(true)
-    const obj = data
-    const peroperty = Object.values(obj)
-    const newPeroperty = peroperty[0]
-    var index = peroperty.indexOf(newPeroperty);
-    if (index > -1) { //Make sure item is present in the array, without if condition, -n indexes will be considered from the end of the array.
-      peroperty.splice(index, 1);
-    }
-    // console.log(peroperty)
+    // setSpinner(true)
+    // const obj = data
+    // const peroperty = Object.values(obj)
+    // const newPeroperty = peroperty[0]
+    // var index = peroperty.indexOf(newPeroperty);
+    // if (index > -1) { //Make sure item is present in the array, without if condition, -n indexes will be considered from the end of the array.
+    //   peroperty.splice(index, 1);
+    // }
+    // // console.log(peroperty)
     
 
-    const productData = props.data
-    const categoryProduct = sessionStorage.getItem('category')
+    // const productData = props.data
+    // const categoryProduct = sessionStorage.getItem('category')
 
-    const config = {
-      headers: { Authorization: `Bearer ${token}` }
-    }
-    const bodyParameters = {
-        key: "value",
-        images:productData.uploadImages,
-        fa_name:productData.nameFa,
-        peroperies:peroperty,
-        en_name:productData.nameEn,
-        product_category:categoryProduct,
-        product_brand:data.brand,
-        product_worth:productData.price,
-        product_show:productData.statusSee,
-        product_stock:productData.statusStock,
-        product_description:productData.description,
-    }
+    // const config = {
+    //   headers: { Authorization: `Bearer ${token}` }
+    // }
+    // const bodyParameters = {
+    //     key: "value",
+    //     images:productData.uploadImages,
+    //     fa_name:productData.nameFa,
+    //     peroperies:peroperty,
+    //     en_name:productData.nameEn,
+    //     product_category:categoryProduct,
+    //     product_brand:data.brand,
+    //     product_worth:productData.price,
+    //     product_show:productData.statusSee,
+    //     product_stock:productData.statusStock,
+    //     product_description:productData.description,
+    // }
 
-    try {
-      const Response = await axios.post('http://testfe.rasadent.com/api/ProductCreate' , bodyParameters , config);
-      const StatusCode = Response.data.status_code
-      setSpinner(false);
-      if (StatusCode === 422){
-        toast.error(Response.data.msg)
-      } else {
-        toast.success("محصول با موفقیت ثبت شد")
-        // console.log(data)
-      }
-      console.log(Response);
-      } catch (error) {
-        console.error(error);
-    }
+    // try {
+    //   const Response = await axios.post('http://testfe.rasadent.com/api/ProductCreate' , bodyParameters , config);
+    //   const StatusCode = Response.data.status_code
+    //   setSpinner(false);
+    //   if (StatusCode === 422){
+    //     toast.error(Response.data.msg)
+    //   } else {
+    //     toast.success("محصول با موفقیت ثبت شد")
+    //     // console.log(data)
+    //   }
+    //   console.log(Response);
+    //   } catch (error) {
+    //     console.error(error);
+    // }
 
   }
 

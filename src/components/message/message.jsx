@@ -33,32 +33,32 @@ function Messages ({functionData}){
     })
 
 
-    useEffect(()=> {
-        setSpinner(true)
-        const apiMessage = async() => {
-            // pass token in header api
-            const config = {
-                headers: { Authorization: `Bearer ${token}` }
-            }
-            const bodyParameters = {
-            key: "value"
-            }
+    // useEffect(()=> {
+    //     setSpinner(true)
+    //     const apiMessage = async() => {
+    //         // pass token in header api
+    //         const config = {
+    //             headers: { Authorization: `Bearer ${token}` }
+    //         }
+    //         const bodyParameters = {
+    //         key: "value"
+    //         }
 
-            axios.post('http://testfe.rasadent.com/api/ShowList', bodyParameters, config)
-            .then((Response) => {
-                setUnreadMessage(Response.data.messages)
-                setSpinner(false);
+    //         axios.post('http://testfe.rasadent.com/api/ShowList', bodyParameters, config)
+    //         .then((Response) => {
+    //             setUnreadMessage(Response.data.messages)
+    //             setSpinner(false);
        
-            })
-            .catch( (error) => {
-                console.log(error);
-            })
+    //         })
+    //         .catch( (error) => {
+    //             console.log(error);
+    //         })
 
-        }
-        apiMessage()
+    //     }
+    //     apiMessage()
 
         
-    },[])
+    // },[])
 
 
     const data =[

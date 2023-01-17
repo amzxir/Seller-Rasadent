@@ -38,31 +38,31 @@ function StepTwo (props){
 
 
     const onSubmit = async(data) => {
-        setSpinner(true)
+        // setSpinner(true)
 
-        const codeOtp = data.code
-        const verify = {
-            mobile:sessionStorage.getItem('mobile'),
-            code:codeOtp
-        }
+        // const codeOtp = data.code
+        // const verify = {
+        //     mobile:sessionStorage.getItem('mobile'),
+        //     code:codeOtp
+        // }
 
-        console.log(verify)
+        // console.log(verify)
 
-        axios.post('https://testfe.rasadent.com/api/VerifyOtp' , verify)
-        .then(function (response) {
-            setSpinner(false)
-            // handle success
-            console.log(response)
-            const getToken = response.data.token
-            localStorage.setItem("token" , getToken)
-            navigate('/dashboard')
-            toast.success("با موفقیت وارد شدید")
-        })
-        .catch(function (error) {
-            setSpinner(false)
-            // handle error
-            console.log(error);
-        })
+        // axios.post('https://testfe.rasadent.com/api/VerifyOtp' , verify)
+        // .then(function (response) {
+        //     setSpinner(false)
+        //     // handle success
+        //     console.log(response)
+        //     const getToken = response.data.token
+        //     localStorage.setItem("token" , getToken)
+        //     navigate('/dashboard')
+        //     toast.success("با موفقیت وارد شدید")
+        // })
+        // .catch(function (error) {
+        //     setSpinner(false)
+        //     // handle error
+        //     console.log(error);
+        // })
     }
 
     if (spinner){
