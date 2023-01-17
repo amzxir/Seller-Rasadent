@@ -37,32 +37,42 @@ function StepTwo (props){
     });
 
 
-    const onSubmit = async(data) => {
-        // setSpinner(true)
+    const onSubmit = (data) => {
+        setSpinner(true)
 
-        // const codeOtp = data.code
-        // const verify = {
-        //     mobile:sessionStorage.getItem('mobile'),
-        //     code:codeOtp
-        // }
+        const codeOtp = data.code
+        const mobileOtp = sessionStorage.getItem('mobile')
+        const verify = {
+            mobile:mobileOtp,
+            code:codeOtp
+        }
 
-        // console.log(verify)
+        console.log(verify)
 
-        // axios.post('https://testfe.rasadent.com/api/VerifyOtp' , verify)
-        // .then(function (response) {
-        //     setSpinner(false)
-        //     // handle success
-        //     console.log(response)
-        //     const getToken = response.data.token
-        //     localStorage.setItem("token" , getToken)
-        //     navigate('/dashboard')
-        //     toast.success("با موفقیت وارد شدید")
-        // })
-        // .catch(function (error) {
-        //     setSpinner(false)
-        //     // handle error
-        //     console.log(error);
-        // })
+        axios.post('https://test.rasadent.com/api/VerifyOtp' , verify)
+        .then(function (response) {
+            setSpinner(false)
+            // handle success
+            console.log(response)
+
+            if (response.data.status_code === 422){
+                toast.error(response.data.msg)
+            } else if (response.data.status_code === 500)
+            {
+                console.log('error server')
+            } else {
+                const getToken = response.data.token
+                localStorage.setItem("token" , getToken)
+                navigate('/dashboard')
+                toast.success("با موفقیت وارد شدید")
+            }
+   
+        })
+        .catch(function (error) {
+            setSpinner(false)
+            // handle error
+            console.log(error);
+        })
     }
 
     if (spinner){

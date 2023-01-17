@@ -36,67 +36,75 @@ function StepTwo (props){
     });
     
 
-    const onSubmit = async(data) => {
-        // // setSpinner(true)
+    const onSubmit = (data) => {
+        setSpinner(true)
 
-        // const mobileUser = props.data.mobile
-        // const passwordUser = data.password
+        const mobileUser = props.data.mobile
+        const passwordUser = data.password
 
-        // const loginApi = { 
-        //     mobile:mobileUser,
-        //     password:passwordUser
-        // }
+        const loginApi = { 
+            mobile:mobileUser,
+            password:passwordUser
+        }
 
-        // console.log(loginApi)
+        console.log(loginApi)
+
+        axios.post('http://test.rasadent.com/api/login' , loginApi )
         
+        .then((response) => {
+            console.log(response)
+            setSpinner(false)
 
-        // await axios.post('http://test.rasadent.com/api/login' , loginApi)
-        
-        // .then((response) => {
-        //     console.log(response)
-        //     // setSpinner(false)
+            const statusCode = response.data.status_code
+            const errorMsg = response.data.msg
 
-        //     const statusCode = response.data.status_code
-        //     const errorMsg = response.data.msg
-
-        //     if (statusCode === 422) {
-        //         toast.error(errorMsg)
-        //     } else if (statusCode === 500) {
-        //         console.log('error server')
-        //     } else {
-        //         const getToken = response.data.token
-        //         console.log('ok' , getToken)
-        //         localStorage.setItem("token" , getToken)
-        //         navigate('/dashboard')
-        //     }
+            if (statusCode === 422) {
+                toast.error(errorMsg)
+            } else if (statusCode === 500) {
+                console.log('error server')
+            } else {
+                const getToken = response.data.token
+                console.log('ok' , getToken)
+                localStorage.setItem("token" , getToken)
+                navigate('/dashboard')
+            }
 
             
-        // })
-        // .catch( (error) => {
-        //     // setSpinner(false)
-        //     console.log(error);
-        // })
+        })
+        .catch( (error) => {
+            setSpinner(false)
+            console.log(error);
+        })
     }
 
-    const handelCode = async() => {
-        // setSpinner(true)
-        // const userMobile = props.data.mobile
-        // sessionStorage.setItem("mobile" , userMobile)
+    const handelCode = () => {
+        setSpinner(true)
+        const userMobile = sessionStorage.getItem('mobile')
+        const sendCode = {
+            mobile:userMobile
+        }
+        console.log(sendCode)
+        axios.post('https://test.rasadent.com/api/SendOtp' , sendCode)
+        .then(function (Response) {
+            setSpinner(false)
+            // handle success
+            console.log(Response)
 
-        // axios.post('https://test.rasadent.com/api/SendOtp' , userMobile)
-        // .then(function (Response) {
-        //     setSpinner(false)
-        //     // handle success
-        //     console.log(Response)
+            if(Response.data.msg === "code send"){
+                toast.success('کد ارسال شد')
+                props.nextStep()
+            } else if (Response.data.status_code === 422){
+                toast.error(Response.data.msg)
 
-        // })
-        // .catch(function (error) {
-        //     setSpinner(false)
-        //     // handle error
-        //     console.log(error)
-        // })
+            }
 
-        // props.nextStep()
+        })
+        .catch(function (error) {
+            setSpinner(false)
+            // handle error
+            console.log(error)
+        })
+
 
 
     }
@@ -109,7 +117,7 @@ function StepTwo (props){
         <Container>
             <div className={styles.content}>
                 <h1>تاییدیه شماره موبایل</h1>
-                <p>گذرواژه خود را وارد کنید یا <span style={{ cursor:'pointer' , fontWeight:'bold' }}>ورود با کد</span>.</p>
+                <p>گذرواژه خود را وارد کنید یا <span onClick={handelCode} style={{ cursor:'pointer' , fontWeight:'bold' }}>ورود با کد</span>.</p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className={styles.formGroup}>

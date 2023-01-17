@@ -37,9 +37,9 @@ function StepOne (props){
 
 
     const onSubmit = (data) => {
-
-        props.nextStep(data)
+        sessionStorage.setItem('mobile' , data.mobile)
         console.log(data)
+        props.nextStep()
     }
 
     return(

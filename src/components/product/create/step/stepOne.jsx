@@ -40,54 +40,54 @@ function StepOne(props) {
     });
     
     const onSubmit = async(data) => {
-        // setSpinner(true)
-        // const name = data.category
-        // // pass token in header api
-        // const config = {
-        //     headers: { Authorization: `Bearer ${token}` }
-        // }
-        // const bodyParameters = {
-        //     key: "value",
-        //     name:name
-        // }
+        setSpinner(true)
+        const name = data.category
+        // pass token in header api
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        }
+        const bodyParameters = {
+            key: "value",
+            name:name
+        }
 
-        // try {
-        //     const Response = await axios.post(`http://testfe.rasadent.com/api/ListCategory`, bodyParameters , config)
-        //     const arrayCategory = Response.data.categories
-        //     // console.log(Response)
-        //     setSpinner(false)
-        //     if(arrayCategory.length === 0){
-        //         toast.error('دسته بندی یاقت نشد')
-        //     } else {
-        //         setApiCategory(Response.data.categories)
-        //     }
-        // } catch (error) {
-        //     console.error(error);
-        // }
+        try {
+            const Response = await axios.post(`http://test.rasadent.com/api/ListCategory`, bodyParameters , config)
+            const arrayCategory = Response.data.categories
+            // console.log(Response)
+            setSpinner(false)
+            if(arrayCategory.length === 0){
+                toast.error('دسته بندی یاقت نشد')
+            } else {
+                setApiCategory(Response.data.categories)
+            }
+        } catch (error) {
+            console.error(error);
+        }
 
 
     }
 
     const handelCategory = async(key , data) => {
-        // setSpinner(true)
-        // const config = {
-        //     headers: { Authorization: `Bearer ${token}` }
-        // }
-        // const bodyParameters = {
-        //     key: "value",
-        //     name:data
-        // }
+        setSpinner(true)
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        }
+        const bodyParameters = {
+            key: "value",
+            name:data
+        }
 
-        // try {
-        //     const Response = await axios.post(`http://testfe.rasadent.com/api/ListCategory`, bodyParameters , config)
-        //     console.log(Response)
-        //     sessionStorage.setItem('id_category' , key)
-        //     sessionStorage.setItem('category' , data)
-        //     setSpinner(false)
-        //     props.nextStep(data)
-        // } catch (error) {
-        //     console.error(error);
-        // }
+        try {
+            const Response = await axios.post(`http://test.rasadent.com/api/ListCategory`, bodyParameters , config)
+            console.log(Response)
+            sessionStorage.setItem('id_category' , key)
+            sessionStorage.setItem('category' , data)
+            setSpinner(false)
+            props.nextStep(data)
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     if(spinner){
