@@ -39,7 +39,7 @@ function StepTwo (props){
     const onSubmit = (data) => {
         setSpinner(true)
 
-        const mobileUser = props.data.mobile
+        const mobileUser = sessionStorage.getItem('mobile')
         const passwordUser = data.password
 
         const loginApi = { 
