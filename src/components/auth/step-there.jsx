@@ -60,6 +60,8 @@ function StepTwo (props){
             } else if (response.data.status_code === 500)
             {
                 console.log('error server')
+            } else if(response.data.status_code === 403) {
+                toast.error(response.data.msg)
             } else {
                 const getToken = response.data.token
                 localStorage.setItem("token" , getToken)

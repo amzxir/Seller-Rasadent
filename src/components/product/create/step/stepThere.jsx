@@ -105,30 +105,36 @@ function StepThere(props) {
     setSpinner(true)
 
     const obj = data
-    const arreyProperty = ["کشور_ایران","گارانتی_دارد","ضمانت_دارد"]
-    // console.log(obj)
-    const peroperty = Object.values(obj)
-    const newPeroperty = peroperty[0]
-    var index = peroperty.indexOf(newPeroperty);
-    if (index > -1) { //Make sure item is present in the array, without if condition, -n indexes will be considered from the end of the array.
-      peroperty.splice(index, 1);
+    const countryFillter = Object.values(obj)
+    const newPeroperty = countryFillter[0]
+    var index = countryFillter.indexOf(newPeroperty);
+    if (index > -1) {
+      countryFillter.splice(index, 1);
     }
 
+    const Country = countryFillter[0]
+    const Warranty = data.گارانتی
+    const Guarantee = data.ضمانت
 
-    // var res = Object.keys(peroperty).reduce((prev, curr, index) => { return {...prev, ['string '+(index+1)]: peroperty[curr]}}, {});
-    // console.log(res);
+    const peroperty = [`ضمانت_${Guarantee}` , `گارانتی_${Warranty}` , `کشور_${Country}`]
+
+    console.log(peroperty)
 
     const productData = props.data
     const categoryProduct = sessionStorage.getItem('category')
+
+    const formData = new FormData();
+    formData.append("file", productData.uploadImages[0]);
+
 
     const config = {
       headers: { Authorization: `Bearer ${token}` }
     }
     const bodyParameters = {
         key: "value",
-        images:productData.uploadImages,
+        images:formData,
         fa_name:productData.nameFa,
-        peroperies:peroperty,
+        properties:peroperty,
         en_name:productData.nameEn,
         product_category:categoryProduct,
         product_brand:data.brand,
@@ -137,12 +143,13 @@ function StepThere(props) {
         product_stock:productData.statusStock,
         product_description:productData.description,
     }
+    
 
 
     try {
       const Response = await axios.post('http://test.rasadent.com/api/ProductCreate' , bodyParameters , config);
       const StatusCode = Response.data.status_code
-      setSpinner(false);
+      setSpinner(false)
       if (StatusCode === 422){
         toast.error(Response.data.msg)
       } else {
@@ -151,7 +158,8 @@ function StepThere(props) {
       }
       console.log(Response);
       } catch (error) {
-        console.error(error);
+        setSpinner(false)
+        console.error(error)
     }
 
   }

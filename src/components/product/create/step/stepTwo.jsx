@@ -7,7 +7,6 @@ import * as yup from "yup";
 import styled from "styled-components"
 import styles from '../create.module.scss'
 import Context from "../../../../context/context";
-import SeparatedNumberInput from 'react-separated-number-input';
 
 
 
