@@ -61,7 +61,7 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
 
     if(searchTerm.length > 0){
         currentItems = dataProduct.filter((i)=> {
-            return i.nameFa.match(searchTerm)
+            return i.fa_name.match(searchTerm)
         })
     }
 
@@ -95,7 +95,7 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
                 <div key={index} className={styles.card}>
                     <div className={styles.content}>
                     <span><FontAwesomeIcon icon={faNewspaper}/></span>
-                    <p>{i.nameFa}</p>
+                    <p>{i.fa_name}</p>
                     </div>
                     <div className={styles.manage}>
                         <div className='dropdown' onClick={() => isMenuOpen === false ? setIsMenuOpen(i) : setIsMenuOpen(false) }>

@@ -5,32 +5,15 @@ import styled from "styled-components"
 import Paginate from "../paginate/paginate";
 import Item from "./item/item";
 import styles from './manage.module.scss'
+import { useContext } from "react";
+import Context from "../../../context/context";
+import axios from "axios";
+import Loading from "../../loading/loading";
 
   const Container = styled.div`
   padding:25px 15px 0px 15px;
   `
 
-  // array data product
-  const data = [
-    {id:1 , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'بله' , price:20000 , statusSee:'بله' , statusStock:'بله' , stock:10 , warranty:'بله'} ,
-    {id:2 , nameFa:'ژل اسید اچ جامبو مروابن 7%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'خیر' , price:20000 , statusSee:'خیر' , statusStock:'خیر' , stock:10 , warranty:'خیر'} ,
-    {id:3 , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'بله' , price:20000 , statusSee:'بله' , statusStock:'بله' , stock:10 , warranty:'بله'} ,
-    {id:4 , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'خیر' , price:20000 , statusSee:'خیر' , statusStock:'خیر' , stock:10 , warranty:'خیر'} ,
-    {id:5 , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'بله' , price:20000 , statusSee:'بله' , statusStock:'بله' , stock:10 , warranty:'بله'} ,
-    {id:6 , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'بله' , price:20000 , statusSee:'بله' , statusStock:'بله' , stock:10 , warranty:'بله'} ,
-    {id:7 , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'بله' , price:20000 , statusSee:'بله' , statusStock:'بله' , stock:10 , warranty:'بله'} ,
-    {id:8 , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'خیر' , price:20000 , statusSee:'خیر' , statusStock:'خیر' , stock:10 , warranty:'خیر'} ,
-    {id:9 , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'خیر' , price:20000 , statusSee:'خیر' , statusStock:'خیر' , stock:10 , warranty:'خیر'} ,
-    {id:10 , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'خیر' , price:20000 , statusSee:'خیر' , statusStock:'خیر' , stock:10 , warranty:'خیر'} ,
-    {id:11 , nameFa:'لورم ایپسوم متن ساختگی با' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'بله' , price:20000 , statusSee:'بله' , statusStock:'بله' , stock:10 , warranty:'بله'} ,
-  ]
-
-  // if for search table
-  // const filterArticles = (searchValue) => {
-  //   if (searchValue === '') {
-  //     return data
-  //   } return data.filter(article => article.nameFa.toLowerCase().includes(searchValue.toLowerCase()))
-  // }
 
 function Manage({ functionData }) {
 
@@ -39,9 +22,30 @@ function Manage({ functionData }) {
     document.title = 'مدیریت محصولات'
   })
 
+  const {token , spinner , setSpinner} = useContext(Context)
 
-  // state data product
-  const [dataProduct , setDataProduct] = useState(data)
+  const [listProducts , setListProducts ] = useState([])
+
+
+  useEffect(()=> {
+    setSpinner(true)
+    const listsProducts = async() => {
+      // pass token in header api
+      const config = {
+      headers: { Authorization: `Bearer ${token}` }
+      }
+      const bodyParameters = {
+        key: "value",
+      }
+      const Response = await axios.post('https://test.rasadent.com/api/ListProducts', bodyParameters, config)
+      setListProducts(Response.data.Products)
+      setSpinner(false)
+      // console.log(Response.data.Products)
+    }
+
+    listsProducts()
+  },[])
+
 
   // pagenation
   const [itemOffset, setItemOffset] = useState(0);
@@ -50,27 +54,15 @@ function Manage({ functionData }) {
 
   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
 
-  const currentItems = dataProduct.slice(itemOffset, endOffset);
+  const currentItems = listProducts.slice(itemOffset, endOffset);
 
-  const pageCount = Math.ceil(dataProduct.length / 5);
+  const pageCount = Math.ceil(listProducts.length / 5);
 
-    // // value input//
-    // const [innerValue , setInnerValue] = useState("")
-    // const [searchValue , setSearchValue] = useState("")
-  
-    // // function search input table
-    // const handelSubmit = (e) => {
-    //   e.preventDefault()
-    //   const callBack = (searchValue) => setSearchValue(searchValue)
-    //   callBack(innerValue)
-    // }
-    
-    // useEffect(()=> {
-    //   const filterdata = filterArticles(searchValue)
-    //   setDataProduct(filterdata)
-    // },[searchValue])
+  const [searchTerm , setSearchTerm] = useState ("")
 
-    const [searchTerm , setSearchTerm] = useState ("")
+  if (spinner){
+    return <Loading/>
+  }
 
   return (
     <Container>
@@ -86,13 +78,12 @@ function Manage({ functionData }) {
       </div>
       <Item 
         handelFunction={functionData} 
-        dataProduct={dataProduct} 
-        setDataProduct={setDataProduct} 
+        dataProduct={listProducts} 
         currentItems={currentItems}
         searchTerm={searchTerm}
       />
       <Paginate  
-        dataProduct={dataProduct} 
+        dataProduct={listProducts} 
         setItemOffset={setItemOffset} 
         endOffset={endOffset} 
         currentItems={currentItems} 
