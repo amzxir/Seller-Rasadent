@@ -78,6 +78,7 @@ function Manage({ functionData }) {
       </div>
       <Item 
         handelFunction={functionData} 
+        setDataProduct={setListProducts}
         dataProduct={listProducts} 
         currentItems={currentItems}
         searchTerm={searchTerm}
