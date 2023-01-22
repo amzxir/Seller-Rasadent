@@ -73,7 +73,6 @@ function StepThere(props) {
   }, [])
 
 
-
   useEffect(()=> {
     setSpinner(true)
     const peroperty = async() => {

@@ -46,7 +46,6 @@ function Manage({ functionData }) {
     listsProducts()
   },[])
 
-
   // pagenation
   const [itemOffset, setItemOffset] = useState(0);
 
