@@ -55,7 +55,7 @@ function Nav ({id}){
                             <p>فروشگاه رسادنت</p>
                         </div>
                         <div className={styles.item}>
-                            <NavLink to='/messages'><FontAwesomeIcon icon={faMessage}/><span className={styles.bage}><small>{unreadMessage?.length}</small></span></NavLink>
+                            <NavLink to='/messages'><FontAwesomeIcon icon={faMessage}/><span className={styles.bage}><small>{Object.values(unreadMessage)?.length}</small></span></NavLink>
                             <div onClick={logOut}><FontAwesomeIcon icon={faSignOutAlt}/></div>
                         </div>
                 </div>

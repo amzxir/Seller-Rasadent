@@ -33,6 +33,7 @@ function Messages ({functionData}){
     })
 
 
+
     useEffect(()=> {
         setSpinner(true)
         const apiMessage = async() => {
@@ -61,37 +62,20 @@ function Messages ({functionData}){
     },[])
 
 
-    const data =[
-        {id:1 , name:'امیر احمدی', message:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف' , messageStatus:false},
-        {id:2 , name:'لورم اپیسوم' ,message:' مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف' , messageStatus:false},
-        {id:3 , name:'ایناز اسلامی', message:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنی متنوع با هدف' , messageStatus:false},
-        {id:4 , name:'سعید جعفری' ,message:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنی متنوع با هدف' , messageStatus:false},
-        {id:4 , name:'سعید جعفری' ,message:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنی متنوع با هدف' , messageStatus:false},
-        {id:4 , name:'سعید جعفری' ,message:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنی متنوع با هدف' , messageStatus:false},
-        {id:4 , name:'سعید جعفری' ,message:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنی متنوع با هدف' , messageStatus:false},
-        {id:4 , name:'سعید جعفری' ,message:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنی متنوع با هدف' , messageStatus:false},
-        {id:4 , name:'سعید جعفری' ,message:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنی متنوع با هدف' , messageStatus:false},
-
-    ]
-
-
-
-    const [dataMessage , setDataMessage] = useState(data)
-
     if(spinner){
         return <Loading/>
     }
 
     return(
         <Container>
-            {unreadMessage?.length === 0 ?
+            {Object.keys(unreadMessage)?.length === 0 ?
                 <div className={styles.empty}>
                     <img src={iconMessage} alt="" />
                     <p>پیام رسان شما خالی است</p>
                 </div>
             :
                 <div className={styles.row}>
-                    {unreadMessage?.map((i , index)=> {
+                    {Object.keys(unreadMessage)?.map((i , index)=> {
                         return(
                             <div key={index} className={styles.col6}>
                                 <NavLink to={`/messages-view/${i}`} className={styles.cards} onClick={()=> functionData(i)}>

@@ -43,7 +43,7 @@ function App() {
   const [spinner, setSpinner] = useState(false);    
 
   // api message state
-  const [unreadMessage , setUnreadMessage] = useState()
+  const [unreadMessage , setUnreadMessage] = useState({})
 
   // get data function component
   const getDataManage = (i) => {
