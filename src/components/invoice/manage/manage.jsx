@@ -26,13 +26,6 @@ const data = [
     {id:8 , nameFa:'ژل اسید اچ جامبو مروابن 37%' , nameEn:'Phosphoric acid 37% Etching Gel' , brand:'تاپ دنتال' , country:'iran' , guarantee:'دارد' , price:20000 , statusSee:'دارد' , statusStock:'ندارد' , stock:10 , warranty:'دارد'} ,
 ]
 
-// // if for search table
-// const filterArticles = (searchValue) => {
-//     if (searchValue === '') {
-//         return data
-//     } return data.filter(article => article.nameFa.toLowerCase().includes(searchValue.toLowerCase()))
-// }
-
 function Manage ({functionData}){
 
     useEffect(()=> {
@@ -50,22 +43,6 @@ function Manage ({functionData}){
     const currentItems = dataInvoice.slice(itemOffset, endOffset);
   
     const pageCount = Math.ceil(dataInvoice.length / 5);
-
-    // // value input//
-    // const [innerValue , setInnerValue] = useState("")
-    // const [searchValue , setSearchValue] = useState("")
-    
-    // // function search input table
-    // const handelSubmit = (e) => {
-    //     e.preventDefault()
-    //     const callBack = (searchValue) => setSearchValue(searchValue)
-    //     callBack(innerValue)
-    // }
-    
-    // useEffect(()=> {
-    //     const filterdata = filterArticles(searchValue)
-    //     setDataInvoice(filterdata)
-    // },[searchValue])
     
     const [searchTerm , setSearchTerm] = useState ("")
 
