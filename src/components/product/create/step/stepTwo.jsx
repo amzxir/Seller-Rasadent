@@ -22,13 +22,13 @@ const schema = yup.object().shape({
     }
     return false;
     }),
-    nameFa: yup.string().required('فیلد نام فارسی محصول اجباری است'),
-    nameEn: yup.string().required('فیلد نام انگیلیسی محصول اجباری است'),
-    price: yup.number().typeError('فیلد قیمت باید عدد باشد').required('فیلد قیمت محصول اجباری است').integer('فیلد قیمت باید عدد صحیح باشد'),
-    stock: yup.number().typeError('فیلد موجودی باید عدد باشد').required('فیلد موجودی محصول اجباری است').integer('فیلد موجودی باید عدد صحیح باشد'),
-    statusStock: yup.string().required('فیلد وضعیت نمایش اجباری است'),
-    statusSee: yup.string().required('فیلد وضعیت نمایش اجباری است'),
-    description: yup.string().required('فیلد توضیحات محصول اجباری است').min(12 , 'فیلد توضیحات باید ۱۲ کارکتر باشد'),
+    // nameFa: yup.string().required('فیلد نام فارسی محصول اجباری است'),
+    // nameEn: yup.string().required('فیلد نام انگیلیسی محصول اجباری است'),
+    // price: yup.number().typeError('فیلد قیمت باید عدد باشد').required('فیلد قیمت محصول اجباری است').integer('فیلد قیمت باید عدد صحیح باشد'),
+    // stock: yup.number().typeError('فیلد موجودی باید عدد باشد').required('فیلد موجودی محصول اجباری است').integer('فیلد موجودی باید عدد صحیح باشد'),
+    // statusStock: yup.string().required('فیلد وضعیت نمایش اجباری است'),
+    // statusSee: yup.string().required('فیلد وضعیت نمایش اجباری است'),
+    // description: yup.string().required('فیلد توضیحات محصول اجباری است').min(12 , 'فیلد توضیحات باید ۱۲ کارکتر باشد'),
 
 })
 
@@ -51,16 +51,16 @@ function StepTwo(props) {
     });
     
     const onSubmit = (data) => {
+
         props.nextStep(data);
     }
-
-
 
 
   return (
     <Container>
         <form className={styles.formProduct} onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.pad}>
+                
                 <div className={styles.formGroup}>
                     <label htmlFor="uploadImages" className={styles.nameLabel}>{t('labelUploadImages')}</label>
                     <span className={styles.error}>{errors.uploadImages?.message}</span>

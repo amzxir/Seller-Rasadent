@@ -15,8 +15,6 @@ import axios from "axios";
 // validate hook form
 const schema = yup.object().shape({
     price: yup.number().typeError('فیلد قیمت باید عدد باشد').required('فیلد قیمت محصول اجباری است').integer('فیلد قیمت باید عدد صحیح باشد'),
-    stock: yup.number().typeError('فیلد موجودی باید عدد باشد').required('فیلد موجودی محصول اجباری است').integer('فیلد موجودی باید عدد صحیح باشد'),
-
 
 })
 
@@ -29,11 +27,39 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
     const { register, handleSubmit, formState:{ errors } } = useForm({
         resolver: yupResolver(schema)
     });
+
+    const id = sessionStorage.getItem('id_product')
+
     
-    const onSubmit = (data) => {
-        console.log(data)
-        toast.success('قیمت کالا با موفقیت ویرایش شد')
-        setModal(false)
+    const onSubmit = async(data) => {
+
+        const priceProduct = data.price
+        console.log(priceProduct)
+
+        // pass token in header api
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        }
+        const bodyParameters = {
+            key: "value",
+            price:priceProduct,
+            product_id:id
+        }
+
+        try {
+            const res = await axios.post('https://test.rasadent.com/api/UpdatePrice' , bodyParameters , config);
+            console.log(res)
+            if(res.data.status_code === 422){
+                toast.error(res.data.msg)
+            }
+            else if(res.data.status_code === 200){                
+                toast.success('قیمت کالا با موفقیت ویرایش شد')
+                setModal(false)
+            }
+        } catch (error) {
+            console.error(error)
+        }
+
     }
     
 
@@ -70,7 +96,6 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
     const functionAvailable = async(e) => {
 
         e.preventDefault()
-        const id = sessionStorage.getItem('id_product')
 
         // pass token in header api
         const config = {

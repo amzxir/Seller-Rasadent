@@ -122,8 +122,8 @@ function StepThere(props) {
     const productData = props.data
     const categoryProduct = sessionStorage.getItem('category')
 
-    const formData = new FormData();
-    formData.append("file", productData.uploadImages[0]);
+    // const payload = new FormData();
+    // payload.append("uploadImages", productData.uploadImages[0]);
 
 
     const config = {
@@ -131,7 +131,7 @@ function StepThere(props) {
     }
     const bodyParameters = {
         key: "value",
-        images:formData,
+        images:productData.uploadImages,
         fa_name:productData.nameFa,
         properties:peroperty,
         en_name:productData.nameEn,
@@ -142,6 +142,7 @@ function StepThere(props) {
         product_stock:productData.statusStock,
         product_description:productData.description,
     }
+
     
 
 
