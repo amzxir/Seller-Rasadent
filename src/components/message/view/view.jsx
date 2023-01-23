@@ -16,11 +16,11 @@ function Veiw({dataManage , setId}) {
 
   // console.log(dataManage)
 
-  const {i} = useParams();
+  const {id} = useParams();
 
   useEffect(()=>{
-    setId(i)
-  },[i])
+    setId(id)
+  },[id])
 
   return (
     <Container>

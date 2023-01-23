@@ -66,6 +66,8 @@ function Messages ({functionData}){
         return <Loading/>
     }
 
+    const id = Object.values(unreadMessage)
+
     return(
         <Container>
             {Object.keys(unreadMessage)?.length === 0 ?
@@ -78,7 +80,7 @@ function Messages ({functionData}){
                     {Object.keys(unreadMessage)?.map((i , index)=> {
                         return(
                             <div key={index} className={styles.col6}>
-                                <NavLink to={`/messages-view/${i}`} className={styles.cards} onClick={()=> functionData(i)}>
+                                <NavLink to={`/messages-view/${id}`} className={styles.cards} onClick={()=> functionData(i)}>
                                     <div className={styles.avatar}>
                                         <img src={avatar} alt="" />
                                     </div>
