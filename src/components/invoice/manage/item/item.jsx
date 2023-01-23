@@ -10,13 +10,13 @@ import Loading from '../../../loading/loading';
 
 
 
-function Item({handelFunction , dataInvoice , setDataInvoice , currentItems , searchTerm}) {
+function Item({handelFunction , dataInvoice , currentItems , searchTerm}) {
 
     const {t , i18n , token , spinner , setSpinner} = useContext(Context)
 
    const functionDelete = (item) => {
        const remove = dataInvoice.filter(i => i.id !== item.id)
-       setDataInvoice(remove)
+    //    setDataInvoice(remove)
    };
 
    const functionSuccess = async(i) => {
