@@ -26,9 +26,6 @@ function Nav ({id}){
 
     const {unreadMessage} = useContext(Context)
 
-    console.log(id)
-
-
     const logOut = () => {
         localStorage.clear("token")
         console.log('logout')

@@ -55,6 +55,8 @@ function StepThere(props) {
     apiFeature()
   },[])
 
+  console.log(feature)
+
   useEffect(()=> {
       setSpinner(true)
       const dataBrand = async()=> {
