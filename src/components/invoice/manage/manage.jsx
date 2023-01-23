@@ -1,10 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState , useContext } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import styled from "styled-components"
 import Paginate from '../paginate/paginate'
 import Item from '../manage/item/item'
 import styles from './manage.module.scss'
+import axios from 'axios'
+import Context from "../../../context/context"
+import Loading from '../../loading/loading'
+
 
 const Container = styled.div`
 min-height:517px;
@@ -32,6 +36,26 @@ function Manage ({functionData}){
         document.title = 'مدیریت فاکتور ها'
     })
 
+    const {invoices , setInvoices , token , spinner , setSpinner} = useContext(Context)
+
+    useEffect(()=> {
+        setSpinner(true)
+        const getInvoices = async() => {
+            // pass token in header api
+            const config = {
+                headers: { Authorization: `Bearer ${token}` }
+            }
+            const bodyParameters = {
+            key: "value",
+            }
+            const Response = await axios.post('https://test.rasadent.com/api/ShowShopTitleInvoices', bodyParameters, config)
+            setInvoices(Response.data.invoices)
+            setSpinner(false)
+        }
+
+        getInvoices()
+    },[])
+
     const [dataInvoice , setDataInvoice] = useState(data)
 
     const [itemOffset, setItemOffset] = useState(0);
@@ -40,11 +64,15 @@ function Manage ({functionData}){
   
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   
-    const currentItems = dataInvoice.slice(itemOffset, endOffset);
+    const currentItems = invoices.slice(itemOffset, endOffset);
   
-    const pageCount = Math.ceil(dataInvoice.length / 5);
+    const pageCount = Math.ceil(invoices.length / 5);
     
     const [searchTerm , setSearchTerm] = useState ("")
+
+    if(spinner){
+        return <Loading/>
+    }
 
     return(
         <Container>
@@ -60,13 +88,13 @@ function Manage ({functionData}){
             </div>
             <Item 
                 handelFunction={functionData}
-                dataInvoice={dataInvoice}
+                dataInvoice={invoices}
                 setDataInvoice={setDataInvoice}
                 currentItems={currentItems}
                 searchTerm={searchTerm}
             />
             <Paginate
-                dataInvoice={dataInvoice}
+                dataInvoice={invoices}
                 setItemOffset={setItemOffset}
                 endOffset={endOffset}
                 currentItems={currentItems} 

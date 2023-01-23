@@ -45,6 +45,10 @@ function App() {
   // api message state
   const [unreadMessage , setUnreadMessage] = useState({})
 
+  // api invoice state
+  const [invoices , setInvoices] = useState([])
+
+
   // get data function component
   const getDataManage = (i) => {
     // console.log(i)
@@ -72,7 +76,8 @@ function App() {
       t , i18n , setModal , 
       modal , token , unreadMessage,
       setUnreadMessage, spinner ,
-      setSpinner
+      setSpinner , invoices ,
+      setInvoices
      }}>
       <NoInternetConnection>
           <Nav id={urlId}/>

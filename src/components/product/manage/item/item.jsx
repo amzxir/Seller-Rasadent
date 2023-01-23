@@ -24,7 +24,7 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
     const {modal , setModal , token} = useContext(Context)
 
     // state react hook form
-    const { register, handleSubmit, formState:{ errors } } = useForm({
+    const { register, handleSubmit , reset, formState:{ errors } } = useForm({
         resolver: yupResolver(schema)
     });
 
@@ -54,6 +54,7 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
             }
             else if(res.data.status_code === 200){                
                 toast.success('قیمت کالا با موفقیت ویرایش شد')
+                reset({price: ""} , { keepErrors: true ,  keepDirty: true})
                 setModal(false)
             }
         } catch (error) {
@@ -97,6 +98,7 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
 
         e.preventDefault()
 
+
         // pass token in header api
         const config = {
             headers: { Authorization: `Bearer ${token}` }
@@ -115,6 +117,7 @@ function Item({handelFunction , dataProduct , setDataProduct , currentItems , se
             }
             else if(response.data.status_code){
                 toast.success('موجودیت محصول تایید شد')
+                setStock(null)
             }
         } catch (error) {
             console.error(error)

@@ -1,8 +1,10 @@
+import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome , faBox , faFileInvoice , faMessage } from '@fortawesome/free-solid-svg-icons'
 import { NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components'
 import styles from './menu.module.scss'
+import Context from '../../../context/context';
 
 const Container = styled.div`
 position: absolute;
@@ -19,13 +21,15 @@ function Menu ({id}){
 
     const {pathname} = useLocation()
 
+    const {invoices} = useContext(Context)
+
     const menu = () => {
         return(
             <Container>
                 <nav className={styles.navbar}>
                     <NavLink to='/dashboard' className={({ isActive }) => (isActive ? 'actives' : 'notActive')}><FontAwesomeIcon icon={faHome}/></NavLink>
                     <NavLink to='/product' className={({ isActive }) => (isActive ? 'actives' : 'notActive')}><FontAwesomeIcon icon={faBox}/></NavLink>
-                    <NavLink to='/invoice' className={({ isActive }) => (isActive ? 'actives' : 'notActive')}><FontAwesomeIcon icon={faFileInvoice}/><span className={styles.bage}><small>5</small></span></NavLink>
+                    <NavLink to='/invoice' className={({ isActive }) => (isActive ? 'actives' : 'notActive')}><FontAwesomeIcon icon={faFileInvoice}/><span className={styles.bage}><small>{invoices?.length}</small></span></NavLink>
                     {/* <NavLink to='/messages' className={({ isActive }) => (isActive ? 'actives' : 'notActive')}><FontAwesomeIcon icon={faMessage}/><span className={styles.bage}><small>1</small></span></NavLink> */}
                 </nav>
             </Container>
