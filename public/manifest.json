@@ -7,6 +7,9 @@
   "start_url": ".",
   "name": "Seller Rasadent",
   "short_name": "Seller Rasadent",
+  "orientation": "any",
+  "related_applications": [],
+  "prefer_related_applications": true,
   "description": "Demo PWA for Seller Rasadent feature",
   "icons": [
     {
@@ -15,14 +18,18 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "/maskable_icon_x192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any"
     },
     {
-      "src": "logo512.png",
+      "src": "/maskable_icon_x512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any"
     }
   ]
 }
+
+
