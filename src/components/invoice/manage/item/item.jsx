@@ -14,10 +14,10 @@ function Item({handelFunction , dataInvoice , currentItems , searchTerm}) {
 
     const {t , i18n , token , spinner , setSpinner} = useContext(Context)
 
-   const functionDelete = (item) => {
-       const remove = dataInvoice.filter(i => i.id !== item.id)
-    //    setDataInvoice(remove)
-   };
+//    const functionDelete = (item) => {
+//        const remove = dataInvoice.filter(i => i.id !== item.id)
+//     //    setDataInvoice(remove)
+//    };
 
    const functionSuccess = async(i) => {
         setSpinner(true)
@@ -34,12 +34,14 @@ function Item({handelFunction , dataInvoice , currentItems , searchTerm}) {
         try {
             setSpinner(false)
             const response = await axios.post('https://test.rasadent.com/api/AcceptInvoice' , bodyParameters , config)
+            if(response.data.status_code === 200){
+                toast.success('فاکتور با موفقیت تایید شد')
+            }
             console.log(response)
         } catch (error) {
             setSpinner(false)
             console.error(error)
         }
-        toast.success('فاکتور با موفقیت تایید شد')
    }
 
    const functionDisapproval = async(i) => {
@@ -57,12 +59,14 @@ function Item({handelFunction , dataInvoice , currentItems , searchTerm}) {
         try {
             setSpinner(false)
             const response = await axios.post('https://test.rasadent.com/api/RejectInvoice' , bodyParameters , config)
+            if(response.data.status_code === 200){
+                toast.success('فاکتور با موفقیت رد شد')
+            }
             console.log(response)
         } catch (error) {
             setSpinner(false)
             console.error(error)
         }
-        toast.success('فاکتور با موفقیت رد شد')
    }
 
    const functionPreparation = async(i) => {
@@ -80,12 +84,14 @@ function Item({handelFunction , dataInvoice , currentItems , searchTerm}) {
         try {
             setSpinner(false)
             const response = await axios.post('https://test.rasadent.com/api/InvoiceReady' , bodyParameters , config)
+            if(response.data.status_code === 200){
+                toast.success('پیام اعلام آمادگی ارسال شد')
+            }
             console.log(response)
         } catch (error) {
             setSpinner(false)
             console.error(error)
         }
-        toast.success('پیام اعلام آمادگی ارسال شد')
    }
 
     if(searchTerm.length > 0){
@@ -139,7 +145,7 @@ function Item({handelFunction , dataInvoice , currentItems , searchTerm}) {
                             { isMenuOpen === i &&  (
                                 <div ref={ref} className='dropdown-content'>
                                     <ul className='ul'>
-                                        <li className='itemLi' onClick={()=> functionDelete(i)}><a className='link'>حذف</a></li>
+                                        {/* <li className='itemLi' onClick={()=> functionDelete(i)}><a className='link'>حذف</a></li> */}
                                         <li className='itemLi'><NavLink className='link' to={`/view-invoice/${i.id}`} onClick={()=> handelFunction(i)}>مشاهده</NavLink></li>
                                         <li className='itemLi' onClick={()=> functionPreparation(i)}><a className='link'>اعلام آمادگی</a></li>
                                         <li className='itemLi' onClick={()=> functionSuccess(i)}><a className='link'>تایید </a></li>
